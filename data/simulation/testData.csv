@@ -1,0 +1,1001 @@
+id,state,party,candidate
+0,Iowa,Republican,Candidate X
+1,South Dakota,Democrat,Candidate Y
+2,Michigan,Democrat,Candidate X
+3,Oregon,Republican,Candidate X
+4,Wisconsin,Republican,Candidate X
+5,Illinois,Republican,Candidate Y
+6,Indiana,Democrat,Candidate Y
+7,Minnesota,Republican,Candidate X
+8,New Hampshire,Republican,Candidate Y
+9,North Carolina,Democrat,Candidate X
+10,District of Columbia,Democrat,Candidate X
+11,Montana,Democrat,Candidate X
+12,Alabama,Republican,Candidate Y
+13,Nebraska,Democrat,Candidate X
+14,North Carolina,Democrat,Candidate Y
+15,Missouri,Republican,Candidate Y
+16,Kentucky,Democrat,Candidate X
+17,Alabama,Republican,Candidate X
+18,District of Columbia,Democrat,Candidate X
+19,Wisconsin,Democrat,Candidate X
+20,Hawaii,Republican,Candidate X
+21,Connecticut,Democrat,Candidate Y
+22,Alaska,Democrat,Candidate Y
+23,Florida,Republican,Candidate Y
+24,Nebraska,Democrat,Candidate X
+25,Indiana,Democrat,Candidate X
+26,Tennessee,Democrat,Candidate X
+27,Nebraska,Democrat,Candidate X
+28,Massachusetts,Republican,Candidate Y
+29,Oregon,Democrat,Candidate X
+30,New Hampshire,Republican,Candidate X
+31,Kentucky,Democrat,Candidate X
+32,Nebraska,Democrat,Candidate Y
+33,Kentucky,Democrat,Candidate Y
+34,Oregon,Republican,Candidate Y
+35,Illinois,Republican,Candidate X
+36,Alabama,Democrat,Candidate X
+37,Oklahoma,Democrat,Candidate X
+38,Arizona,Republican,Candidate X
+39,Nevada,Republican,Candidate X
+40,Hawaii,Democrat,Candidate X
+41,Washington,Democrat,Candidate Y
+42,Vermont,Democrat,Candidate Y
+43,West Virginia,Democrat,Candidate X
+44,Alabama,Republican,Candidate X
+45,Texas,Democrat,Candidate Y
+46,Nevada,Democrat,Candidate Y
+47,Puerto Rico,Democrat,Candidate Y
+48,Florida,Republican,Candidate X
+49,Nebraska,Republican,Candidate X
+50,Indiana,Republican,Candidate X
+51,Alaska,Republican,Candidate X
+52,Texas,Republican,Candidate Y
+53,Wisconsin,Democrat,Candidate Y
+54,Wisconsin,Democrat,Candidate Y
+55,Utah,Republican,Candidate Y
+56,West Virginia,Republican,Candidate X
+57,Florida,Republican,Candidate X
+58,Ohio,Democrat,Candidate Y
+59,Kentucky,Democrat,Candidate X
+60,Georgia,Republican,Candidate X
+61,Vermont,Democrat,Candidate Y
+62,Arizona,Republican,Candidate Y
+63,Connecticut,Republican,Candidate Y
+64,Oregon,Republican,Candidate X
+65,Alaska,Republican,Candidate X
+66,Illinois,Republican,Candidate X
+67,New Jersey,Democrat,Candidate Y
+68,Massachusetts,Republican,Candidate X
+69,Hawaii,Democrat,Candidate Y
+70,Montana,Republican,Candidate X
+71,Colorado,Democrat,Candidate Y
+72,Wyoming,Republican,Candidate X
+73,Texas,Republican,Candidate Y
+74,New Hampshire,Republican,Candidate Y
+75,New Mexico,Democrat,Candidate Y
+76,Florida,Republican,Candidate X
+77,Mississippi,Democrat,Candidate X
+78,Ohio,Republican,Candidate X
+79,Pennsylvania,Republican,Candidate X
+80,Oregon,Republican,Candidate X
+81,New Jersey,Democrat,Candidate X
+82,Wyoming,Republican,Candidate Y
+83,Idaho,Democrat,Candidate Y
+84,Wisconsin,Democrat,Candidate Y
+85,Wisconsin,Republican,Candidate X
+86,Minnesota,Democrat,Candidate X
+87,Utah,Republican,Candidate Y
+88,Colorado,Democrat,Candidate Y
+89,New Mexico,Democrat,Candidate Y
+90,North Dakota,Democrat,Candidate X
+91,Minnesota,Democrat,Candidate X
+92,Delaware,Democrat,Candidate Y
+93,Puerto Rico,Democrat,Candidate X
+94,Puerto Rico,Republican,Candidate Y
+95,Montana,Democrat,Candidate X
+96,New Jersey,Democrat,Candidate X
+97,Georgia,Democrat,Candidate X
+98,Arkansas,Republican,Candidate Y
+99,Hawaii,Republican,Candidate Y
+100,South  Carolina,Democrat,Candidate Y
+101,District of Columbia,Democrat,Candidate X
+102,North Carolina,Republican,Candidate X
+103,Montana,Republican,Candidate X
+104,Oklahoma,Republican,Candidate Y
+105,Wyoming,Republican,Candidate Y
+106,Minnesota,Republican,Candidate X
+107,Minnesota,Republican,Candidate X
+108,Nebraska,Democrat,Candidate X
+109,South  Carolina,Republican,Candidate Y
+110,South  Carolina,Republican,Candidate X
+111,Nevada,Republican,Candidate Y
+112,New Jersey,Republican,Candidate Y
+113,Montana,Democrat,Candidate X
+114,Nevada,Democrat,Candidate X
+115,Oklahoma,Republican,Candidate X
+116,Vermont,Republican,Candidate X
+117,Hawaii,Republican,Candidate X
+118,Indiana,Democrat,Candidate Y
+119,Arizona,Republican,Candidate Y
+120,North Carolina,Republican,Candidate Y
+121,Arkansas,Republican,Candidate Y
+122,North Carolina,Republican,Candidate X
+123,New Hampshire,Democrat,Candidate Y
+124,Missouri,Democrat,Candidate X
+125,Florida,Republican,Candidate X
+126,MaineMaryland,Democrat,Candidate Y
+127,Wyoming,Republican,Candidate Y
+128,Missouri,Democrat,Candidate X
+129,Kansas,Republican,Candidate Y
+130,Iowa,Democrat,Candidate Y
+131,Idaho,Republican,Candidate Y
+132,California,Republican,Candidate Y
+133,Delaware,Republican,Candidate Y
+134,Mississippi,Democrat,Candidate X
+135,Nebraska,Democrat,Candidate X
+136,New Jersey,Democrat,Candidate X
+137,Michigan,Republican,Candidate Y
+138,South  Carolina,Republican,Candidate Y
+139,Missouri,Republican,Candidate X
+140,Ohio,Republican,Candidate Y
+141,Kentucky,Republican,Candidate X
+142,Arizona,Republican,Candidate Y
+143,Idaho,Democrat,Candidate X
+144,Hawaii,Democrat,Candidate X
+145,North Dakota,Democrat,Candidate Y
+146,New York,Democrat,Candidate X
+147,Puerto Rico,Republican,Candidate X
+148,Connecticut,Republican,Candidate X
+149,MaineMaryland,Republican,Candidate Y
+150,Mississippi,Republican,Candidate Y
+151,West Virginia,Republican,Candidate Y
+152,Wyoming,Democrat,Candidate Y
+153,Alabama,Democrat,Candidate Y
+154,Ohio,Democrat,Candidate X
+155,Wyoming,Republican,Candidate Y
+156,South  Carolina,Democrat,Candidate X
+157,Utah,Republican,Candidate Y
+158,Nebraska,Republican,Candidate Y
+159,Utah,Democrat,Candidate X
+160,Virginia,Democrat,Candidate X
+161,Indiana,Democrat,Candidate X
+162,MaineMaryland,Democrat,Candidate X
+163,Alaska,Democrat,Candidate X
+164,Oklahoma,Democrat,Candidate X
+165,Minnesota,Republican,Candidate X
+166,Rhode Island,Democrat,Candidate Y
+167,Massachusetts,Republican,Candidate X
+168,Vermont,Democrat,Candidate Y
+169,Tennessee,Democrat,Candidate Y
+170,North Carolina,Democrat,Candidate Y
+171,Massachusetts,Republican,Candidate Y
+172,South  Carolina,Republican,Candidate X
+173,Missouri,Democrat,Candidate Y
+174,New York,Republican,Candidate X
+175,Utah,Republican,Candidate X
+176,Florida,Democrat,Candidate Y
+177,Pennsylvania,Republican,Candidate Y
+178,Louisiana,Republican,Candidate Y
+179,Alaska,Democrat,Candidate X
+180,New York,Republican,Candidate X
+181,Tennessee,Democrat,Candidate X
+182,Vermont,Republican,Candidate X
+183,Virginia,Democrat,Candidate Y
+184,Colorado,Republican,Candidate Y
+185,Indiana,Democrat,Candidate X
+186,West Virginia,Democrat,Candidate Y
+187,Louisiana,Republican,Candidate Y
+188,Colorado,Democrat,Candidate Y
+189,Michigan,Democrat,Candidate X
+190,West Virginia,Republican,Candidate X
+191,Wisconsin,Republican,Candidate X
+192,Washington,Republican,Candidate X
+193,North Carolina,Democrat,Candidate Y
+194,Minnesota,Republican,Candidate X
+195,MaineMaryland,Democrat,Candidate X
+196,Tennessee,Republican,Candidate X
+197,Oklahoma,Democrat,Candidate X
+198,Kentucky,Democrat,Candidate Y
+199,Georgia,Democrat,Candidate Y
+200,Washington,Democrat,Candidate X
+201,New Hampshire,Republican,Candidate X
+202,Georgia,Democrat,Candidate Y
+203,Iowa,Democrat,Candidate X
+204,Tennessee,Democrat,Candidate Y
+205,Utah,Republican,Candidate Y
+206,Iowa,Democrat,Candidate Y
+207,Vermont,Democrat,Candidate X
+208,Washington,Republican,Candidate Y
+209,Arkansas,Republican,Candidate Y
+210,Tennessee,Republican,Candidate Y
+211,New Hampshire,Republican,Candidate X
+212,Michigan,Republican,Candidate Y
+213,Illinois,Republican,Candidate Y
+214,Nebraska,Democrat,Candidate Y
+215,Georgia,Republican,Candidate X
+216,Vermont,Republican,Candidate X
+217,Ohio,Democrat,Candidate Y
+218,Mississippi,Democrat,Candidate X
+219,Tennessee,Democrat,Candidate X
+220,Montana,Republican,Candidate Y
+221,Mississippi,Republican,Candidate Y
+222,New Mexico,Democrat,Candidate Y
+223,Nevada,Republican,Candidate X
+224,Georgia,Democrat,Candidate Y
+225,Texas,Democrat,Candidate X
+226,Idaho,Republican,Candidate Y
+227,Ohio,Republican,Candidate Y
+228,South  Carolina,Democrat,Candidate X
+229,Missouri,Democrat,Candidate X
+230,South Dakota,Republican,Candidate X
+231,Virginia,Republican,Candidate Y
+232,Mississippi,Republican,Candidate Y
+233,District of Columbia,Republican,Candidate X
+234,California,Republican,Candidate X
+235,Nevada,Democrat,Candidate Y
+236,Montana,Democrat,Candidate Y
+237,South  Carolina,Democrat,Candidate X
+238,Illinois,Democrat,Candidate Y
+239,New Jersey,Republican,Candidate X
+240,Kentucky,Republican,Candidate Y
+241,Vermont,Democrat,Candidate X
+242,Oklahoma,Democrat,Candidate Y
+243,Delaware,Democrat,Candidate Y
+244,Ohio,Republican,Candidate X
+245,Idaho,Republican,Candidate X
+246,Delaware,Republican,Candidate Y
+247,South  Carolina,Republican,Candidate Y
+248,Utah,Democrat,Candidate Y
+249,New Jersey,Republican,Candidate X
+250,MaineMaryland,Republican,Candidate X
+251,Idaho,Republican,Candidate Y
+252,Vermont,Republican,Candidate Y
+253,District of Columbia,Democrat,Candidate Y
+254,Alabama,Democrat,Candidate X
+255,Georgia,Democrat,Candidate Y
+256,New York,Republican,Candidate X
+257,South  Carolina,Republican,Candidate Y
+258,Arizona,Republican,Candidate Y
+259,Mississippi,Democrat,Candidate Y
+260,Arkansas,Republican,Candidate X
+261,Massachusetts,Republican,Candidate Y
+262,Vermont,Democrat,Candidate X
+263,Connecticut,Democrat,Candidate Y
+264,Arizona,Republican,Candidate X
+265,Nebraska,Democrat,Candidate Y
+266,District of Columbia,Republican,Candidate Y
+267,Nevada,Democrat,Candidate X
+268,Pennsylvania,Republican,Candidate X
+269,Indiana,Democrat,Candidate X
+270,South  Carolina,Democrat,Candidate Y
+271,South Dakota,Democrat,Candidate Y
+272,Connecticut,Democrat,Candidate X
+273,Rhode Island,Republican,Candidate X
+274,Texas,Democrat,Candidate X
+275,Washington,Republican,Candidate X
+276,Rhode Island,Democrat,Candidate Y
+277,Indiana,Republican,Candidate Y
+278,Pennsylvania,Republican,Candidate Y
+279,Oregon,Democrat,Candidate X
+280,Hawaii,Republican,Candidate Y
+281,Florida,Democrat,Candidate X
+282,Vermont,Republican,Candidate X
+283,Louisiana,Democrat,Candidate Y
+284,Minnesota,Democrat,Candidate Y
+285,New York,Republican,Candidate Y
+286,Colorado,Democrat,Candidate X
+287,Alaska,Republican,Candidate X
+288,Massachusetts,Republican,Candidate X
+289,Iowa,Republican,Candidate Y
+290,Montana,Democrat,Candidate X
+291,Ohio,Democrat,Candidate Y
+292,Montana,Democrat,Candidate X
+293,Kansas,Republican,Candidate X
+294,New Mexico,Democrat,Candidate X
+295,Nevada,Republican,Candidate Y
+296,Louisiana,Republican,Candidate Y
+297,Arkansas,Democrat,Candidate Y
+298,Massachusetts,Democrat,Candidate Y
+299,MaineMaryland,Republican,Candidate X
+300,California,Democrat,Candidate X
+301,West Virginia,Democrat,Candidate X
+302,District of Columbia,Republican,Candidate Y
+303,Georgia,Republican,Candidate Y
+304,Virginia,Democrat,Candidate Y
+305,Idaho,Democrat,Candidate X
+306,South Dakota,Republican,Candidate X
+307,MaineMaryland,Republican,Candidate Y
+308,Wyoming,Democrat,Candidate Y
+309,District of Columbia,Republican,Candidate X
+310,Illinois,Republican,Candidate X
+311,Arkansas,Democrat,Candidate X
+312,Oregon,Democrat,Candidate Y
+313,Ohio,Republican,Candidate Y
+314,Idaho,Republican,Candidate Y
+315,Montana,Democrat,Candidate X
+316,MaineMaryland,Democrat,Candidate Y
+317,New Hampshire,Democrat,Candidate X
+318,Arizona,Democrat,Candidate X
+319,Wisconsin,Republican,Candidate Y
+320,Oklahoma,Democrat,Candidate X
+321,West Virginia,Democrat,Candidate X
+322,Rhode Island,Republican,Candidate X
+323,North Dakota,Democrat,Candidate Y
+324,Florida,Republican,Candidate Y
+325,South  Carolina,Democrat,Candidate X
+326,Minnesota,Republican,Candidate Y
+327,Alaska,Democrat,Candidate Y
+328,Arkansas,Republican,Candidate X
+329,Minnesota,Democrat,Candidate X
+330,Alaska,Democrat,Candidate X
+331,Alaska,Republican,Candidate X
+332,Missouri,Democrat,Candidate X
+333,Louisiana,Republican,Candidate X
+334,New Mexico,Democrat,Candidate Y
+335,California,Democrat,Candidate Y
+336,Mississippi,Republican,Candidate Y
+337,Idaho,Republican,Candidate Y
+338,Wyoming,Democrat,Candidate Y
+339,Mississippi,Republican,Candidate X
+340,Alabama,Democrat,Candidate Y
+341,District of Columbia,Republican,Candidate Y
+342,Tennessee,Republican,Candidate Y
+343,Arizona,Democrat,Candidate X
+344,New York,Republican,Candidate Y
+345,New York,Democrat,Candidate Y
+346,Indiana,Democrat,Candidate Y
+347,Montana,Republican,Candidate Y
+348,Virginia,Democrat,Candidate Y
+349,New Hampshire,Democrat,Candidate Y
+350,Wisconsin,Democrat,Candidate Y
+351,Nevada,Republican,Candidate X
+352,North Dakota,Democrat,Candidate Y
+353,Arkansas,Republican,Candidate Y
+354,Puerto Rico,Republican,Candidate X
+355,California,Republican,Candidate Y
+356,Texas,Republican,Candidate Y
+357,Alaska,Republican,Candidate Y
+358,Missouri,Democrat,Candidate X
+359,Indiana,Democrat,Candidate X
+360,Colorado,Democrat,Candidate Y
+361,Puerto Rico,Democrat,Candidate Y
+362,Texas,Democrat,Candidate Y
+363,District of Columbia,Democrat,Candidate Y
+364,Georgia,Democrat,Candidate X
+365,Puerto Rico,Republican,Candidate Y
+366,Nebraska,Democrat,Candidate Y
+367,Michigan,Democrat,Candidate Y
+368,Kentucky,Republican,Candidate X
+369,West Virginia,Republican,Candidate X
+370,MaineMaryland,Republican,Candidate X
+371,Hawaii,Democrat,Candidate Y
+372,Virginia,Democrat,Candidate X
+373,Connecticut,Democrat,Candidate Y
+374,Alaska,Republican,Candidate Y
+375,Arizona,Democrat,Candidate X
+376,MaineMaryland,Democrat,Candidate X
+377,Tennessee,Democrat,Candidate X
+378,Wisconsin,Republican,Candidate Y
+379,Indiana,Democrat,Candidate Y
+380,Alaska,Republican,Candidate X
+381,Arkansas,Republican,Candidate Y
+382,Pennsylvania,Republican,Candidate X
+383,New Mexico,Democrat,Candidate Y
+384,Tennessee,Democrat,Candidate Y
+385,Vermont,Democrat,Candidate Y
+386,Illinois,Democrat,Candidate X
+387,Kentucky,Republican,Candidate X
+388,Rhode Island,Democrat,Candidate X
+389,South  Carolina,Republican,Candidate X
+390,New York,Democrat,Candidate X
+391,New Mexico,Republican,Candidate Y
+392,Idaho,Democrat,Candidate X
+393,Idaho,Democrat,Candidate Y
+394,Massachusetts,Democrat,Candidate X
+395,Wisconsin,Democrat,Candidate Y
+396,Montana,Republican,Candidate Y
+397,New Hampshire,Republican,Candidate X
+398,Alabama,Republican,Candidate Y
+399,District of Columbia,Republican,Candidate Y
+400,Iowa,Republican,Candidate Y
+401,California,Democrat,Candidate X
+402,Georgia,Democrat,Candidate Y
+403,District of Columbia,Republican,Candidate Y
+404,Hawaii,Democrat,Candidate Y
+405,Alaska,Democrat,Candidate X
+406,South  Carolina,Democrat,Candidate Y
+407,Vermont,Republican,Candidate Y
+408,Washington,Democrat,Candidate Y
+409,Florida,Democrat,Candidate Y
+410,Illinois,Democrat,Candidate Y
+411,Nevada,Republican,Candidate X
+412,Alaska,Republican,Candidate X
+413,Kentucky,Democrat,Candidate Y
+414,Delaware,Democrat,Candidate Y
+415,West Virginia,Republican,Candidate Y
+416,Wisconsin,Democrat,Candidate Y
+417,Washington,Republican,Candidate Y
+418,Puerto Rico,Republican,Candidate X
+419,Montana,Republican,Candidate Y
+420,California,Democrat,Candidate X
+421,New York,Democrat,Candidate Y
+422,Wyoming,Republican,Candidate Y
+423,Virginia,Democrat,Candidate X
+424,Mississippi,Republican,Candidate Y
+425,Arizona,Republican,Candidate X
+426,Kentucky,Democrat,Candidate X
+427,Oregon,Republican,Candidate X
+428,Illinois,Republican,Candidate X
+429,District of Columbia,Democrat,Candidate Y
+430,New York,Democrat,Candidate Y
+431,Utah,Democrat,Candidate Y
+432,Rhode Island,Republican,Candidate Y
+433,MaineMaryland,Republican,Candidate Y
+434,Vermont,Democrat,Candidate Y
+435,Michigan,Democrat,Candidate Y
+436,Pennsylvania,Republican,Candidate Y
+437,Alabama,Democrat,Candidate Y
+438,Connecticut,Democrat,Candidate X
+439,Michigan,Republican,Candidate Y
+440,Connecticut,Republican,Candidate X
+441,Idaho,Democrat,Candidate Y
+442,Illinois,Democrat,Candidate X
+443,Kentucky,Republican,Candidate Y
+444,Washington,Democrat,Candidate X
+445,Arizona,Democrat,Candidate X
+446,Montana,Democrat,Candidate Y
+447,Alabama,Democrat,Candidate Y
+448,Hawaii,Democrat,Candidate Y
+449,Kansas,Republican,Candidate Y
+450,Ohio,Republican,Candidate Y
+451,Hawaii,Democrat,Candidate Y
+452,Louisiana,Republican,Candidate Y
+453,Florida,Democrat,Candidate X
+454,North Carolina,Republican,Candidate X
+455,Kentucky,Republican,Candidate Y
+456,Puerto Rico,Republican,Candidate Y
+457,New York,Democrat,Candidate X
+458,Minnesota,Republican,Candidate Y
+459,Illinois,Democrat,Candidate X
+460,Texas,Republican,Candidate X
+461,Wisconsin,Democrat,Candidate X
+462,South Dakota,Republican,Candidate Y
+463,Massachusetts,Democrat,Candidate X
+464,Idaho,Democrat,Candidate X
+465,New Hampshire,Democrat,Candidate Y
+466,Kentucky,Republican,Candidate Y
+467,Ohio,Republican,Candidate X
+468,Illinois,Democrat,Candidate X
+469,Georgia,Republican,Candidate X
+470,New Jersey,Democrat,Candidate X
+471,Montana,Democrat,Candidate Y
+472,Connecticut,Republican,Candidate Y
+473,Wyoming,Republican,Candidate Y
+474,Utah,Republican,Candidate X
+475,California,Republican,Candidate X
+476,North Carolina,Democrat,Candidate X
+477,New Mexico,Republican,Candidate X
+478,Idaho,Democrat,Candidate X
+479,Alaska,Democrat,Candidate X
+480,Arkansas,Democrat,Candidate X
+481,Minnesota,Republican,Candidate Y
+482,Oregon,Democrat,Candidate X
+483,Louisiana,Democrat,Candidate Y
+484,MaineMaryland,Democrat,Candidate Y
+485,New Jersey,Democrat,Candidate Y
+486,West Virginia,Democrat,Candidate Y
+487,Virginia,Democrat,Candidate Y
+488,Washington,Democrat,Candidate X
+489,Mississippi,Republican,Candidate X
+490,District of Columbia,Democrat,Candidate Y
+491,Arizona,Democrat,Candidate X
+492,MaineMaryland,Republican,Candidate X
+493,Washington,Republican,Candidate X
+494,Tennessee,Democrat,Candidate X
+495,Oklahoma,Democrat,Candidate X
+496,Texas,Republican,Candidate Y
+497,Nevada,Democrat,Candidate X
+498,Connecticut,Democrat,Candidate X
+499,Nebraska,Democrat,Candidate X
+500,Florida,Democrat,Candidate X
+501,Oregon,Democrat,Candidate X
+502,Idaho,Democrat,Candidate X
+503,New Jersey,Republican,Candidate X
+504,Arkansas,Republican,Candidate X
+505,Massachusetts,Republican,Candidate Y
+506,Puerto Rico,Republican,Candidate X
+507,Arkansas,Democrat,Candidate Y
+508,Wyoming,Democrat,Candidate X
+509,Hawaii,Democrat,Candidate Y
+510,MaineMaryland,Republican,Candidate Y
+511,Hawaii,Republican,Candidate X
+512,Pennsylvania,Democrat,Candidate X
+513,Arkansas,Republican,Candidate Y
+514,Rhode Island,Republican,Candidate X
+515,Connecticut,Republican,Candidate X
+516,Oregon,Republican,Candidate Y
+517,Oklahoma,Democrat,Candidate X
+518,Wisconsin,Democrat,Candidate X
+519,Iowa,Democrat,Candidate X
+520,District of Columbia,Republican,Candidate Y
+521,South Dakota,Republican,Candidate Y
+522,Utah,Republican,Candidate X
+523,North Carolina,Democrat,Candidate Y
+524,New Jersey,Republican,Candidate Y
+525,Louisiana,Republican,Candidate X
+526,Oklahoma,Democrat,Candidate X
+527,Pennsylvania,Republican,Candidate Y
+528,Mississippi,Republican,Candidate X
+529,Texas,Republican,Candidate X
+530,Hawaii,Republican,Candidate Y
+531,Missouri,Republican,Candidate Y
+532,Florida,Democrat,Candidate X
+533,Mississippi,Democrat,Candidate Y
+534,Washington,Democrat,Candidate Y
+535,South Dakota,Republican,Candidate Y
+536,North Dakota,Republican,Candidate Y
+537,Illinois,Democrat,Candidate Y
+538,Florida,Republican,Candidate X
+539,Wisconsin,Republican,Candidate Y
+540,Colorado,Democrat,Candidate X
+541,North Carolina,Republican,Candidate Y
+542,New Hampshire,Republican,Candidate Y
+543,Minnesota,Democrat,Candidate Y
+544,MaineMaryland,Democrat,Candidate Y
+545,Tennessee,Republican,Candidate Y
+546,West Virginia,Democrat,Candidate X
+547,Texas,Democrat,Candidate Y
+548,Massachusetts,Democrat,Candidate Y
+549,Louisiana,Republican,Candidate X
+550,Arizona,Republican,Candidate X
+551,Wisconsin,Democrat,Candidate X
+552,Washington,Democrat,Candidate X
+553,New Hampshire,Democrat,Candidate X
+554,Idaho,Democrat,Candidate Y
+555,West Virginia,Republican,Candidate Y
+556,Georgia,Democrat,Candidate X
+557,New York,Republican,Candidate X
+558,Alaska,Democrat,Candidate X
+559,Puerto Rico,Democrat,Candidate X
+560,Oklahoma,Democrat,Candidate Y
+561,MaineMaryland,Republican,Candidate Y
+562,Alaska,Republican,Candidate Y
+563,Oklahoma,Democrat,Candidate Y
+564,Idaho,Democrat,Candidate X
+565,Michigan,Republican,Candidate X
+566,Arkansas,Democrat,Candidate X
+567,Arizona,Republican,Candidate X
+568,MaineMaryland,Republican,Candidate Y
+569,Kansas,Republican,Candidate Y
+570,New Mexico,Republican,Candidate X
+571,Florida,Republican,Candidate X
+572,Nebraska,Republican,Candidate Y
+573,Washington,Democrat,Candidate X
+574,Wyoming,Republican,Candidate X
+575,New Jersey,Democrat,Candidate Y
+576,New Hampshire,Democrat,Candidate X
+577,Missouri,Democrat,Candidate Y
+578,South Dakota,Democrat,Candidate X
+579,Missouri,Republican,Candidate X
+580,Ohio,Republican,Candidate X
+581,New York,Democrat,Candidate Y
+582,Alaska,Republican,Candidate X
+583,West Virginia,Democrat,Candidate X
+584,Texas,Republican,Candidate X
+585,New Mexico,Democrat,Candidate Y
+586,Iowa,Democrat,Candidate X
+587,Kansas,Republican,Candidate X
+588,Delaware,Republican,Candidate Y
+589,Tennessee,Democrat,Candidate X
+590,South Dakota,Democrat,Candidate X
+591,Delaware,Republican,Candidate Y
+592,Alaska,Democrat,Candidate Y
+593,Colorado,Republican,Candidate Y
+594,Michigan,Democrat,Candidate Y
+595,Missouri,Republican,Candidate X
+596,New Jersey,Democrat,Candidate Y
+597,Wyoming,Republican,Candidate X
+598,Missouri,Democrat,Candidate X
+599,Illinois,Democrat,Candidate Y
+600,Illinois,Democrat,Candidate Y
+601,Mississippi,Republican,Candidate Y
+602,Pennsylvania,Republican,Candidate Y
+603,Florida,Republican,Candidate Y
+604,Ohio,Democrat,Candidate X
+605,Nevada,Democrat,Candidate X
+606,Kansas,Democrat,Candidate X
+607,Delaware,Republican,Candidate X
+608,Iowa,Republican,Candidate Y
+609,West Virginia,Republican,Candidate X
+610,Delaware,Republican,Candidate X
+611,New Jersey,Democrat,Candidate Y
+612,Vermont,Democrat,Candidate X
+613,Florida,Democrat,Candidate X
+614,Illinois,Democrat,Candidate X
+615,Alaska,Republican,Candidate X
+616,Kentucky,Republican,Candidate X
+617,North Carolina,Democrat,Candidate Y
+618,North Dakota,Republican,Candidate X
+619,Utah,Republican,Candidate Y
+620,South  Carolina,Republican,Candidate Y
+621,Florida,Democrat,Candidate X
+622,Louisiana,Republican,Candidate X
+623,Washington,Republican,Candidate X
+624,South Dakota,Republican,Candidate Y
+625,New York,Democrat,Candidate Y
+626,Mississippi,Democrat,Candidate X
+627,Illinois,Democrat,Candidate X
+628,North Carolina,Republican,Candidate Y
+629,Wisconsin,Democrat,Candidate X
+630,Louisiana,Republican,Candidate Y
+631,Wisconsin,Democrat,Candidate Y
+632,Texas,Democrat,Candidate X
+633,Nebraska,Democrat,Candidate X
+634,Oregon,Republican,Candidate X
+635,Alaska,Republican,Candidate X
+636,Michigan,Democrat,Candidate Y
+637,Texas,Republican,Candidate Y
+638,Nevada,Republican,Candidate Y
+639,Wyoming,Democrat,Candidate Y
+640,Wyoming,Democrat,Candidate Y
+641,Hawaii,Republican,Candidate X
+642,Missouri,Democrat,Candidate X
+643,Washington,Democrat,Candidate X
+644,North Dakota,Democrat,Candidate X
+645,Louisiana,Republican,Candidate X
+646,Rhode Island,Republican,Candidate X
+647,Texas,Democrat,Candidate X
+648,New York,Democrat,Candidate Y
+649,Massachusetts,Democrat,Candidate X
+650,MaineMaryland,Democrat,Candidate X
+651,Louisiana,Democrat,Candidate Y
+652,Kansas,Republican,Candidate X
+653,Kansas,Republican,Candidate X
+654,Florida,Democrat,Candidate X
+655,New York,Democrat,Candidate Y
+656,Oklahoma,Democrat,Candidate Y
+657,Oklahoma,Democrat,Candidate X
+658,Arkansas,Republican,Candidate X
+659,Wyoming,Republican,Candidate X
+660,Oklahoma,Democrat,Candidate X
+661,Ohio,Democrat,Candidate X
+662,Alabama,Republican,Candidate Y
+663,Colorado,Republican,Candidate Y
+664,Arkansas,Democrat,Candidate Y
+665,Missouri,Republican,Candidate Y
+666,Connecticut,Republican,Candidate Y
+667,New Hampshire,Republican,Candidate Y
+668,Rhode Island,Democrat,Candidate Y
+669,Mississippi,Republican,Candidate Y
+670,Washington,Democrat,Candidate Y
+671,West Virginia,Republican,Candidate X
+672,Oklahoma,Republican,Candidate X
+673,Idaho,Republican,Candidate X
+674,Nevada,Democrat,Candidate Y
+675,Montana,Democrat,Candidate Y
+676,Kentucky,Republican,Candidate Y
+677,Washington,Democrat,Candidate Y
+678,New Mexico,Republican,Candidate Y
+679,Alaska,Republican,Candidate Y
+680,Illinois,Republican,Candidate X
+681,Wyoming,Democrat,Candidate X
+682,Kentucky,Republican,Candidate X
+683,Nevada,Democrat,Candidate Y
+684,Pennsylvania,Democrat,Candidate Y
+685,Oregon,Democrat,Candidate X
+686,Tennessee,Republican,Candidate Y
+687,Tennessee,Democrat,Candidate X
+688,Vermont,Republican,Candidate X
+689,Virginia,Republican,Candidate X
+690,Connecticut,Republican,Candidate Y
+691,California,Democrat,Candidate X
+692,Ohio,Democrat,Candidate X
+693,Iowa,Democrat,Candidate Y
+694,Kansas,Democrat,Candidate Y
+695,Oklahoma,Republican,Candidate Y
+696,Vermont,Republican,Candidate Y
+697,North Carolina,Republican,Candidate Y
+698,Puerto Rico,Republican,Candidate X
+699,Texas,Republican,Candidate Y
+700,Illinois,Democrat,Candidate Y
+701,Puerto Rico,Democrat,Candidate X
+702,Oregon,Republican,Candidate X
+703,Connecticut,Democrat,Candidate Y
+704,North Carolina,Democrat,Candidate X
+705,Louisiana,Republican,Candidate X
+706,Michigan,Republican,Candidate Y
+707,Vermont,Republican,Candidate Y
+708,Georgia,Democrat,Candidate Y
+709,South  Carolina,Democrat,Candidate Y
+710,Nebraska,Republican,Candidate Y
+711,Iowa,Democrat,Candidate Y
+712,Georgia,Republican,Candidate Y
+713,Louisiana,Republican,Candidate X
+714,Massachusetts,Republican,Candidate X
+715,Nevada,Democrat,Candidate Y
+716,New Hampshire,Democrat,Candidate X
+717,West Virginia,Democrat,Candidate X
+718,New Jersey,Republican,Candidate Y
+719,Connecticut,Republican,Candidate X
+720,Oklahoma,Republican,Candidate X
+721,Texas,Democrat,Candidate Y
+722,North Carolina,Democrat,Candidate X
+723,Arkansas,Democrat,Candidate Y
+724,New Jersey,Democrat,Candidate X
+725,Tennessee,Republican,Candidate X
+726,Colorado,Democrat,Candidate X
+727,Kansas,Democrat,Candidate Y
+728,South Dakota,Republican,Candidate X
+729,North Carolina,Republican,Candidate X
+730,Utah,Republican,Candidate X
+731,Louisiana,Republican,Candidate Y
+732,Georgia,Republican,Candidate Y
+733,District of Columbia,Republican,Candidate X
+734,Massachusetts,Republican,Candidate X
+735,Utah,Republican,Candidate Y
+736,Vermont,Democrat,Candidate X
+737,Georgia,Republican,Candidate X
+738,Wisconsin,Republican,Candidate Y
+739,South Dakota,Democrat,Candidate Y
+740,Kansas,Republican,Candidate X
+741,Utah,Democrat,Candidate X
+742,Montana,Republican,Candidate Y
+743,South Dakota,Democrat,Candidate X
+744,Arkansas,Republican,Candidate X
+745,Delaware,Democrat,Candidate X
+746,Arizona,Democrat,Candidate Y
+747,New Hampshire,Republican,Candidate X
+748,North Dakota,Democrat,Candidate X
+749,Arkansas,Democrat,Candidate X
+750,Florida,Democrat,Candidate Y
+751,New Jersey,Democrat,Candidate Y
+752,Indiana,Democrat,Candidate X
+753,Nevada,Democrat,Candidate X
+754,New Hampshire,Republican,Candidate Y
+755,Minnesota,Republican,Candidate Y
+756,Louisiana,Republican,Candidate Y
+757,Wisconsin,Republican,Candidate Y
+758,Utah,Republican,Candidate X
+759,Wisconsin,Democrat,Candidate Y
+760,Minnesota,Republican,Candidate X
+761,West Virginia,Democrat,Candidate Y
+762,South  Carolina,Republican,Candidate Y
+763,North Dakota,Democrat,Candidate X
+764,New Hampshire,Republican,Candidate Y
+765,Missouri,Republican,Candidate X
+766,Connecticut,Democrat,Candidate Y
+767,Alaska,Democrat,Candidate Y
+768,New Hampshire,Republican,Candidate X
+769,Idaho,Republican,Candidate Y
+770,Nebraska,Republican,Candidate X
+771,Puerto Rico,Republican,Candidate Y
+772,Georgia,Republican,Candidate Y
+773,Louisiana,Democrat,Candidate X
+774,Oklahoma,Democrat,Candidate X
+775,Arizona,Republican,Candidate Y
+776,Montana,Republican,Candidate Y
+777,Washington,Democrat,Candidate Y
+778,Utah,Democrat,Candidate Y
+779,Pennsylvania,Republican,Candidate X
+780,New Hampshire,Republican,Candidate X
+781,South  Carolina,Democrat,Candidate Y
+782,Washington,Democrat,Candidate X
+783,Indiana,Republican,Candidate Y
+784,Kentucky,Republican,Candidate Y
+785,Illinois,Democrat,Candidate X
+786,Arizona,Republican,Candidate Y
+787,Kansas,Democrat,Candidate Y
+788,Connecticut,Republican,Candidate X
+789,Wyoming,Republican,Candidate Y
+790,Vermont,Republican,Candidate X
+791,Michigan,Republican,Candidate Y
+792,New Hampshire,Republican,Candidate X
+793,Hawaii,Democrat,Candidate X
+794,Ohio,Democrat,Candidate Y
+795,Vermont,Democrat,Candidate X
+796,South Dakota,Democrat,Candidate X
+797,Pennsylvania,Democrat,Candidate X
+798,Alaska,Republican,Candidate X
+799,Arizona,Republican,Candidate X
+800,Nebraska,Democrat,Candidate Y
+801,Massachusetts,Republican,Candidate Y
+802,Oregon,Democrat,Candidate Y
+803,Illinois,Republican,Candidate Y
+804,Hawaii,Democrat,Candidate Y
+805,New Jersey,Democrat,Candidate X
+806,Rhode Island,Democrat,Candidate X
+807,Connecticut,Democrat,Candidate Y
+808,Massachusetts,Democrat,Candidate Y
+809,Rhode Island,Democrat,Candidate X
+810,Oregon,Democrat,Candidate X
+811,Tennessee,Republican,Candidate X
+812,Mississippi,Republican,Candidate X
+813,Illinois,Republican,Candidate X
+814,Indiana,Democrat,Candidate X
+815,South  Carolina,Republican,Candidate X
+816,Puerto Rico,Democrat,Candidate Y
+817,Idaho,Republican,Candidate Y
+818,Connecticut,Democrat,Candidate Y
+819,Arizona,Republican,Candidate Y
+820,North Dakota,Republican,Candidate X
+821,Minnesota,Democrat,Candidate X
+822,North Carolina,Democrat,Candidate Y
+823,Virginia,Democrat,Candidate X
+824,Virginia,Republican,Candidate Y
+825,Missouri,Democrat,Candidate Y
+826,Connecticut,Republican,Candidate X
+827,Texas,Democrat,Candidate X
+828,Missouri,Democrat,Candidate X
+829,South  Carolina,Republican,Candidate Y
+830,Minnesota,Republican,Candidate X
+831,California,Republican,Candidate Y
+832,Georgia,Republican,Candidate Y
+833,New Hampshire,Democrat,Candidate X
+834,Washington,Democrat,Candidate X
+835,Wyoming,Democrat,Candidate Y
+836,Arkansas,Republican,Candidate X
+837,Massachusetts,Republican,Candidate Y
+838,Illinois,Democrat,Candidate X
+839,Oklahoma,Democrat,Candidate Y
+840,Illinois,Republican,Candidate Y
+841,Indiana,Republican,Candidate X
+842,Iowa,Republican,Candidate Y
+843,Illinois,Democrat,Candidate X
+844,Indiana,Democrat,Candidate X
+845,Colorado,Republican,Candidate Y
+846,North Dakota,Republican,Candidate Y
+847,Utah,Republican,Candidate X
+848,Iowa,Republican,Candidate Y
+849,Tennessee,Republican,Candidate X
+850,Montana,Republican,Candidate X
+851,Louisiana,Republican,Candidate X
+852,Tennessee,Republican,Candidate X
+853,Pennsylvania,Democrat,Candidate X
+854,Connecticut,Democrat,Candidate X
+855,South Dakota,Democrat,Candidate Y
+856,Illinois,Republican,Candidate Y
+857,Illinois,Republican,Candidate Y
+858,Arkansas,Democrat,Candidate Y
+859,Ohio,Democrat,Candidate Y
+860,Missouri,Democrat,Candidate Y
+861,Puerto Rico,Republican,Candidate X
+862,Puerto Rico,Democrat,Candidate X
+863,Vermont,Republican,Candidate X
+864,Rhode Island,Democrat,Candidate Y
+865,Illinois,Republican,Candidate X
+866,Ohio,Republican,Candidate X
+867,District of Columbia,Republican,Candidate Y
+868,Oklahoma,Republican,Candidate X
+869,Massachusetts,Democrat,Candidate Y
+870,North Dakota,Democrat,Candidate Y
+871,West Virginia,Democrat,Candidate Y
+872,Kansas,Republican,Candidate Y
+873,Alaska,Republican,Candidate Y
+874,New York,Democrat,Candidate Y
+875,California,Republican,Candidate X
+876,Minnesota,Republican,Candidate Y
+877,South  Carolina,Republican,Candidate X
+878,New Mexico,Republican,Candidate X
+879,Louisiana,Republican,Candidate Y
+880,Kansas,Republican,Candidate Y
+881,New Hampshire,Republican,Candidate Y
+882,MaineMaryland,Democrat,Candidate X
+883,North Carolina,Democrat,Candidate X
+884,Louisiana,Republican,Candidate X
+885,Texas,Democrat,Candidate Y
+886,Virginia,Democrat,Candidate X
+887,Iowa,Republican,Candidate X
+888,Nebraska,Republican,Candidate Y
+889,Hawaii,Democrat,Candidate Y
+890,Utah,Republican,Candidate Y
+891,Missouri,Democrat,Candidate X
+892,South  Carolina,Republican,Candidate Y
+893,Utah,Democrat,Candidate Y
+894,New Hampshire,Democrat,Candidate X
+895,New Jersey,Republican,Candidate X
+896,Nebraska,Democrat,Candidate X
+897,Delaware,Republican,Candidate X
+898,Arizona,Democrat,Candidate X
+899,Indiana,Republican,Candidate Y
+900,Kentucky,Republican,Candidate X
+901,Montana,Democrat,Candidate X
+902,Pennsylvania,Republican,Candidate Y
+903,North Carolina,Republican,Candidate Y
+904,District of Columbia,Republican,Candidate X
+905,Kentucky,Democrat,Candidate X
+906,Florida,Republican,Candidate Y
+907,North Carolina,Democrat,Candidate Y
+908,Wisconsin,Republican,Candidate X
+909,California,Democrat,Candidate Y
+910,Hawaii,Republican,Candidate X
+911,Texas,Democrat,Candidate X
+912,Massachusetts,Republican,Candidate X
+913,California,Republican,Candidate Y
+914,New Jersey,Democrat,Candidate X
+915,Florida,Republican,Candidate Y
+916,Rhode Island,Democrat,Candidate X
+917,Arkansas,Republican,Candidate Y
+918,New Jersey,Democrat,Candidate Y
+919,Indiana,Republican,Candidate X
+920,Arkansas,Democrat,Candidate Y
+921,Indiana,Republican,Candidate Y
+922,Illinois,Republican,Candidate Y
+923,Washington,Democrat,Candidate X
+924,Louisiana,Democrat,Candidate X
+925,Mississippi,Democrat,Candidate Y
+926,Montana,Republican,Candidate X
+927,South  Carolina,Democrat,Candidate X
+928,Illinois,Democrat,Candidate X
+929,South  Carolina,Republican,Candidate X
+930,Kansas,Democrat,Candidate X
+931,North Carolina,Republican,Candidate X
+932,Mississippi,Democrat,Candidate X
+933,Florida,Democrat,Candidate Y
+934,Michigan,Democrat,Candidate X
+935,Montana,Republican,Candidate X
+936,Tennessee,Democrat,Candidate Y
+937,Utah,Republican,Candidate Y
+938,Kentucky,Democrat,Candidate X
+939,Mississippi,Democrat,Candidate X
+940,Louisiana,Democrat,Candidate Y
+941,Ohio,Democrat,Candidate X
+942,South Dakota,Republican,Candidate X
+943,Montana,Democrat,Candidate Y
+944,Texas,Republican,Candidate X
+945,Vermont,Democrat,Candidate Y
+946,New Mexico,Democrat,Candidate Y
+947,Ohio,Republican,Candidate Y
+948,Tennessee,Democrat,Candidate X
+949,Nebraska,Republican,Candidate Y
+950,Tennessee,Republican,Candidate X
+951,Kentucky,Republican,Candidate Y
+952,New Mexico,Republican,Candidate Y
+953,Alabama,Republican,Candidate Y
+954,Kansas,Republican,Candidate Y
+955,Michigan,Republican,Candidate Y
+956,Nevada,Democrat,Candidate X
+957,New York,Republican,Candidate Y
+958,Washington,Democrat,Candidate Y
+959,Massachusetts,Democrat,Candidate X
+960,Rhode Island,Republican,Candidate Y
+961,Puerto Rico,Democrat,Candidate Y
+962,Oklahoma,Republican,Candidate Y
+963,Missouri,Democrat,Candidate X
+964,North Dakota,Democrat,Candidate Y
+965,Arkansas,Democrat,Candidate X
+966,Oklahoma,Republican,Candidate Y
+967,Missouri,Republican,Candidate Y
+968,Oklahoma,Republican,Candidate X
+969,Nebraska,Republican,Candidate X
+970,Indiana,Republican,Candidate Y
+971,Arkansas,Republican,Candidate X
+972,Wisconsin,Democrat,Candidate X
+973,Florida,Republican,Candidate X
+974,New York,Democrat,Candidate Y
+975,Iowa,Republican,Candidate Y
+976,Vermont,Republican,Candidate Y
+977,West Virginia,Republican,Candidate Y
+978,Arkansas,Democrat,Candidate X
+979,Connecticut,Republican,Candidate X
+980,Arizona,Republican,Candidate Y
+981,South Dakota,Republican,Candidate Y
+982,Michigan,Democrat,Candidate Y
+983,Montana,Republican,Candidate Y
+984,Idaho,Democrat,Candidate Y
+985,Colorado,Republican,Candidate Y
+986,Washington,Republican,Candidate Y
+987,New Mexico,Democrat,Candidate Y
+988,Connecticut,Republican,Candidate Y
+989,Rhode Island,Democrat,Candidate Y
+990,South  Carolina,Democrat,Candidate Y
+991,Indiana,Democrat,Candidate Y
+992,Pennsylvania,Republican,Candidate X
+993,Alabama,Democrat,Candidate Y
+994,Ohio,Republican,Candidate X
+995,Massachusetts,Republican,Candidate Y
+996,Iowa,Republican,Candidate X
+997,New Mexico,Democrat,Candidate X
+998,West Virginia,Republican,Candidate Y
+999,Arkansas,Democrat,Candidate X
