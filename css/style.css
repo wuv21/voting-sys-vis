@@ -1,0 +1,55 @@
+body {
+  color: #222;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-size: 16px;
+  padding: 0px;
+  margin: 0px; }
+
+h1 {
+  font-weight: 300; }
+
+.footnotes, .sources {
+  width: 50%;
+  padding: 16px 0px 0px 0px;
+  border-top: 2px solid #222;
+  margin: 0px auto 0px auto; }
+  .footnotes h3, .sources h3 {
+    font-size: 16px;
+    line-height: 16px;
+    padding: 0px;
+    margin: 0px 0px 10px 0px; }
+  .footnotes .footnotes-content, .footnotes .sources-content, .sources .footnotes-content, .sources .sources-content {
+    padding: 0px 20px 0px 20px; }
+    .footnotes .footnotes-content ul, .footnotes .sources-content ul, .sources .footnotes-content ul, .sources .sources-content ul {
+      font-size: 12px;
+      line-height: 20px;
+      list-style-image: none;
+      list-style-position: outside;
+      list-style-type: decimal;
+      padding: 12px 0px 0px 0px;
+      margin: 0px 0px 0px 24px; }
+      .footnotes .footnotes-content ul .fn-back, .footnotes .sources-content ul .fn-back, .sources .footnotes-content ul .fn-back, .sources .sources-content ul .fn-back {
+        color: teal;
+        text-decoration: none; }
+        .footnotes .footnotes-content ul .fn-back:visited, .footnotes .sources-content ul .fn-back:visited, .sources .footnotes-content ul .fn-back:visited, .sources .sources-content ul .fn-back:visited {
+          color: teal;
+          text-decoration: none; }
+        .footnotes .footnotes-content ul .fn-back:hover, .footnotes .sources-content ul .fn-back:hover, .sources .footnotes-content ul .fn-back:hover, .sources .sources-content ul .fn-back:hover {
+          color: teal;
+          text-decoration: underline; }
+
+.remove-margins {
+  margin: 0px; }
+
+.transition-all-100 {
+  -webkit-transition: all 100ms ease-out;
+  -moz-transition: all 100ms ease-out;
+  -o-transition: all 100ms ease-out;
+  transition: all 100ms ease-out; }
+
+.container-60-center {
+  width: 60%;
+  padding: 0px;
+  margin: 0px auto 0px auto; }
+
+/*# sourceMappingURL=style.css.map */

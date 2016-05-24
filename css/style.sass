@@ -1,0 +1,79 @@
+// SASS FOR VOTING SYSTEMS VISUALIZATION
+
+// NOTES
+// http://fivethirtyeight.com/features/how-i-acted-like-a-pundit-and-screwed-up-on-donald-trump/
+
+// CUSTOM FONTS
+
+// VARIABLES
+$dark-grey: #222
+$light-grey: #D6D6D6
+$off-white: #F0F0F0
+$yellow: #D6C171
+$red: #A34846
+$blue: #467DA3
+$green: #5CAE5A
+$link-teal: teal
+
+// GENERAL STYLING
+body
+  color: $dark-grey
+  font-family: "Open Sans", Helvetica, sans-serif
+  font-size: 16px
+  padding: 0px
+  margin: 0px
+
+h1
+  font-weight: 300
+
+// FOOTNOTES
+.footnotes, .sources
+  width: 50%
+  padding: 16px 0px 0px 0px
+  border-top: 2px solid $dark-grey
+  margin: 0px auto 0px auto
+
+  h3
+    font-size: 16px
+    line-height: 16px
+    padding: 0px
+    margin: 0px 0px 10px 0px
+
+  .footnotes-content, .sources-content
+    padding: 0px 20px 0px 20px
+
+    ul
+      font-size: 12px
+      line-height: 20px
+      list-style-image: none
+      list-style-position: outside
+      list-style-type: decimal
+      padding: 12px 0px 0px 0px
+      margin: 0px 0px 0px 24px
+
+      .fn-back
+        color: $link-teal
+        text-decoration: none
+
+        &:visited
+          color: $link-teal
+          text-decoration: none
+
+        &:hover
+          color: $link-teal
+          text-decoration: underline
+
+// CLASSES
+.remove-margins
+  margin: 0px
+
+.transition-all-100
+  -webkit-transition: all 100ms ease-out
+  -moz-transition: all 100ms ease-out
+  -o-transition: all 100ms ease-out
+  transition: all 100ms ease-out
+
+.container-60-center
+  width: 60%
+  padding: 0px
+  margin: 0px auto 0px auto
