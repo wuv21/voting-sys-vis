@@ -1,6 +1,27 @@
+.container-80-center {
+  width: 80%;
+  padding: 0px;
+  margin: 0px auto 0px auto; }
+
+.content-container {
+  display: flex;
+  padding: 0px;
+  margin: 140px 0px 0px 0px; }
+
+.inner-left-35 {
+  width: 35%;
+  padding: 0px;
+  margin: 0px auto 0px auto; }
+
+.inner-right-55 {
+  display: inline-block;
+  width: 55%;
+  padding: 0px;
+  margin: 0px auto 0px auto; }
+
 body {
   color: #222;
-  font-family: "Open Sans", Helvetica, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 16px;
   padding: 0px;
   margin: 0px; }
@@ -8,11 +29,34 @@ body {
 h1 {
   font-weight: 300; }
 
+.page-title {
+  font-size: 48px;
+  letter-spacing: -1px;
+  line-height: 60px;
+  margin: 20px 0px 10px 0px; }
+
+.content-section {
+  margin: 400px 0px 0px 0px; }
+  .content-section h1 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 42px;
+    padding: 0px;
+    border-bottom: 2px solid #222; }
+  .content-section .content-text {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 0px;
+    margin: 10px 0px 0px 0px; }
+
+#closing {
+  margin-bottom: 120px; }
+
 .footnotes, .sources {
   width: 50%;
   padding: 16px 0px 0px 0px;
   border-top: 2px solid #222;
-  margin: 0px auto 0px auto; }
+  margin: 40px auto 0px auto; }
   .footnotes h3, .sources h3 {
     font-size: 16px;
     line-height: 16px;
@@ -28,15 +72,27 @@ h1 {
       list-style-type: decimal;
       padding: 12px 0px 0px 0px;
       margin: 0px 0px 0px 24px; }
-      .footnotes .footnotes-content ul .fn-back, .footnotes .sources-content ul .fn-back, .sources .footnotes-content ul .fn-back, .sources .sources-content ul .fn-back {
+      .footnotes .footnotes-content ul .fn-back, .footnotes .footnotes-content ul .source-link, .footnotes .sources-content ul .fn-back, .footnotes .sources-content ul .source-link, .sources .footnotes-content ul .fn-back, .sources .footnotes-content ul .source-link, .sources .sources-content ul .fn-back, .sources .sources-content ul .source-link {
         color: teal;
         text-decoration: none; }
-        .footnotes .footnotes-content ul .fn-back:visited, .footnotes .sources-content ul .fn-back:visited, .sources .footnotes-content ul .fn-back:visited, .sources .sources-content ul .fn-back:visited {
+        .footnotes .footnotes-content ul .fn-back:visited, .footnotes .footnotes-content ul .source-link:visited, .footnotes .sources-content ul .fn-back:visited, .footnotes .sources-content ul .source-link:visited, .sources .footnotes-content ul .fn-back:visited, .sources .footnotes-content ul .source-link:visited, .sources .sources-content ul .fn-back:visited, .sources .sources-content ul .source-link:visited {
           color: teal;
           text-decoration: none; }
-        .footnotes .footnotes-content ul .fn-back:hover, .footnotes .sources-content ul .fn-back:hover, .sources .footnotes-content ul .fn-back:hover, .sources .sources-content ul .fn-back:hover {
+        .footnotes .footnotes-content ul .fn-back:hover, .footnotes .footnotes-content ul .source-link:hover, .footnotes .sources-content ul .fn-back:hover, .footnotes .sources-content ul .source-link:hover, .sources .footnotes-content ul .fn-back:hover, .sources .footnotes-content ul .source-link:hover, .sources .sources-content ul .fn-back:hover, .sources .sources-content ul .source-link:hover {
           color: teal;
           text-decoration: underline; }
+
+.red-party {
+  color: #A34846; }
+
+.blue-party {
+  color: #467DA3; }
+
+.green-party {
+  color: #5CAE5A; }
+
+.yellow-party {
+  color: #D6C171; }
 
 .remove-margins {
   margin: 0px; }
@@ -46,10 +102,5 @@ h1 {
   -moz-transition: all 100ms ease-out;
   -o-transition: all 100ms ease-out;
   transition: all 100ms ease-out; }
-
-.container-60-center {
-  width: 60%;
-  padding: 0px;
-  margin: 0px auto 0px auto; }
 
 /*# sourceMappingURL=style.css.map */

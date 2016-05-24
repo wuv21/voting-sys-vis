@@ -1,7 +1,6 @@
 // SASS FOR VOTING SYSTEMS VISUALIZATION
 
 // NOTES
-// http://fivethirtyeight.com/features/how-i-acted-like-a-pundit-and-screwed-up-on-donald-trump/
 
 // CUSTOM FONTS
 
@@ -15,10 +14,32 @@ $blue: #467DA3
 $green: #5CAE5A
 $link-teal: teal
 
+// CONTAINERS
+.container-80-center
+  width: 80%
+  padding: 0px
+  margin: 0px auto 0px auto
+
+.content-container
+  display: flex
+  padding: 0px
+  margin: 140px 0px 0px 0px
+
+.inner-left-35
+  width: 35%
+  padding: 0px
+  margin: 0px auto 0px auto
+
+.inner-right-55
+  display: inline-block
+  width: 55%
+  padding: 0px
+  margin: 0px auto 0px auto
+
 // GENERAL STYLING
 body
   color: $dark-grey
-  font-family: "Open Sans", Helvetica, sans-serif
+  font-family: "Helvetica Neue", Helvetica, sans-serif
   font-size: 16px
   padding: 0px
   margin: 0px
@@ -26,12 +47,39 @@ body
 h1
   font-weight: 300
 
+// TITLE SCREEN
+.page-title
+  font-size: 48px
+  letter-spacing: -1px
+  line-height: 60px
+  margin: 20px 0px 10px 0px
+
+// CONTENT
+.content-section
+  margin: 400px 0px 0px 0px
+
+  h1
+    font-size: 36px
+    font-weight: 600
+    line-height: 42px
+    padding: 0px
+    border-bottom: 2px solid $dark-grey
+
+  .content-text
+    font-size: 14px
+    line-height: 20px
+    padding: 0px
+    margin: 10px 0px 0px 0px
+
+#closing
+  margin-bottom: 120px
+
 // FOOTNOTES
 .footnotes, .sources
   width: 50%
   padding: 16px 0px 0px 0px
   border-top: 2px solid $dark-grey
-  margin: 0px auto 0px auto
+  margin: 40px auto 0px auto
 
   h3
     font-size: 16px
@@ -51,7 +99,7 @@ h1
       padding: 12px 0px 0px 0px
       margin: 0px 0px 0px 24px
 
-      .fn-back
+      .fn-back, .source-link
         color: $link-teal
         text-decoration: none
 
@@ -64,6 +112,18 @@ h1
           text-decoration: underline
 
 // CLASSES
+.red-party
+  color: $red
+
+.blue-party
+  color: $blue
+
+.green-party
+  color: $green
+
+.yellow-party
+  color: $yellow
+
 .remove-margins
   margin: 0px
 
@@ -72,8 +132,3 @@ h1
   -moz-transition: all 100ms ease-out
   -o-transition: all 100ms ease-out
   transition: all 100ms ease-out
-
-.container-60-center
-  width: 60%
-  padding: 0px
-  margin: 0px auto 0px auto
