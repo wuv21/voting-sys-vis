@@ -1,3 +1,5 @@
+// anuglar d3 helped by module 14
+
 var myApp = angular.module("myApp", []);
 
 // factory for 2000 election data
@@ -28,28 +30,63 @@ myApp.factory('Election_2000', function($http) {
     return Election_2000;
 });
 
-myApp.directive('stackedBarChart', function() {
-    return {
-        restrict: 'E',
-        scope: false,
-        link: function(scope, elem) {
-            //todo bar chart instantiation
-        }
-    }
-});
-
 myApp.directive('mapChart', function() {
     return {
-        restrict: 'E',
+        restrict: 'E', // this directive is specified as an html element <scatter>
         scope: false,
+        // Create a link function that allows dynamic element creation
         link: function(scope, elem) {
-            //todo map chart instantiation
+            // Define you chart function and chart element
+            var myChart = MapChart().width(800).height(500);
+
+            // Wrapper element to put your chart in
+            var chart = d3.select(elem[0]);
+
+            // Use the scope.$watch method to watch for changes to the step, then re-draw your chart
+            scope.$watch('data', function() {
+                chart.call(myChart);
+            }, true); // Watch for object consistency!
         }
-    }
+    };
+});
+
+myApp.directive('pebbleChart', function() {
+    return {
+        restrict: 'E', // this directive is specified as an html element <scatter>
+        scope: false,
+        // Create a link function that allows dynamic element creation
+        link: function(scope, elem) {
+            // Define you chart function and chart element
+            var myChart = PebbleChart();
+
+            // Wrapper element to put your chart in
+            var chart = d3.select(elem[0]);
+
+            // Use the scope.$watch method to watch for changes to the step, then re-draw your chart
+            scope.$watch('data', function() {
+                chart.datum([scope.testData])
+                    .call(myChart);
+            }, true); // Watch for object consistency!
+        }
+    };
 });
 
 myApp.controller('mainController', function($scope, Election_2000) {
-    Election_2000.getData.then(function(resp) {
-        console.log(resp);
-    });
+    Election_2000.getData.then(function(resp) {});
+
+    $scope.testData = [];
+
+    var names = ["a" , "b", "c"];
+    var buckets = [1, 2, 3, 4];
+
+    for (var i = 1; i < 600; i++) {
+        var namesIndex = Math.floor(Math.random() * names.length);
+        var bucketsIndex = Math.floor(Math.random() * buckets.length);
+
+        $scope.testData.push({
+            name: names[namesIndex],
+            bucket: buckets[bucketsIndex],
+            value: i
+        });
+    }
 });

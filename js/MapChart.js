@@ -2,7 +2,7 @@ var MapChart = function() {
 
     var width, height;
 
-    var chart = function(selection) {
+    function my(selection) {
     	selection.each(function(data) {
 			var projection = d3.geo.albersUsa()
 			    .scale(1000)
@@ -16,11 +16,11 @@ var MapChart = function() {
 			    .attr("height", height);
 
 
-			d3.json("/data/map/us.json", function(error, us) {
-				d3.csv("/data/map/2000_final.csv", function(stateData) {
+			d3.json("data/map/us.json", function(error, us) {
+				d3.csv("data/map/2000_final.csv", function(stateData) {
 				  if (error) throw error;
 			 	  var data = topojson.feature(us, us.objects.states).features;
-				  d3.tsv("/data/map/us-state-names.tsv", function(tsv){
+				  d3.tsv("data/map/us-state-names.tsv", function(tsv){
 				  	// attach id to proper state 
 				    var names = {};
 				    tsv.forEach(function(d,i){
@@ -44,9 +44,9 @@ var MapChart = function() {
 				      	for (var i = 0; i < stateData.length; i++) {
 				      		if (names[d.id] == stateData[i].state) {
 				      			if (stateData[i].ev_bush != 0) {
-				      				return "red";
+				      				return "#eaa";
 				      			} else {
-				      				return "blue";
+				      				return "#aae";
 				      			}
 				      		}
 			      		}
@@ -60,20 +60,20 @@ var MapChart = function() {
     }
 
     // change the map's width
-    chart.width = function(value) {
+    my.width = function(value) {
     	if(!arguments.length) return width; 
 		width = value;
-		return this; // return the object to allow method chaining
+		return my; // return the object to allow method chaining
     };
 
     // change the map's height
-    chart.height = function(value) {
+    my.height = function(value) {
 	    if(!arguments.length) return height; 
     	height = value; 
-    	return this; // return the object to allow method chaining
+    	return my; // return the object to allow method chaining
     };
 
 
-    return chart;
+    return my;
 };
 	
