@@ -3,8 +3,8 @@
 function PebbleChart() {
     var squareSize = 6,
         squareMargin = 3,
-        squareCols = 4,
-        colors = ['red', 'blue'];
+        squareCols = 5,
+        color = d3.scale.category10();
 
     var width = 450,
         height = 400;
@@ -17,9 +17,10 @@ function PebbleChart() {
                 .map(function(x) {return x.bucket})
                 .sort();
 
-            var xScale = d3.scale.linear().domain([1, buckets.length + 1]).range([margin.left, width - margin.right]);
+            console.log(buckets);
+
+            var xScale = d3.scale.ordinal().domain(buckets).rangeBands([margin.left, width - margin.right], 0);
             var rowScale = d3.scale.linear().domain([0, squareCols - 1]).range([0, squareSize*squareCols + ((squareCols - 1) * squareMargin)]);
-            var colorScale = d3.scale.linear().domain([1, buckets.length + 1]).range(colors);
 
             var counters = [];
             for (var i = 0; i < buckets.length; i++) {
@@ -30,14 +31,22 @@ function PebbleChart() {
                 });
             }
 
-            var svg = d3.select(this).selectAll('.pebbleCharts')
-                .data(data, function(d) {return d.length});
+            var svg = d3.select(this)
+                .selectAll('.pebbleCharts')
+                .data(data, function(d) {return _.uniqueId(d.toString())});
 
             var svgEnter = svg.enter()
                 .append('svg')
-                .attr('class', '.pebbleCharts')
+                .attr('class', 'pebbleCharts')
                 .attr('width', width)
                 .attr('height', height);
+
+            var xAxisLabel = svg.append('g')
+                .attr('class', 'axis')
+                .attr('transform', 'translate(' + margin.left + ',' + (height - margin.top - margin.bottom) + ')');
+
+            var xAxis = d3.svg.axis().scale(xScale).orient('bottom');
+            xAxisLabel.transition().duration(400).call(xAxis);
 
             svg.exit().remove();
 
@@ -45,10 +54,10 @@ function PebbleChart() {
 
             pebbles.enter()
                 .append("rect")
-                .attr("class", ".pebble")
+                .attr("class", "pebble")
                 .attr("width", squareSize)
                 .attr("height", squareSize)
-                .style("fill", function(d) {return colorScale(d.bucket)})
+                .style("fill", function(d) {return color(d.bucket)})
                 .attr("x", function(d) {return xScale(d.bucket)})
                 .attr("y", 0)
                 .attr("title", function(x, i) {return x.bucket + '-' + i})
@@ -58,7 +67,7 @@ function PebbleChart() {
                 })
                 .on('mouseout', function(d) {
                     d3.select(this)
-                        .style('fill', function(d) {return colorScale(d.bucket)});
+                        .style('fill', function(d) {return color(d.bucket)});
                 });
 
             pebbles.exit().remove();
@@ -69,7 +78,7 @@ function PebbleChart() {
                     var index = buckets.indexOf(d.bucket);
 
                     counters[index].xCounter++;
-                    return margin.left + xScale(d.bucket) + rowScale((counters[index].xCounter - 1) % squareCols);
+                    return margin.left + (xScale.rangeBand() / buckets.length) + xScale(d.bucket) + rowScale((counters[index].xCounter - 1) % squareCols);
                 })
                 .attr("y", function(d) {
                     var index = buckets.indexOf(d.bucket);
@@ -79,7 +88,7 @@ function PebbleChart() {
                         counters[index].hCounter++;
                     }
 
-                    return (height - margin.bottom) - (counters[index].hCounter * (squareMargin + squareSize));
+                    return (height - margin.bottom -margin.top) - (counters[index].hCounter * (squareMargin + squareSize));
                 });
 
             pebbles.exit().remove();
