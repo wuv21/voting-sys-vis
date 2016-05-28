@@ -1,12 +1,12 @@
 .container-80-center {
   width: 80%;
   padding: 0px;
-  margin: 0px auto 0px auto; }
+  margin: 140px auto 100px auto; }
 
 .content-container {
   display: flex;
   padding: 0px;
-  margin: 140px 0px 0px 0px; }
+  margin: 0px; }
 
 .inner-left-35 {
   width: 35%;
@@ -14,26 +14,49 @@
   margin: 0px auto 0px auto; }
 
 .inner-right-55 {
-  display: inline-block;
   width: 55%;
+  height: 500px;
   padding: 0px;
   margin: 0px auto 0px auto; }
 
+.vis {
+  background-color: #D6D6D6;
+  width: 800px;
+  height: 600px;
+  position: fixed; }
+
 body {
   color: #222;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 16px;
-  padding: 0px;
-  margin: 0px; }
+  font-family: "Helvetica Neue", Helvetica, sans-serif; }
 
 h1 {
   font-weight: 300; }
+
+#title-container {
+  margin: 0px 0px 600px 0px; }
 
 .page-title {
   font-size: 48px;
   letter-spacing: -1px;
   line-height: 60px;
-  margin: 20px 0px 10px 0px; }
+  margin: 20px 0px 4px 0px; }
+
+.subtext {
+  color: #6f6f6f;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 0px;
+  margin: 0px 0px 20px 0px; }
+
+.team-member {
+  color: teal;
+  text-decoration: none;
+  border-bottom: 1px solid transparent; }
+  .team-member:visited {
+    color: teal; }
+  .team-member:hover {
+    color: #004d4d;
+    border-bottom: 1px solid #004d4d; }
 
 .content-section {
   margin: 400px 0px 0px 0px; }
@@ -43,11 +66,12 @@ h1 {
     line-height: 42px;
     padding: 0px;
     border-bottom: 2px solid #222; }
-  .content-section .content-text {
-    font-size: 14px;
-    line-height: 20px;
-    padding: 0px;
-    margin: 10px 0px 0px 0px; }
+
+.content-text {
+  font-size: 14px;
+  line-height: 22px;
+  padding: 0px;
+  margin: 10px 0px 0px 0px; }
 
 #closing {
   margin-bottom: 120px; }
