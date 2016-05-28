@@ -1,6 +1,4 @@
-/**
- * Created by Vincent Wu on 5/27/2016.
- */
+// inspired by waffle charts (https://gist.github.com/XavierGimenez/8070956)
 
 function PebbleChart() {
     var squareSize = 6,
@@ -33,13 +31,15 @@ function PebbleChart() {
             }
 
             var svg = d3.select(this).selectAll('.pebbleCharts')
-                .data(data);
+                .data(data, function(d) {return d.length});
 
             var svgEnter = svg.enter()
                 .append('svg')
                 .attr('class', '.pebbleCharts')
                 .attr('width', width)
                 .attr('height', height);
+
+            svg.exit().remove();
 
             var pebbles = svgEnter.selectAll('.pebble').data(data[0]);
 
@@ -81,6 +81,8 @@ function PebbleChart() {
 
                     return (height - margin.bottom) - (counters[index].hCounter * (squareMargin + squareSize));
                 });
+
+            pebbles.exit().remove();
         })
     }
 
