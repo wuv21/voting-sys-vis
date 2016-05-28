@@ -79,9 +79,9 @@ myApp.controller('mainController', function($scope, Election_2000) {
     $scope.testData = [];
 
     var names = ["a" , "b", "c"];
-    var buckets = [1, 2, 3, 4];
+    var buckets = ["sample 1", "sample 2", "sample 3"];
 
-    for (var i = 1; i < 400; i++) {
+    for (var i = 1; i < 307; i++) {
         var namesIndex = Math.floor(Math.random() * names.length);
         var bucketsIndex = Math.floor(Math.random() * buckets.length);
 
@@ -91,4 +91,15 @@ myApp.controller('mainController', function($scope, Election_2000) {
             value: i
         });
     }
+
+    window.onscroll = function(){
+
+        // temporary scroll fix: http://stackoverflow.com/questions/21791512/how-to-make-a-fixed-positioned-div-until-some-point
+        if(window.scrollY > 3000) { // change target to number
+            document.getElementById('vis').style.position = 'absolute';
+        } else {
+            document.getElementById('vis').style.position = 'fixed';
+        }
+
+    };
 });
