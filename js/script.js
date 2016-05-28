@@ -80,8 +80,8 @@ myApp.controller('mainController', function($scope, Election_2000) {
 
     var names = ["a" , "b", "c"];
     var buckets = [1, 2, 3, 4];
-    
-    for (var i = 1; i < 300; i++) {
+
+    for (var i = 1; i < 400; i++) {
         var namesIndex = Math.floor(Math.random() * names.length);
         var bucketsIndex = Math.floor(Math.random() * buckets.length);
 
