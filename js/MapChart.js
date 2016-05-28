@@ -21,7 +21,7 @@ var MapChart = function() {
 				  if (error) throw error;
 			 	  var data = topojson.feature(us, us.objects.states).features;
 				  d3.tsv("data/map/us-state-names.tsv", function(tsv){
-				  	// attach id to proper state 
+				  	// attach id to proper state
 				    var names = {};
 				    tsv.forEach(function(d,i){
 				      // e.g. 1 = AL (Alabama)
@@ -44,9 +44,9 @@ var MapChart = function() {
 				      	for (var i = 0; i < stateData.length; i++) {
 				      		if (names[d.id] == stateData[i].state) {
 				      			if (stateData[i].ev_bush != 0) {
-				      				return "#eaa";
+				      				return "#A34846";
 				      			} else {
-				      				return "#aae";
+				      				return "#467DA3";
 				      			}
 				      		}
 			      		}
@@ -61,19 +61,18 @@ var MapChart = function() {
 
     // change the map's width
     my.width = function(value) {
-    	if(!arguments.length) return width; 
+    	if(!arguments.length) return width;
 		width = value;
 		return my; // return the object to allow method chaining
     };
 
     // change the map's height
     my.height = function(value) {
-	    if(!arguments.length) return height; 
-    	height = value; 
+	    if(!arguments.length) return height;
+    	height = value;
     	return my; // return the object to allow method chaining
     };
 
 
     return my;
 };
-	

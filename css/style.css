@@ -4,6 +4,10 @@
   margin: 140px auto 100px auto; }
 
 .content-container {
+  padding: 0px;
+  margin: 0px; }
+
+.content-flex {
   display: flex;
   padding: 0px;
   margin: 0px; }
@@ -13,17 +17,36 @@
   padding: 0px;
   margin: 0px auto 0px auto; }
 
-.inner-right-55 {
-  width: 55%;
+.inner-right-50 {
+  width: 50%;
   height: 500px;
   padding: 0px;
   margin: 0px auto 0px auto; }
 
 .vis {
-  background-color: #D6D6D6;
   width: 800px;
   height: 600px;
   position: fixed; }
+
+.wide-content {
+  width: 50%;
+  padding: 0px;
+  margin: 0px auto 100px auto; }
+
+.wide-bottom {
+  margin: 30px 0px 0px 0px; }
+
+.small-multiples {
+  display: flex;
+  padding: 0px;
+  margin: 0px; }
+
+.small-vis {
+  background-color: #D6D6D6;
+  width: 120px;
+  height: 150px;
+  padding: 0px;
+  margin: 0px auto 0px auto; }
 
 body {
   color: #222;
@@ -75,6 +98,13 @@ h1 {
 
 #closing {
   margin-bottom: 120px; }
+
+.wide-top h1 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  padding: 0px;
+  border-bottom: 2px solid #222; }
 
 .footnotes, .sources {
   width: 50%;
