@@ -57,7 +57,9 @@ myApp.directive('pebbleChart', function() {
         // Create a link function that allows dynamic element creation
         link: function(scope, elem) {
             // Define you chart function and chart element
-            var myChart = PebbleChart();
+            var myChart = PebbleChart()
+                .width(500)
+                .height(250);
 
             // Wrapper element to put your chart in
             var chart = d3.select(elem[0]);
@@ -79,7 +81,7 @@ myApp.controller('mainController', function($scope, Election_2000) {
     var names = ["a" , "b", "c"];
     var buckets = [1, 2, 3, 4];
 
-    for (var i = 1; i < 600; i++) {
+    for (var i = 1; i < 300; i++) {
         var namesIndex = Math.floor(Math.random() * names.length);
         var bucketsIndex = Math.floor(Math.random() * buckets.length);
 
