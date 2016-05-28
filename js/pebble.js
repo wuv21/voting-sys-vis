@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var xScale = d3.scale.linear().domain([1, buckets.length + 1]).range([margin.left, width - margin.right]);
     var rowScale = d3.scale.linear().domain([0, squareCols - 1]).range([0, squareSize*squareCols + ((squareCols - 1) * squareMargin)]);
 
+
+
     var counters = [];
     for (var i = 0; i < buckets.length; i++) {
         counters.push({
@@ -45,11 +47,18 @@ document.addEventListener('DOMContentLoaded', function() {
         .attr("width", width)
         .attr("height", height);
 
+    var xAxisLabel = svg.append('g')
+        .attr('class', 'axis')
+        .attr('transform', 'translate(' + margin.left + ',' + (height + margin.top) + ')');
+
+    // var xAxis = d3.svg.axis().scale(xScale).orient('bottom');
+    // xAxisLabel.call(xAxis);
+
     var pebbles = svg.selectAll('.pebble').data(testData);
 
     pebbles.enter()
         .append("rect")
-        .attr("class", ".pebble")
+        .attr("class", "pebble")
         .attr("width", squareSize)
         .attr("height", squareSize)
         .style("fill", "#ccf")
