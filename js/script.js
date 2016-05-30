@@ -1,83 +1,126 @@
 // anuglar d3 helped by module 14
 
-var myApp = angular.module("myApp", []);
+var votingSysApp = angular.module("votingSysApp", []);
 
 // factory for 2000 election data
-myApp.factory('Election_2000', function($http) {
+votingSysApp.factory('Election_2000', function($http) {
     var Election_2000 = {};
 
-    Election_2000.getData = $http.get('data/2000_election/2000_final.csv')
-        .then(function(response) {
-            var data = response.data.split('\n');
+    Election_2000.getData = $http.get('data/2000_election/2000_final.csv').then(function(response) {
+        var data = response.data.split('\n');
 
-            var states = [];
-            var header = data[0].split(',');
+        var states = [];
+        var header = data[0].split(',');
 
-            for (var i = 1; i < data.length; i++) {
-                var state_raw = data[i].split(',');
+        for (var i = 1; i < data.length - 1; i++) {
+            var state_raw = data[i].split(',');
 
-                var state = {};
-                for (var j = 0; j < header.length; j++) {
-                    state[header[j]] = state_raw[j];
-                }
-
-                states.push(state);
+            var state = {};
+            for (var j = 0; j < header.length; j++) {
+                state[header[j]] = state_raw[j];
             }
 
-            return states;
-        });
+            states.push(state);
+        }
+
+        return states;
+    });
 
     return Election_2000;
 });
 
-myApp.directive('mapChart', function() {
-    return {
-        restrict: 'E', // this directive is specified as an html element <scatter>
-        scope: false,
-        // Create a link function that allows dynamic element creation
-        link: function(scope, elem) {
-            // Define you chart function and chart element
-            var myChart = MapChart().width(800).height(500);
+// factory for json file of US state map
+votingSysApp.factory('us_json', function($http) {
+    var us_json = {};
 
-            // Wrapper element to put your chart in
+    us_json.getData = $http.get('data/map/us.json').then(function(response) {
+        var data = topojson.feature(response.data, response.data.objects.states).features;
+
+        return data;
+    });
+
+    return us_json;
+});
+
+// factory for tsv file of US state names
+votingSysApp.factory('stateNames', function($http) {
+    var stateNames = {};
+
+    stateNames.getData = $http.get('data/map/us-state-names.tsv').then(function(response) {
+        var data = response.data.split('\n');
+
+        var states = [];
+        var header = data[0].split('\t');
+
+        for (var i = 1; i < data.length - 1; i++) {
+            var state_raw = data[i].split('\t');
+
+            var state = {};
+            for (var j = 0; j < header.length; j++) {
+                state[header[j]] = state_raw[j];
+            }
+
+            states.push(state);
+
+            var names = {};
+            states.forEach(function(d){
+                // e.g. 1 = AL (Alabama)
+                names[d.id] = d.code;
+            });
+        }
+
+        return names;
+    });
+
+    return stateNames;
+});
+
+votingSysApp.directive('mapChart', function() {
+    return {
+        restrict: 'E',
+        scope: false,
+        link: function(scope, elem) {
+            var myChart = MapChart()
+                .width(800)
+                .height(500);
+
             var chart = d3.select(elem[0]);
 
-            // Use the scope.$watch method to watch for changes to the step, then re-draw your chart
-            scope.$watch('data', function() {
-                chart.call(myChart);
-            }, true); // Watch for object consistency!
+            scope.$watch('mapData', function() {
+                if (scope.mapData.length == 3) {
+                    chart.datum([scope.mapData])
+                        .call(myChart);
+                }
+            }, true);
         }
     };
 });
 
-myApp.directive('pebbleChart', function() {
+votingSysApp.directive('pebbleChart', function() {
     return {
-        restrict: 'E', // this directive is specified as an html element <scatter>
+        restrict: 'E',
         scope: false,
-        // Create a link function that allows dynamic element creation
         link: function(scope, elem) {
-            // Define you chart function and chart element
             var myChart = PebbleChart()
                 .width(500)
                 .height(250);
 
-            // Wrapper element to put your chart in
             var chart = d3.select(elem[0]);
 
-            // Use the scope.$watch method to watch for changes to the step, then re-draw your chart
-            scope.$watch('data', function() {
-                chart.datum([scope.testData])
-                    .call(myChart);
-            }, true); // Watch for object consistency!
+            scope.$watch('testData', function() {
+                if(!scope.testData[0].length < 3) {
+                    chart.datum([scope.testData])
+                        .call(myChart);
+                }
+            }, true);
         }
     };
 });
 
-myApp.controller('mainController', function($scope, Election_2000) {
-    Election_2000.getData.then(function(resp) {});
+votingSysApp.controller('mainController', function($scope, Election_2000, us_json, stateNames) {
+    // Election_2000.getData.then(function(resp) {});
 
     $scope.testData = [];
-
     var names = ["a" , "b", "c"];
     var buckets = ["sample 1", "sample 2", "sample 3"];
 
@@ -92,8 +135,20 @@ myApp.controller('mainController', function($scope, Election_2000) {
         });
     }
 
-    window.onscroll = function(){
+    $scope.mapData = [];
+    us_json.getData.then(function(resp1) {
+        $scope.mapData.push(resp1);
 
+        Election_2000.getData.then(function(resp2) {
+            $scope.mapData.push(resp2);
+
+            stateNames.getData.then(function(resp3) {
+                $scope.mapData.push(resp3);
+            });
+        });
+    });
+
+    window.onscroll = function(){
         // temporary scroll fix: http://stackoverflow.com/questions/21791512/how-to-make-a-fixed-positioned-div-until-some-point
         if(window.scrollY > 3000) { // change target to number
             document.getElementById('vis').style.position = 'absolute';

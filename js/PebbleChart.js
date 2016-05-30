@@ -4,21 +4,20 @@ function PebbleChart() {
     var squareSize = 6,
         squareMargin = 3,
         squareCols = 5,
-        color = d3.scale.category10();
+        color = d3.scale.category10(),
+        transitionDelay = 2000;
 
     var width = 450,
         height = 400;
 
-    var margin = {left:10, top:10, bottom:10, right:10};
+    var margin = {left:10, top:10, bottom:20, right:10};
 
     function my(selection) {
         selection.each(function(data) {
             var buckets = _.uniqBy(data[0], function(x) {return x.bucket})
                 .map(function(x) {return x.bucket})
                 .sort();
-
-            console.log(buckets);
-
+            
             var xScale = d3.scale.ordinal().domain(buckets).rangeBands([margin.left, width - margin.right], 0);
             var rowScale = d3.scale.linear().domain([0, squareCols - 1]).range([0, squareSize*squareCols + ((squareCols - 1) * squareMargin)]);
 
@@ -58,7 +57,7 @@ function PebbleChart() {
                 .attr("width", squareSize)
                 .attr("height", squareSize)
                 .style("fill", function(d) {return color(d.bucket)})
-                .attr("x", function(d) {return xScale(d.bucket)})
+                .attr("x", width / 2)
                 .attr("y", 0)
                 .attr("title", function(x, i) {return x.bucket + '-' + i})
                 .on('mouseover', function(d) {
@@ -73,7 +72,7 @@ function PebbleChart() {
             pebbles.exit().remove();
 
             pebbles.transition()
-                .duration(250)
+                .duration(function(d, i) {return i / data[0].length * transitionDelay;})
                 .attr("x", function(d) {
                     var index = buckets.indexOf(d.bucket);
 
@@ -134,6 +133,13 @@ function PebbleChart() {
         if (!arguments.length) return colors;
 
         colors = val;
+        return my;
+    };
+
+    my.transitionDelay = function(val) {
+        if (!arguments.length) return transitionDelay;
+
+        transitionDelay = val;
         return my;
     };
 
