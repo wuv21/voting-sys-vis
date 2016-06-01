@@ -15,47 +15,37 @@ var MapChart = function() {
 			    .attr("width", width)
 			    .attr("height", height);
 
+			// each path is a state
+			// i loop thru the stateData and see if the bush won the EV or not
+			// if he won (aka his ev > 0, then i color it red)
+			// nebraska and maine were accounted for i think
 
-			d3.json("data/map/us.json", function(error, us) {
-				d3.csv("data/map/2000_final.csv", function(stateData) {
-				  if (error) throw error;
-			 	  var data = topojson.feature(us, us.objects.states).features;
-				  d3.tsv("data/map/us-state-names.tsv", function(tsv){
-				  	// attach id to proper state
-				    var names = {};
-				    tsv.forEach(function(d,i){
-				      // e.g. 1 = AL (Alabama)
-				      names[d.id] = d.code;
-				    });
+			// each data source is [topoData, stateData, names]
+			var topoData = data[0][0];
+			var stateData = data[0][1];
+			var names = data[0][2];
 
-				    // each path is a state
-				    // i loop thru the stateData and see if the bush won the EV or not
-				    // if he won (aka his ev > 0, then i color it red)
-				    // nebraska and maine were accounted for i think
+			svg.append("g")
+				.attr("class", "states-bundle")
+				.selectAll("path")
+				.data(topoData, function(d) {return _.uniqueId(d.toString())})
+				.enter()
+				.append("path")
+				.attr("d", path)
+				.style("fill", function(d) {
+					for (var i = 0; i < stateData.length; i++) {
+						if (names[d.id] == stateData[i].state) {
+							if (stateData[i].ev_bush != 0) {
+								return "#A34846";
+							} else {
+								return "#467DA3";
+							}
+						}
+					}
+				})
+				.attr("stroke", "white"); // draws state boundaries
+			//.attr("class", "states")
 
-				    svg.append("g")
-				      .attr("class", "states-bundle")
-				      .selectAll("path")
-				      .data(data)
-				      .enter()
-				      .append("path")
-				      .attr("d", path)
-	  			      .style("fill", function(d) {
-				      	for (var i = 0; i < stateData.length; i++) {
-				      		if (names[d.id] == stateData[i].state) {
-				      			if (stateData[i].ev_bush != 0) {
-				      				return "#A34846";
-				      			} else {
-				      				return "#467DA3";
-				      			}
-				      		}
-			      		}
-				      })
-				      .attr("stroke", "white"); // draws state boundaries
-				      //.attr("class", "states")
-				  });
-	  			});
-			});
     	})
     }
 
