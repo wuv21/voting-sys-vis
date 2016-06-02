@@ -118,8 +118,6 @@ votingSysApp.directive('pebbleChart', function() {
 });
 
 votingSysApp.controller('mainController', function($scope, Election_2000, us_json, stateNames) {
-    // Election_2000.getData.then(function(resp) {});
-
     $scope.testData = [];
     var names = ["a" , "b", "c"];
     var buckets = ["sample 1", "sample 2", "sample 3"];
