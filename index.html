@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Voting System's Explained</title>
+    <title>Voting Systems Explained</title>
     <link rel="icon" href="">
 
     <link rel="stylesheet" href="css/style.css">
@@ -10,72 +10,271 @@
     <!--D3-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 
-    <!--jQuery-->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!--lodash-->
+    <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
+
+    <!--angular-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js"></script>
+
+    <!--unique charts-->
+    <script src="js/PebbleChart.js"></script>
+    <script src="js/MapChart.js"></script>
+
+    <!--topojson-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"></script>
 
     <!--main website-->
     <script src="js/script.js"></script>
   </head>
-  <body>
+  <body ng-app="votingSysApp" ng-controller="mainController">
     <div class="container-80-center">
-      <div class="content-container">
-        <div class="inner-left-35">
-          <div id="title-container">
-            <h1 class="page-title">How A Voting System<br>Can Change An Election</h1>
-            <p class="content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat.</p>
+      <div id="fptp" class="content-container">
+        <div class="content-flex">
+          <div class="inner-left-35">
+            <div id="title-container">
+              <h1 class="page-title">How A Voting System<br>Can Change An Election</h1>
+              <p class="subtext">A Visualization By:
+                <a href="https://github.com/JacksonMaxfield" class="team-member transition-all-100">Jackson Brown</a>,
+                <a href="https://github.com/rmding95" class="team-member transition-all-100">Richard Ding</a>,
+                <a href="https://github.com/briluu" class="team-member transition-all-100">Brian Luu</a>, and
+                <a href="https://github.com/wuv21" class="team-member transition-all-100">Vincent Wu</a>
+              </p>
+              <p class="content-text">
+                There are numerous different voting systems, each with many variations.
+                Our group wanted to see how each voting system would change the outcome of the
+                <b>2000 Presidential Election</b>. However before we can do that, we need
+                to explain how each voting system works.
+              </p>
 
-            <p class="content-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-              dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
-              in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <p class="content-text">
+                Of the many, this visualization will explain the process of the
+                <b>electoral college and first-past-the-post</b>, <b>supplementary vote</b>, and
+                <b>alternate vote</b>.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <h1>The Electoral College and<br>First Past the Post</h1>
+              <p class="content-text">
+                To start out, it is important to note that on election day, people aren't
+                voting for who they support as President and Vice President, they are voting
+                for people whom then in turn cast their electoral vote to their respective
+                candidates. That is the essence of the Electoral College; you vote for electors
+                who will vote for are pledged to a parties candidates.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <p class="content-text">
+                This is important because the number of electoral votes each state has
+                corresponds to how many electoral voters they have. Washington State has
+                twelve electoral votes, this means that there are twelve electors for the
+                different parties in an election that will cast their electoral votes to
+                their party.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <p class="content-text">
+                On election day this isn't too important to the average voter however. What
+                is shown to each voter is a ballot that asks them to pick the party that has
+                the candidates they would like to see President and Vice President, and
+                pick only one party.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <p class="content-text">
+                After the popular votes from each voter is counted, each state then has the
+                electors from the winning party, the party with more than 50% of the popular vote,
+                cast their votes to the electoral college. In this way is a 'winner take all' system.
+              </p>
+            </div>
+
+            <div id="closing" class="content-section">
+              <p class="content-text">
+                This process happens in each state across the country, as well as in
+                The District of Columbia. Each slate of electors casts their votes and the winner
+                of the election is determined as soon as a party receives over 50% of the electoral
+                votes, or 270 electoral votes.
+              </p>
+            </div>
           </div>
-
-          <div class="content-section">
-            <h1>This Is A Section Title</h1>
-            <p class="content-text">This is some content text. Things that will go in here will
-              explain the data and ask questions that we then answer in the next step of the visualization.
-              Generally I would stop typing but this is filler text for now so yahoo here we go. Once upon
-              a time a boy held a door. He grew up and held one more door.</p>
-          </div>
-
-          <div class="content-section">
-            <h1>This Is A Section Title</h1>
-            <p class="content-text">This is some content text. Things that will go in here will
-              explain the data and ask questions that we then answer in the next step of the visualization.
-              Generally I would stop typing but this is filler text for now so yahoo here we go. Once upon
-              a time a boy held a door. He grew up and held one more door.</p>
-          </div>
-
-          <div class="content-section">
-            <h1>This Is A Section Title</h1>
-            <p class="content-text">This is some content text. Things that will go in here will
-              explain the data and ask questions that we then answer in the next step of the visualization.
-              Generally I would stop typing but this is filler text for now so yahoo here we go. Once upon
-              a time a boy held a door. He grew up and held one more door.</p>
-          </div>
-
-          <div class="content-section">
-            <h1>This Is A Section Title</h1>
-            <p class="content-text">This is some content text. Things that will go in here will
-              explain the data and ask questions that we then answer in the next step of the visualization.
-              Generally I would stop typing but this is filler text for now so yahoo here we go. Once upon
-              a time a boy held a door. He grew up and held one more door.</p>
-          </div>
-
-          <div id="closing" class="content-section">
-            <h1>This Is A Section Title</h1>
-            <p class="content-text">This is some content text. Things that will go in here will
-              explain the data and ask questions that we then answer in the next step of the visualization.
-              Generally I would stop typing but this is filler text for now so yahoo here we go. Once upon
-              a time a boy held a door. He grew up and held one more door.</p>
+          <div class="inner-right-50">
+            <div id="vis" class="vis">
+              <map-chart></map-chart>
+            </div>
           </div>
         </div>
-        <div class="inner-right-55 vis">
-          <h1>THIS IS A TEMP VIS HOLDER</h1>
+
+        <div class="wide-content">
+          <div class="wide-top">
+            <h1>Additional Comments on First Past the Post:</h1>
+            <p class="content-text">
+              It is important to note that while FPTP has it's benefits as a voting system,
+              mainly being that it is <b>quick, easy, decently proportional, and commonly
+              produces centrist policies</b>. However it also has rather large negative side
+              effects associated with it.
+            </p>
+            <p class="content-text">
+              First Past the Post has been repeatedly shown to <b>converge to a two party
+              system</b> over multiple election cycles. For example, if there were multiple
+              parties in an election, like in the first small multiple below, the lowest
+              winning party members might feel that their votes were wasted and a party
+              they didn't want to win won the highest, <b>the next year they voted with
+              the highest party that most resembles their party values</b> in order to at least
+              have a decent say in they way they think the country should head towards.
+            </p>
+            <p class="content-text">
+              This cycle of the lowest winning party not feeling like their votes were worth
+              anything dropping and adding their votes to the highest winning party that they
+              most align with repeats over and over again until there are a very limited,
+              usually two parties left that represent a wide array of individuals in the country.
+              This is what also <b>forces FPTP to form centrist policies, with only two parties,
+              each party has to cater to a large, non-homogenious group of the population,
+              so each party has to form centrist policies in order to make sure they have a
+              chance at winning again next election cycle</b>.
+            </p>
+          </div>
+          <div class="wide-bottom">
+            <div class="small-multiples">
+              <div class="small-vis"></div>
+              <div class="small-vis"></div>
+              <div class="small-vis"></div>
+              <div class="small-vis"></div>
+              <div class="small-vis"></div>
+              <div class="small-vis"></div>
+            </div>
+            <pebble-chart></pebble-chart>
+          </div>
         </div>
       </div>
+
+      <div id="supplimentary" class="content-container">
+        <div class="content-flex">
+          <div class="inner-left-35">
+            <div class="content-section">
+              <h1>Supplimentary Vote</h1>
+              <p class="content-text">
+                To start out, it is important to note that on election day, people aren't
+                voting for who they support as President and Vice President, they are voting
+                for people whom then in turn cast their electoral vote to their respective
+                candidates. That is the essence of the Electoral College; you vote for electors
+                who will vote for are pledged to a parties candidates.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <p class="content-text">
+                This is important because the number of electoral votes each state has
+                corresponds to how many electoral voters they have. Washington State has
+                twelve electoral votes, this means that there are twelve electors for the
+                different parties in an election that will cast their electoral votes to
+                their party.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <p class="content-text">
+                On election day this isn't too important to the average voter however. What
+                is shown to each voter is a ballot that asks them to pick the party that has
+                the candidates they would like to see President and Vice President, and
+                pick only one party.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <p class="content-text">
+                After the popular votes from each voter is counted, each state then has the
+                electors from the winning party, the party with more than 50% of the popular vote,
+                cast their votes to the electoral college. In this way is a 'winner take all' system.
+              </p>
+            </div>
+
+            <div id="closing" class="content-section">
+              <p class="content-text">
+                This process happens in each state across the country, as well as in
+                The District of Columbia. Each slate of electors casts their votes and the winner
+                of the election is determined as soon as a party receives over 50% of the electoral
+                votes, or 270 electoral votes.
+              </p>
+            </div>
+          </div>
+          <div class="inner-right-50">
+            <div id="vis" class="vis">
+              <!--<pebble-chart></pebble-chart>-->
+              <map-chart></map-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="alternate" class="content-container">
+        <div class="content-flex">
+          <div class="inner-left-35">
+            <div class="content-section">
+              <h1>Alternate Vote</h1>
+              <p class="content-text">
+                To start out, it is important to note that on election day, people aren't
+                voting for who they support as President and Vice President, they are voting
+                for people whom then in turn cast their electoral vote to their respective
+                candidates. That is the essence of the Electoral College; you vote for electors
+                who will vote for are pledged to a parties candidates.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <p class="content-text">
+                This is important because the number of electoral votes each state has
+                corresponds to how many electoral voters they have. Washington State has
+                twelve electoral votes, this means that there are twelve electors for the
+                different parties in an election that will cast their electoral votes to
+                their party.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <p class="content-text">
+                On election day this isn't too important to the average voter however. What
+                is shown to each voter is a ballot that asks them to pick the party that has
+                the candidates they would like to see President and Vice President, and
+                pick only one party.
+              </p>
+            </div>
+
+            <div class="content-section">
+              <p class="content-text">
+                After the popular votes from each voter is counted, each state then has the
+                electors from the winning party, the party with more than 50% of the popular vote,
+                cast their votes to the electoral college. In this way is a 'winner take all' system.
+              </p>
+            </div>
+
+            <div id="closing" class="content-section">
+              <p class="content-text">
+                This process happens in each state across the country, as well as in
+                The District of Columbia. Each slate of electors casts their votes and the winner
+                of the election is determined as soon as a party receives over 50% of the electoral
+                votes, or 270 electoral votes.
+              </p>
+            </div>
+          </div>
+          <div class="inner-right-50">
+            <div id="vis" class="vis">
+              <!--<pebble-chart></pebble-chart>-->
+              <map-chart></map-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--  NOTES
+      NEED TO WRITE THE SUPPLIMENTARY AND ALTERNATE VOTING TEXT
+      ADD SMALL MULTIPLES
+      PROBABLY ADD A JUMP TO SCROLL
+      ADD THE FINAL COMPARISON SCROLLER VISUALIZATION -->
+
 
       <div class="footnotes">
         <h3>Footnotes:</h3>
@@ -94,10 +293,11 @@
         <h3>Sources:</h3>
         <div class="sources-content">
           <ul>
-            <li><a href="http://www.electoral-reform.org.uk/voting-systems" class="source-link">UK Electoral Reform</a></li>
-            <li><a href="http://www.telegraph.co.uk/news/politics/5496814/How-the-different-voting-systems-work.html" class="source-link">The Telegraph: How the Different Voting Systems Work</a></li>
-            <li><a href="https://www.youtube.com/watch?v=s7tWHJfhiyo&list=PLNCHVwtpeBY4mybPkHEnRxSOb7FQ2vF9c" class="source-link">CGP Grey Explains: Voting Systems</a></li>
-            <li><a href="http://www.idea.int/esd/world.cfm" class="source-link">List of Countries by Voting System</a></li>
+            <li><a href="http://www.electoral-reform.org.uk/voting-systems" class="source-link" target="_blank">UK Electoral Reform</a></li>
+            <li><a href="http://www.telegraph.co.uk/news/politics/5496814/How-the-different-voting-systems-work.html" class="source-link" target="_blank">The Telegraph: How the Different Voting Systems Work</a></li>
+            <li><a href="https://www.youtube.com/watch?v=s7tWHJfhiyo&list=PLNCHVwtpeBY4mybPkHEnRxSOb7FQ2vF9c" class="source-link" target="_blank">CGP Grey Explains: Voting Systems</a></li>
+            <li><a href="http://www.idea.int/esd/world.cfm" class="source-link" target="_blank">List of Countries by Voting System</a></li>
+            <li><a href="http://www.fec.gov/pubrec/fe2000/tcontents.htm" class="source-link" target="_blank">2000 Election Data</a></li>
           </ul>
         </div>
       </div>
