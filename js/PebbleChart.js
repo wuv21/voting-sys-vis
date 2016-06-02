@@ -56,7 +56,7 @@ function PebbleChart() {
                 .attr("class", "pebble")
                 .attr("width", squareSize)
                 .attr("height", squareSize)
-                .style("fill", function(d) {return color(d.bucket)})
+                .style("fill", function(d) {return color(d.name)})
                 .attr("x", width / 2)
                 .attr("y", 0)
                 .attr("title", function(x, i) {return x.bucket + '-' + i})
@@ -66,7 +66,7 @@ function PebbleChart() {
                 })
                 .on('mouseout', function(d) {
                     d3.select(this)
-                        .style('fill', function(d) {return color(d.bucket)});
+                        .style('fill', function(d) {return color(d.name)});
                 });
 
             pebbles.exit().remove();
