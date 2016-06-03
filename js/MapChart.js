@@ -31,9 +31,9 @@ var MapChart = function() {
 			// nebraska and maine were accounted for i think
 
 			// each data source is [topoData, stateData, names]
-			var topoData = data[0][0];
-			var stateData = data[0][1];
-			var names = data[0][2];
+			var topoData = data[0].values[0];
+			var stateData = data[0].values[1];
+			var names = data[0].values[2];
 
 			var paths = svgEnter.append("g")
 				.attr("class", "states-bundle")
@@ -62,6 +62,51 @@ var MapChart = function() {
 				.attr("title", function(d) {return names[d.id]})
 				.attr("stroke", "#EEE"); // draws state boundaries
 			//.attr("class", "states")
+
+			if (data[0].redraw) {
+				svgEnter.selectAll("path")
+					.data(topoData, function(d) {return _.uniqueId(d.toString())})
+					.enter()
+					.append("rect")
+					.attr("width", function(d) {
+						return getEv(d);
+					})
+					.attr("height", function(d) {
+						return getEv(d);
+					})
+					.style("fill", "purple")
+					.attr("x", function(d) {
+						return path.centroid(d)[0] - getEv(d) / 2;
+					})
+					.attr("y", function(d) {
+						return path.centroid(d)[1] - getEv(d) / 2;
+					});
+
+
+				function getEv(d) {
+					for (var i = 0; i < stateData.length; i++) {
+						if (names[d.id] == stateData[i].state) {
+							if (stateData[i].ev_bush != 0) {
+								return stateData[i].ev_bush;
+							} else {
+								return stateData[i].ev_gore;
+							}
+						}
+					}
+				}
+			}
+
+
+			// console.log(data[0].redraw);
+			// if (data[0].redraw) {
+			// 	console.log("woo");
+			// 	svg.selectAll("rect")
+			// 		.transition()
+			// 		.duration(500)
+			// 		.append("rect")
+			// 		.attr("x", function(d) {return 0;})
+			// 		.attr("y", function(d) {return 0;});
+			// }
 
             paths.exit().remove();
 

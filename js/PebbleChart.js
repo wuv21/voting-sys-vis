@@ -1,8 +1,8 @@
 // inspired by waffle charts (https://gist.github.com/XavierGimenez/8070956)
 
 function PebbleChart() {
-    var squareSize = 5,
-        squareMargin = 3,
+    var squareSize = 8,
+        squareMargin = 5,
         squareCols = 7,
         color = d3.scale.category10(),
         transitionDelay = 1500;
