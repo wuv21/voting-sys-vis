@@ -56,7 +56,7 @@ var MapChart = function() {
 						}
 					}
 				})
-				.attr("stroke", "white"); // draws state boundaries
+				.attr("stroke", "#EEE"); // draws state boundaries
 			//.attr("class", "states")
 
             paths.exit().remove();

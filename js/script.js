@@ -130,7 +130,9 @@ votingSysApp.directive('pebbleChart', function() {
 votingSysApp.directive("scroll", function ($window) {
     return function(scope, element, attrs) {
         angular.element($window).bind("scroll", function() {
-            var pos = this.pageYOffset + 500;
+            // get pageYOffset + add buffer so middle (ish) of screen is where the step will happen
+            console.log(this.innerHeight);
+            var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
 
             if (pos < scope.contentHeights[2] + 20) {
                 scope.mapColor = ['#ddd', '#ddd'];
@@ -142,19 +144,21 @@ votingSysApp.directive("scroll", function ($window) {
                 scope.elementVisible.mapC = true;
 
             } else if (scope.checkHeight(pos, 4, 5)) {
-                // remove map + show div stuff
+                // todo remove map + show div stuff
                 console.log('here 4');
                 scope.elementVisible.mapC = false;
-                
+
             } else if (scope.checkHeight(pos, 5, 6)) {
                 // todo remove css + transition to map squares
                 console.log('here 5');
-
+                scope.elementVisible.pebbleC = false;
 
             } else if (scope.checkHeight(pos, 6, 7)) {
                 // todo convert into PC
-
+                scope.elementVisible.pebbleC = true;
                 console.log('here 6');
+            } else if (pos > scope.contentHeights[7]) {
+                scope.elementVisible.pebbleC = false;
             }
 
             scope.$apply();
@@ -211,7 +215,6 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
     ];
 
     var test = document.getElementsByClassName("content-text");
-
     $scope.contentHeights = [];
     for (var i = 0; i < test.length; i++) {
         var rect = test[i].getBoundingClientRect();
@@ -224,23 +227,4 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
 
         return startCheck && endCheck;
     };
-
-    // window.onscroll = function(){
-    //     // temporary scroll fix: http://stackoverflow.com/questions/21791512/how-to-make-a-fixed-positioned-div-until-some-point
-    //     var pos = Math.floor(window.scrollY) + 100;
-    //     console.log(pos);
-    //     if (pos < temp[0]) {
-    //         $scope.testData = generateRandom(300);
-    //         $scope.$apply();
-    //         console.log(0);
-    //     } else if (pos < temp[1]) {
-    //         console.log(1);
-    //     } else if (pos < temp[2]) {
-    //         $scope.testData = generateRandom(200);
-    //         $scope.$apply();
-    //         console.log(2);
-    //     }
-    // };
-
-
 });
