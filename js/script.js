@@ -85,8 +85,11 @@ votingSysApp.directive('mapChart', function() {
 
             var chart = d3.select(elem[0]);
 
+
+
             scope.$watch('mapData', function() {
                 if (scope.mapData.length == 3) {
+                    console.log(scope.mapData);
                     chart.datum([scope.mapData])
                         .call(myChart);
                 }
@@ -172,6 +175,8 @@ votingSysApp.directive("scroll", function ($window) {
 
 votingSysApp.controller('mainController', function($scope, Election_2000, us_json, stateNames) {
     $scope.testData = [];
+
+    //state names
     var names = ["a" , "b", "c"];
     var buckets = ["Democrats", "Republicans"];
 
@@ -189,6 +194,7 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
             });
         }
 
+        console.log(data);
         return _.sortBy(data, function(d) {return d.name});
     };
 
@@ -203,17 +209,51 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
     $scope.newPebbleData = $scope.generateRandom(250);
 
     $scope.mapData = [];
+    $scope.mapToPebble = [];
     us_json.getData.then(function(resp1) {
         $scope.mapData.push(resp1);
 
         Election_2000.getData.then(function(resp2) {
             $scope.mapData.push(resp2);
 
+            var stateData = $scope.mapData[1];
+            for (var i = 0; i < stateData.length; i++) {
+                if (stateData[i]["ev_bush"] > 0) {
+                    var votes = stateData[i]["ev_bush"];
+                    for (var j = 0; j < votes; j++) {
+                        $scope.mapToPebble.push({
+                            name: stateData[i]["state"],
+                            bucket: buckets[1],
+                            value: stateData[i]["ev_bush"]
+                        });
+                    }
+                } else if (stateData[i]["ev_gore"] > 0) {
+                    var votes = stateData[i]["ev_gore"];
+                    for (var j = 0; j < votes; j++) {
+                        $scope.mapToPebble.push({
+                            name: stateData[i]["state"],
+                            bucket: buckets[0],
+                            value: stateData[i]["ev_gore"]
+                        });
+                    }
+                }
+            }
+            console.log("e");
+            console.log($scope.mapToPebble);
+            $scope.mapToPebble = _.sortBy($scope.mapToPebble, function(d) {return d.name});
+            console.log($scope.mapToPebble);
+            $scope.newPebbleData = $scope.mapToPebble;
+
             stateNames.getData.then(function(resp3) {
                 $scope.mapData.push(resp3);
             });
         });
+        //console.log("WOW");
+        console.log($scope.mapData);
+        
+
     });
+
     $scope.elementVisible = {
         mapC: true,
         pebbleC: false
