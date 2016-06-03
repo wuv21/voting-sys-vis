@@ -1,5 +1,4 @@
 // anuglar d3 helped by module 14
-
 var votingSysApp = angular.module("votingSysApp", []);
 
 // factory for 2000 election data
@@ -22,7 +21,6 @@ votingSysApp.factory('Election_2000', function($http) {
 
             states.push(state);
         }
-
         return states;
     });
 
@@ -82,12 +80,21 @@ votingSysApp.directive('mapChart', function() {
         link: function(scope, elem) {
             var myChart = MapChart()
                 .width(800)
-                .height(500);
+                .height(500)
+                .fills(scope.mapColor);
 
             var chart = d3.select(elem[0]);
 
             scope.$watch('mapData', function() {
                 if (scope.mapData.length == 3) {
+                    chart.datum([scope.mapData])
+                        .call(myChart);
+                }
+            }, true);
+
+            scope.$watch('mapColor', function() {
+                if (scope.mapData.length == 3) {
+                    myChart.fills(scope.mapColor);
                     chart.datum([scope.mapData])
                         .call(myChart);
                 }
@@ -107,9 +114,9 @@ votingSysApp.directive('pebbleChart', function() {
 
             var chart = d3.select(elem[0]);
 
-            scope.$watch('testData', function() {
-                if(!scope.testData[0].length < 3) {
-                    chart.datum([scope.testData])
+            scope.$watch('pebbleID', function() {
+                if(!scope.pebbleData[0].length < 3) {
+                    chart.datum([{id: scope.pebbleID, values: scope.pebbleData}])
                         .call(myChart);
                 }
             }, true);
@@ -117,21 +124,83 @@ votingSysApp.directive('pebbleChart', function() {
     };
 });
 
+// Scroll directive
+votingSysApp.directive("scroll", function ($window) {
+    return function(scope, element, attrs) {
+        angular.element($window).bind("scroll", function() {
+            // get pageYOffset + add buffer so middle (ish) of screen is where the step will happen
+            var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
+
+            if (pos < scope.contentHeights[2] + 20) {
+                scope.mapColor = ['#ddd', '#ddd'];
+
+            } else if (scope.checkHeight(pos, 2, 4)) {
+                // show map at content 3
+                console.log('here 2');
+                scope.mapColor = ['#467DA3', '#A34846'];
+                scope.elementVisible.mapC = true;
+
+            } else if (scope.checkHeight(pos, 4, 5)) {
+                // todo remove map + show div stuff
+                console.log('here 4');
+                scope.elementVisible.mapC = false;
+
+            } else if (scope.checkHeight(pos, 5, 6)) {
+                // todo remove css + transition to map squares
+                console.log('here 5');
+                scope.pebbleData = scope.blankPebbleData;
+                scope.pebbleID = 0;
+                scope.elementVisible.pebbleC = false;
+
+            } else if (scope.checkHeight(pos, 6, 7) || pos < scope.contentHeights[7] + 250) {
+                // todo convert into PC
+                if (scope.pebbleID == 0) {
+                    scope.pebbleData = scope.newPebbleData;
+                    scope.pebbleID = 1;
+                }
+                scope.elementVisible.pebbleC = true;
+
+                console.log('here 6');
+            } else if (pos > scope.contentHeights[7] + 250) {
+                scope.elementVisible.pebbleC = false;
+            }
+
+            scope.$apply();
+        })
+    }
+});
+
 votingSysApp.controller('mainController', function($scope, Election_2000, us_json, stateNames) {
     $scope.testData = [];
     var names = ["a" , "b", "c"];
-    var buckets = ["sample 1", "sample 2", "sample 3"];
+    var buckets = ["Democrats", "Republicans"];
 
-    for (var i = 1; i < 307; i++) {
-        var namesIndex = Math.floor(Math.random() * names.length);
-        var bucketsIndex = Math.floor(Math.random() * buckets.length);
+    $scope.generateRandom = function(n) {
+        var data = [];
 
-        $scope.testData.push({
-            name: names[namesIndex],
-            bucket: buckets[bucketsIndex],
-            value: i
-        });
-    }
+        for (var i = 1; i < n; i++) {
+            var namesIndex = Math.floor(Math.random() * names.length);
+            var bucketsIndex = Math.floor(Math.random() * buckets.length);
+
+            data.push({
+                name: names[namesIndex],
+                bucket: buckets[bucketsIndex],
+                value: i
+            });
+        }
+
+        return _.sortBy(data, function(d) {return d.name});
+    };
+
+
+    $scope.blankPebbleData = [{name: "a", bucket: "sample 1", value: 0},
+        {name: "a", bucket: "sample 2", value: 0},
+        {name: "a", bucket: "sample 3", value: 0}];
+    $scope.pebbleID = 0;
+
+    $scope.pebbleData = $scope.blankPebbleData;
+
+    $scope.newPebbleData = $scope.generateRandom(250);
 
     $scope.mapData = [];
     us_json.getData.then(function(resp1) {
@@ -145,14 +214,29 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
             });
         });
     });
+    $scope.elementVisible = {
+        mapC: true,
+        pebbleC: false
+    };
+    $scope.mapColor = ['#ddd', '#ddd'];
 
-    window.onscroll = function(){
-        // temporary scroll fix: http://stackoverflow.com/questions/21791512/how-to-make-a-fixed-positioned-div-until-some-point
-        if(window.scrollY > 3000) { // change target to number
-            document.getElementById('vis').style.position = 'absolute';
-        } else {
-            document.getElementById('vis').style.position = 'fixed';
-        }
+    $scope.settings = [
+        {width: 800, height: 500},
+        {width: 400, height: 250},
+        {width: 600, height: 400}
+    ];
 
+    var test = document.getElementsByClassName("content-text");
+    $scope.contentHeights = [];
+    for (var i = 0; i < test.length; i++) {
+        var rect = test[i].getBoundingClientRect();
+        $scope.contentHeights.push(Math.floor(rect.top));
+    }
+
+    $scope.checkHeight = function(pos, indexStart, indexEnd) {
+        var startCheck = pos > $scope.contentHeights[indexStart] - 20;
+        var endCheck = pos < $scope.contentHeights[indexEnd] + 20;
+
+        return startCheck && endCheck;
     };
 });

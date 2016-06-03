@@ -27,7 +27,7 @@
     <script src="js/script.js"></script>
   </head>
   <body ng-app="votingSysApp" ng-controller="mainController">
-    <div class="container-80-center">
+    <div scroll class="container-80-center">
       <div id="fptp" class="content-container">
         <div class="content-flex">
           <div class="inner-left-35">
@@ -102,7 +102,8 @@
           </div>
           <div class="inner-right-50">
             <div id="vis" class="vis">
-              <map-chart></map-chart>
+              <map-chart ng-show="elementVisible.mapC"></map-chart>
+              <pebble-chart ng-show="elementVisible.pebbleC"></pebble-chart>
             </div>
           </div>
         </div>
@@ -145,7 +146,6 @@
               <div class="small-vis"></div>
               <div class="small-vis"></div>
             </div>
-            <pebble-chart></pebble-chart>
           </div>
         </div>
       </div>

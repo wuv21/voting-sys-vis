@@ -5,7 +5,7 @@ function PebbleChart() {
         squareMargin = 3,
         squareCols = 5,
         color = d3.scale.category10(),
-        transitionDelay = 2000;
+        transitionDelay = 1500;
 
     var width = 450,
         height = 400;
@@ -14,7 +14,7 @@ function PebbleChart() {
 
     function my(selection) {
         selection.each(function(data) {
-            var buckets = _.uniqBy(data[0], function(x) {return x.bucket})
+            var buckets = _.uniqBy(data[0].values, function(x) {return x.bucket})
                 .map(function(x) {return x.bucket})
                 .sort();
             
@@ -32,7 +32,7 @@ function PebbleChart() {
 
             var svg = d3.select(this)
                 .selectAll('.pebbleCharts')
-                .data(data, function(d) {return _.uniqueId(d.toString())});
+                .data(data, function(d) {return d.id});
 
             var svgEnter = svg.enter()
                 .append('svg')
@@ -49,7 +49,7 @@ function PebbleChart() {
 
             svg.exit().remove();
 
-            var pebbles = svgEnter.selectAll('.pebble').data(data[0]);
+            var pebbles = svgEnter.selectAll('.pebble').data(data[0].values);
 
             pebbles.enter()
                 .append("rect")
@@ -67,17 +67,22 @@ function PebbleChart() {
                 .on('mouseout', function(d) {
                     d3.select(this)
                         .style('fill', function(d) {return color(d.name)});
-                });
+                })
+                .append("rect:title")
+                .text(function(d, i) {return i});
+
 
             pebbles.exit().remove();
 
             pebbles.transition()
-                .duration(function(d, i) {return i / data[0].length * transitionDelay;})
+                .duration(function(d, i) {return i / data[0].values.length * transitionDelay;})
                 .attr("x", function(d) {
                     var index = buckets.indexOf(d.bucket);
 
                     counters[index].xCounter++;
-                    return margin.left + (xScale.rangeBand() / buckets.length) + xScale(d.bucket) + rowScale((counters[index].xCounter - 1) % squareCols);
+                    var adjustment = xScale.rangeBand() / 2 - (squareSize * squareCols + squareMargin * (squareCols - 1)) / 2;
+
+                    return margin.left + xScale(d.bucket) + adjustment + rowScale((counters[index].xCounter - 1) % squareCols);
                 })
                 .attr("y", function(d) {
                     var index = buckets.indexOf(d.bucket);
