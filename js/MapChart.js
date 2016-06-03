@@ -1,6 +1,8 @@
 var MapChart = function() {
 
-    var width, height;
+    var width = 800,
+		height = 500,
+        fills = ['#467DA3', '#A34846'];
 
     function my(selection) {
     	selection.each(function(data) {
@@ -11,9 +13,17 @@ var MapChart = function() {
 			var path = d3.geo.path()
 			    .projection(projection);
 
-			var svg = d3.select(this).append("svg")
-			    .attr("width", width)
-			    .attr("height", height);
+			var svg = d3.select(this)
+                .selectAll('.mapChart')
+                .data(data, function(d) {return _.uniqueId(d.toString())});
+
+            var svgEnter = svg.enter()
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('class', 'mapChart');
+
+            svg.exit().remove();
 
 			// each path is a state
 			// i loop thru the stateData and see if the bush won the EV or not
@@ -25,26 +35,31 @@ var MapChart = function() {
 			var stateData = data[0][1];
 			var names = data[0][2];
 
-			svg.append("g")
+			var paths = svgEnter.append("g")
 				.attr("class", "states-bundle")
 				.selectAll("path")
-				.data(topoData, function(d) {return _.uniqueId(d.toString())})
-				.enter()
+				.data(topoData, function(d) {return _.uniqueId(d.toString())});
+
+            paths.enter()
 				.append("path")
+				.transition()
+				.duration(function(d, i) {return i / topoData.length * 2000})
 				.attr("d", path)
 				.style("fill", function(d) {
 					for (var i = 0; i < stateData.length; i++) {
 						if (names[d.id] == stateData[i].state) {
 							if (stateData[i].ev_bush != 0) {
-								return "#A34846";
+								return fills[1];
 							} else {
-								return "#467DA3";
+								return fills[0];
 							}
 						}
 					}
 				})
 				.attr("stroke", "white"); // draws state boundaries
 			//.attr("class", "states")
+
+            paths.exit().remove();
 
     	})
     }
@@ -63,6 +78,12 @@ var MapChart = function() {
     	return my; // return the object to allow method chaining
     };
 
+    my.fills = function(value) {
+        if(!arguments.length) return fills;
+        fills = value;
+
+        return my;
+    };
 
     return my;
 };

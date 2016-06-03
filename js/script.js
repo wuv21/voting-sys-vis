@@ -82,12 +82,21 @@ votingSysApp.directive('mapChart', function() {
         link: function(scope, elem) {
             var myChart = MapChart()
                 .width(800)
-                .height(500);
+                .height(500)
+                .fills(scope.mapColor);
 
             var chart = d3.select(elem[0]);
 
             scope.$watch('mapData', function() {
                 if (scope.mapData.length == 3) {
+                    chart.datum([scope.mapData])
+                        .call(myChart);
+                }
+            }, true);
+
+            scope.$watch('mapColor', function() {
+                if (scope.mapData.length == 3) {
+                    myChart.fills(scope.mapColor);
                     chart.datum([scope.mapData])
                         .call(myChart);
                 }
@@ -117,21 +126,65 @@ votingSysApp.directive('pebbleChart', function() {
     };
 });
 
+// Scroll directive
+votingSysApp.directive("scroll", function ($window) {
+    return function(scope, element, attrs) {
+        angular.element($window).bind("scroll", function() {
+            var pos = this.pageYOffset + 500;
+
+            if (pos < scope.contentHeights[2] + 20) {
+                scope.mapColor = ['#ddd', '#ddd'];
+
+            } else if (scope.checkHeight(pos, 2, 4)) {
+                // show map at content 3
+                console.log('here 2');
+                scope.mapColor = ['#467DA3', '#A34846'];
+                scope.elementVisible.mapC = true;
+
+            } else if (scope.checkHeight(pos, 4, 5)) {
+                // remove map + show div stuff
+                console.log('here 4');
+                scope.elementVisible.mapC = false;
+                
+            } else if (scope.checkHeight(pos, 5, 6)) {
+                // todo remove css + transition to map squares
+                console.log('here 5');
+
+
+            } else if (scope.checkHeight(pos, 6, 7)) {
+                // todo convert into PC
+
+                console.log('here 6');
+            }
+
+            scope.$apply();
+        })
+    }
+});
+
 votingSysApp.controller('mainController', function($scope, Election_2000, us_json, stateNames) {
     $scope.testData = [];
     var names = ["a" , "b", "c"];
     var buckets = ["sample 1", "sample 2", "sample 3"];
 
-    for (var i = 1; i < 307; i++) {
-        var namesIndex = Math.floor(Math.random() * names.length);
-        var bucketsIndex = Math.floor(Math.random() * buckets.length);
+    $scope.generateRandom = function(n) {
+        var data = [];
 
-        $scope.testData.push({
-            name: names[namesIndex],
-            bucket: buckets[bucketsIndex],
-            value: i
-        });
-    }
+        for (var i = 1; i < n; i++) {
+            var namesIndex = Math.floor(Math.random() * names.length);
+            var bucketsIndex = Math.floor(Math.random() * buckets.length);
+
+            data.push({
+                name: names[namesIndex],
+                bucket: buckets[bucketsIndex],
+                value: i
+            });
+        }
+
+        return data
+    };
+
+    $scope.testData = $scope.generateRandom(307);
 
     $scope.mapData = [];
     us_json.getData.then(function(resp1) {
@@ -145,14 +198,49 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
             });
         });
     });
-
-    window.onscroll = function(){
-        // temporary scroll fix: http://stackoverflow.com/questions/21791512/how-to-make-a-fixed-positioned-div-until-some-point
-        if(window.scrollY > 3000) { // change target to number
-            document.getElementById('vis').style.position = 'absolute';
-        } else {
-            document.getElementById('vis').style.position = 'fixed';
-        }
-
+    $scope.elementVisible = {
+        mapC: true,
+        pebbleC: false
     };
+    $scope.mapColor = ['#ddd', '#ddd'];
+
+    $scope.settings = [
+        {width: 800, height: 500},
+        {width: 400, height: 250},
+        {width: 600, height: 400}
+    ];
+
+    var test = document.getElementsByClassName("content-text");
+
+    $scope.contentHeights = [];
+    for (var i = 0; i < test.length; i++) {
+        var rect = test[i].getBoundingClientRect();
+        $scope.contentHeights.push(Math.floor(rect.top));
+    }
+
+    $scope.checkHeight = function(pos, indexStart, indexEnd) {
+        var startCheck = pos > $scope.contentHeights[indexStart] - 20;
+        var endCheck = pos < $scope.contentHeights[indexEnd] + 20;
+
+        return startCheck && endCheck;
+    };
+
+    // window.onscroll = function(){
+    //     // temporary scroll fix: http://stackoverflow.com/questions/21791512/how-to-make-a-fixed-positioned-div-until-some-point
+    //     var pos = Math.floor(window.scrollY) + 100;
+    //     console.log(pos);
+    //     if (pos < temp[0]) {
+    //         $scope.testData = generateRandom(300);
+    //         $scope.$apply();
+    //         console.log(0);
+    //     } else if (pos < temp[1]) {
+    //         console.log(1);
+    //     } else if (pos < temp[2]) {
+    //         $scope.testData = generateRandom(200);
+    //         $scope.$apply();
+    //         console.log(2);
+    //     }
+    // };
+
+
 });
