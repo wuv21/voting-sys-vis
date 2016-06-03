@@ -129,34 +129,42 @@ votingSysApp.directive('pebbleChart', function() {
 
 // Scroll directive
 votingSysApp.directive("scroll", function ($window) {
-    return {
-      restrict:'E', // this directive is specified as an html element <scroll>
-      scope:false, // use global scope
-      // Create a link function that allows dynamic element creation
-      link:function(scope, elem) {
-          elem.bind("scroll", function() {
-              scope.step = Math.ceil((this.scrollTop - 10)/ scope.sectionHeight);
-              scope.$apply(); // propagate change throughout module
-          });
-      }
-    };
+    return function(scope, element, attrs) {
+        angular.element($window).bind("scroll", function() {
+
+            console.log(this.pageYOffset);
+            if (this.pageYOffset > scope.contentHeights[3]) {
+                scope.testData = scope.generateRandom(341);
+            }
+
+            scope.$apply();
+        })
+    }
 });
 
-votingSysApp.controller('mainController', function($scope, Election_2000, us_json, stateNames) {
+votingSysApp.controller('mainController', function($scope, $window, Election_2000, us_json, stateNames) {
     $scope.testData = [];
     var names = ["a" , "b", "c"];
     var buckets = ["sample 1", "sample 2", "sample 3"];
 
-    for (var i = 1; i < 307; i++) {
-        var namesIndex = Math.floor(Math.random() * names.length);
-        var bucketsIndex = Math.floor(Math.random() * buckets.length);
+    $scope.generateRandom = function(n) {
+        var data = [];
 
-        $scope.testData.push({
-            name: names[namesIndex],
-            bucket: buckets[bucketsIndex],
-            value: i
-        });
-    }
+        for (var i = 1; i < n; i++) {
+            var namesIndex = Math.floor(Math.random() * names.length);
+            var bucketsIndex = Math.floor(Math.random() * buckets.length);
+
+            data.push({
+                name: names[namesIndex],
+                bucket: buckets[bucketsIndex],
+                value: i
+            });
+        }
+
+        return data
+    };
+
+    $scope.testData = $scope.generateRandom(307);
 
     $scope.mapData = [];
     us_json.getData.then(function(resp1) {
@@ -177,14 +185,31 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
     {width: 600, height: 400}
     ];
 
+    var test = document.getElementsByClassName("content-text");
 
-    window.onscroll = function(){
-        // temporary scroll fix: http://stackoverflow.com/questions/21791512/how-to-make-a-fixed-positioned-div-until-some-point
-        if(window.scrollY > 3000) { // change target to number
-            document.getElementById('vis').style.position = 'absolute';
-        } else {
-            document.getElementById('vis').style.position = 'fixed';
-        }
+    $scope.contentHeights = [];
+    for (var i = 0; i < test.length; i++) {
+        var rect = test[i].getBoundingClientRect();
+        $scope.contentHeights.push(Math.floor(rect.top));
+    }
 
-    };
+
+    // window.onscroll = function(){
+    //     // temporary scroll fix: http://stackoverflow.com/questions/21791512/how-to-make-a-fixed-positioned-div-until-some-point
+    //     var pos = Math.floor(window.scrollY) + 100;
+    //     console.log(pos);
+    //     if (pos < temp[0]) {
+    //         $scope.testData = generateRandom(300);
+    //         $scope.$apply();
+    //         console.log(0);
+    //     } else if (pos < temp[1]) {
+    //         console.log(1);
+    //     } else if (pos < temp[2]) {
+    //         $scope.testData = generateRandom(200);
+    //         $scope.$apply();
+    //         console.log(2);
+    //     }
+    // };
+
+
 });
