@@ -73,31 +73,29 @@ votingSysApp.factory('stateNames', function($http) {
     return stateNames;
 });
 
+
 votingSysApp.directive('mapChart', function() {
     return {
         restrict: 'E',
         scope: false,
         link: function(scope, elem) {
+            /*
+            console.log(scope);
+            var width = scope.settings[800].width;
+            var height = scope.settings[1].height;
+            it should be scope.settings[scope.step]
+            but angular cant scope.step is undefined, why?
+            */
+
+
             var myChart = MapChart()
                 .width(800)
-                .height(500)
-                .fills(scope.mapColor);
+                .height(500);
 
             var chart = d3.select(elem[0]);
 
-
-
             scope.$watch('mapData', function() {
-                if (scope.mapData.length == 3) {
-                    console.log(scope.mapData);
-                    chart.datum([scope.mapData])
-                        .call(myChart);
-                }
-            }, true);
-
-            scope.$watch('mapColor', function() {
-                if (scope.mapData.length == 3) {
-                    myChart.fills(scope.mapColor);
+                if (scope.mapData.length == 4) {
                     chart.datum([scope.mapData])
                         .call(myChart);
                 }
@@ -151,11 +149,17 @@ votingSysApp.directive("scroll", function ($window) {
             } else if (scope.checkHeight(pos, 5, 6)) {
                 // todo remove css + transition to map squares
                 console.log('here 5');
+                scope.elementVisible.mapC = true;
                 scope.pebbleData = scope.blankPebbleData;
                 scope.pebbleID = 0;
                 scope.elementVisible.pebbleC = false;
 
             } else if (scope.checkHeight(pos, 6, 7) || pos < scope.contentHeights[7] + 250) {
+                if (scope.mapData.length == 4) {
+                    scope.mapData.pop();
+                    scope.mapData.push(true);
+                }
+                console.log(scope.mapData);
                 // todo convert into PC
                 if (scope.pebbleID == 0) {
                     scope.pebbleData = scope.newPebbleData;
@@ -246,6 +250,7 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
 
             stateNames.getData.then(function(resp3) {
                 $scope.mapData.push(resp3);
+                $scope.mapData.push(false);
             });
         });
         //console.log("WOW");
