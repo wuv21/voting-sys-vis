@@ -37,15 +37,16 @@ var MapChart = function() {
 
 			var paths = svgEnter.append("g")
 				.attr("class", "states-bundle")
-				.selectAll("path")
+				.selectAll(".state-path")
 				.data(topoData, function(d) {return _.uniqueId(d.toString())});
 
             paths.enter()
 				.append("path")
+				.attr('class', 'state-path')
 				.transition()
 				.duration(function(d, i) {return i / topoData.length * 2000})
 				.attr("d", path)
-				.style("fill", function(d) {
+				.style("fill", function(d, i) {
 					for (var i = 0; i < stateData.length; i++) {
 						if (names[d.id] == stateData[i].state) {
 							if (stateData[i].ev_bush != 0) {
@@ -55,7 +56,10 @@ var MapChart = function() {
 							}
 						}
 					}
+
+                    // return !stateData[i].isNaN && stateData[i].ev_bush != 0 ?  fills[1] : fills[0];
 				})
+				.attr("title", function(d) {return names[d.id]})
 				.attr("stroke", "#EEE"); // draws state boundaries
 			//.attr("class", "states")
 
