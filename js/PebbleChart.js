@@ -1,14 +1,14 @@
 // inspired by waffle charts (https://gist.github.com/XavierGimenez/8070956)
 
 function PebbleChart() {
-    var squareSize = 6,
-        squareMargin = 3,
-        squareCols = 5,
+    var squareSize = 8,
+        squareMargin = 5,
+        squareCols = 7,
         color = d3.scale.category10(),
         transitionDelay = 1500;
 
     var width = 450,
-        height = 400;
+        height = 500;
 
     var margin = {left:10, top:10, bottom:20, right:10};
 
@@ -95,7 +95,7 @@ function PebbleChart() {
                     return (height - margin.bottom -margin.top) - (counters[index].hCounter * (squareMargin + squareSize));
                 });
 
-            pebbles.exit().remove();
+            pebbles.exit().transition().duration(function(d, i) {return i/data[0].values.length * transitionDelay}).remove();
         })
     }
 
