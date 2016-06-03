@@ -4,17 +4,25 @@ var MapChart = function() {
     
 
     function my(selection) {
-    	selection.each(function(data) {
+		selection.each(function(data) {
 			var projection = d3.geo.albersUsa()
-			    .scale(1000)
-			    .translate([width / 2, height / 2]);
+				.scale(1000)
+				.translate([width / 2, height / 2]);
 
 			var path = d3.geo.path()
-			    .projection(projection);
+				.projection(projection);
 
-			var svg = d3.select(this).append("svg")
-			    .attr("width", width)
-			    .attr("height", height);
+			var svg = d3.select(this)
+				.selectAll('.mapChart')
+				.data(data, function(d) {return _.uniqueId(d.toString())});
+
+			var svgEnter = svg.enter()
+				.append('svg')
+				.attr('width', width)
+				.attr('height', height)
+				.attr('class', 'mapChart');
+
+			svg.exit().remove();
 
 			// each path is a state
 			// i loop thru the stateData and see if the bush won the EV or not
@@ -22,16 +30,16 @@ var MapChart = function() {
 			// nebraska and maine were accounted for i think
 
 			// each data source is [topoData, stateData, names]
-			var topoData = data[0][0];
-			var stateData = data[0][1];
-			var names = data[0][2];
-			var redraw = data[0][3];
+			var topoData = data[0].values[0];
+			var stateData = data[0].values[1];
+			var names = data[0].values[2];
 
-			svg.append("g")
+			var paths = svgEnter.append("g")
 				.attr("class", "states-bundle")
-				.selectAll("path")
-				.data(topoData, function(d) {return _.uniqueId(d.toString())})
-				.enter()
+				.selectAll(".state-path")
+				.data(topoData, function(d) {return d.id});
+
+			paths.enter()
 				.append("path")
 				.attr("d", path)
 				.style("fill", function(d) {
@@ -47,7 +55,7 @@ var MapChart = function() {
 				})
 				.attr("stroke", "white"); // draws state boundaries
 
-			svg.selectAll("path")
+			svgEnter.selectAll("path")
 				.data(topoData, function(d) {return _.uniqueId(d.toString())})
 				.enter()
 				.append("rect")
@@ -79,7 +87,7 @@ var MapChart = function() {
 			}
 
 			//do the transition by moving rects down
-			if (redraw) {
+			if (data[0].redraw) {
 				console.log("woo");
 				svg.selectAll("rect")
 					.transition()
@@ -90,6 +98,7 @@ var MapChart = function() {
 
 			//.attr("class", "states")
 
+			paths.exit().remove();
     	})
     }
 
@@ -109,9 +118,9 @@ var MapChart = function() {
 
     my.redraw = function(value) {
     	if (!arguments.length) return redraw;
-    	redraw = valuel
+    	redraw = valuel;
     	return my;
-    }
+    };
 
 
     return my;

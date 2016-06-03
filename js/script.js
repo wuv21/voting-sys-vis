@@ -94,9 +94,9 @@ votingSysApp.directive('mapChart', function() {
 
             var chart = d3.select(elem[0]);
 
-            scope.$watch('mapData', function() {
-                if (scope.mapData.length == 4) {
-                    chart.datum([scope.mapData])
+            scope.$watch('mapID', function() {
+                if (scope.mapData.length == 3) {
+                    chart.datum([{id: scope.mapID, values: scope.mapData, redraw: scope.mapRedraw}])
                         .call(myChart);
                 }
             }, true);
@@ -157,7 +157,8 @@ votingSysApp.directive("scroll", function ($window) {
             } else if (scope.checkHeight(pos, 6, 7) || pos < scope.contentHeights[7] + 250) {
                 if (scope.mapData.length == 4) {
                     scope.mapData.pop();
-                    scope.mapData.push(true);
+                    scope.mapRedraw = true;
+                    scope.mapID = 1;
                 }
                 console.log(scope.mapData);
                 // todo convert into PC
@@ -165,6 +166,7 @@ votingSysApp.directive("scroll", function ($window) {
                     scope.pebbleData = scope.newPebbleData;
                     scope.pebbleID = 1;
                 }
+                scope.elementVisible.mapC = false;
                 scope.elementVisible.pebbleC = true;
 
                 console.log('here 6');
@@ -250,11 +252,12 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
 
             stateNames.getData.then(function(resp3) {
                 $scope.mapData.push(resp3);
-                $scope.mapData.push(false);
             });
         });
         //console.log("WOW");
         console.log($scope.mapData);
+        $scope.mapRedraw = false;
+        $scope.mapID = 0;
         
 
     });
