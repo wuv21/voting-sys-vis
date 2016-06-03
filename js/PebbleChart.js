@@ -14,7 +14,7 @@ function PebbleChart() {
 
     function my(selection) {
         selection.each(function(data) {
-            var buckets = _.uniqBy(data[0], function(x) {return x.bucket})
+            var buckets = _.uniqBy(data[0].values, function(x) {return x.bucket})
                 .map(function(x) {return x.bucket})
                 .sort();
             
@@ -32,8 +32,8 @@ function PebbleChart() {
 
             var svg = d3.select(this)
                 .selectAll('.pebbleCharts')
-                .data(data, function(d) {return _.uniqueId(d.toString())});
-
+                .data(data, function(d) {return d.id});
+            
             var svgEnter = svg.enter()
                 .append('svg')
                 .attr('class', 'pebbleCharts')
@@ -49,7 +49,7 @@ function PebbleChart() {
 
             svg.exit().remove();
 
-            var pebbles = svgEnter.selectAll('.pebble').data(data[0]);
+            var pebbles = svgEnter.selectAll('.pebble').data(data[0].values);
 
             pebbles.enter()
                 .append("rect")
@@ -72,7 +72,7 @@ function PebbleChart() {
             pebbles.exit().remove();
 
             pebbles.transition()
-                .duration(function(d, i) {return i / data[0].length * transitionDelay;})
+                .duration(function(d, i) {return i / data[0].values.length * transitionDelay;})
                 .attr("x", function(d) {
                     var index = buckets.indexOf(d.bucket);
 

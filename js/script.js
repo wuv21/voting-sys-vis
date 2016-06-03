@@ -1,5 +1,4 @@
 // anuglar d3 helped by module 14
-
 var votingSysApp = angular.module("votingSysApp", []);
 
 // factory for 2000 election data
@@ -22,7 +21,6 @@ votingSysApp.factory('Election_2000', function($http) {
 
             states.push(state);
         }
-
         return states;
     });
 
@@ -116,9 +114,9 @@ votingSysApp.directive('pebbleChart', function() {
 
             var chart = d3.select(elem[0]);
 
-            scope.$watch('testData', function() {
-                if(!scope.testData[0].length < 3) {
-                    chart.datum([scope.testData])
+            scope.$watch('pebbleID', function() {
+                if(!scope.pebbleData[0].length < 3) {
+                    chart.datum([{id: scope.pebbleID, values: scope.pebbleData}])
                         .call(myChart);
                 }
             }, true);
@@ -131,7 +129,6 @@ votingSysApp.directive("scroll", function ($window) {
     return function(scope, element, attrs) {
         angular.element($window).bind("scroll", function() {
             // get pageYOffset + add buffer so middle (ish) of screen is where the step will happen
-            console.log(this.innerHeight);
             var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
 
             if (pos < scope.contentHeights[2] + 20) {
@@ -151,11 +148,19 @@ votingSysApp.directive("scroll", function ($window) {
             } else if (scope.checkHeight(pos, 5, 6)) {
                 // todo remove css + transition to map squares
                 console.log('here 5');
+                scope.pebbleData = scope.blankPebbleData;
+                scope.pebbleID = 0;
                 scope.elementVisible.pebbleC = false;
 
             } else if (scope.checkHeight(pos, 6, 7)) {
                 // todo convert into PC
+                if (scope.pebbleID == 0) {
+                    scope.pebbleData = scope.newPebbleData;
+                    scope.pebbleID = 1;
+                }
                 scope.elementVisible.pebbleC = true;
+
+
                 console.log('here 6');
             } else if (pos > scope.contentHeights[7]) {
                 scope.elementVisible.pebbleC = false;
@@ -188,7 +193,15 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
         return data
     };
 
-    $scope.testData = $scope.generateRandom(307);
+
+    $scope.blankPebbleData = [{name: "a", bucket: "sample 1", value: 0},
+        {name: "a", bucket: "sample 2", value: 0},
+        {name: "a", bucket: "sample 3", value: 0}];
+    $scope.pebbleID = 0;
+
+    $scope.pebbleData = $scope.blankPebbleData;
+
+    $scope.newPebbleData = $scope.generateRandom(250);
 
     $scope.mapData = [];
     us_json.getData.then(function(resp1) {
