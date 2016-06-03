@@ -80,19 +80,18 @@ votingSysApp.directive('mapChart', function() {
         restrict: 'E',
         scope: false,
         link: function(scope, elem) {
-
-            console.log(scope);
-            var width = scope.settings[1].width;
-            var height = scope.settings[1].height;
             /*
+            console.log(scope);
+            var width = scope.settings[800].width;
+            var height = scope.settings[1].height;
             it should be scope.settings[scope.step]
             but angular cant scope.step is undefined, why?
             */
 
 
             var myChart = MapChart()
-                .width(width)
-                .height(height);
+                .width(800)
+                .height(500);
 
             var chart = d3.select(elem[0]);
 
@@ -132,7 +131,7 @@ votingSysApp.directive("scroll", function ($window) {
     return function(scope, element, attrs) {
         angular.element($window).bind("scroll", function() {
 
-            console.log(this.pageYOffset);
+            //console.log(this.pageYOffset);
             if (this.pageYOffset > scope.contentHeights[3]) {
                 scope.testData = scope.generateRandom(341);
             }
@@ -192,7 +191,6 @@ votingSysApp.controller('mainController', function($scope, $window, Election_200
         var rect = test[i].getBoundingClientRect();
         $scope.contentHeights.push(Math.floor(rect.top));
     }
-
 
     // window.onscroll = function(){
     //     // temporary scroll fix: http://stackoverflow.com/questions/21791512/how-to-make-a-fixed-positioned-div-until-some-point

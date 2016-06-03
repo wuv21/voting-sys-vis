@@ -44,6 +44,38 @@ var MapChart = function() {
 					}
 				})
 				.attr("stroke", "white"); // draws state boundaries
+
+			svg.selectAll("path")
+				.data(topoData, function(d) {return _.uniqueId(d.toString())})
+				.enter()
+				.append("rect")
+				.attr("width", function(d) {
+					return getEv(d);
+				})	
+				.attr("height", function(d) {
+					return getEv(d);
+				})	
+				.style("fill", "purple")
+				.attr("x", function(d) {
+					return path.centroid(d)[0] - getEv(d) / 2;
+				})
+				.attr("y", function(d) {
+					return path.centroid(d)[1] - getEv(d) / 2;
+				});
+
+
+			function getEv(d) {
+				for (var i = 0; i < stateData.length; i++) {
+					if (names[d.id] == stateData[i].state) {
+						if (stateData[i].ev_bush != 0) {
+							return stateData[i].ev_bush;
+						} else {
+							return stateData[i].ev_gore;
+						}
+					}
+				}
+			}
+
 			//.attr("class", "states")
 
     	})
