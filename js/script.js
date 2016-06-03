@@ -173,7 +173,7 @@ votingSysApp.directive("scroll", function ($window) {
 votingSysApp.controller('mainController', function($scope, Election_2000, us_json, stateNames) {
     $scope.testData = [];
     var names = ["a" , "b", "c"];
-    var buckets = ["sample 1", "sample 2", "sample 3"];
+    var buckets = ["Democrats", "Republicans"];
 
     $scope.generateRandom = function(n) {
         var data = [];
@@ -189,7 +189,7 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
             });
         }
 
-        return data
+        return _.sortBy(data, function(d) {return d.name});
     };
 
 
