@@ -152,7 +152,7 @@ votingSysApp.directive("scroll", function ($window) {
                 scope.pebbleID = 0;
                 scope.elementVisible.pebbleC = false;
 
-            } else if (scope.checkHeight(pos, 6, 7)) {
+            } else if (scope.checkHeight(pos, 6, 7) || pos < scope.contentHeights[7] + 250) {
                 // todo convert into PC
                 if (scope.pebbleID == 0) {
                     scope.pebbleData = scope.newPebbleData;
@@ -160,9 +160,8 @@ votingSysApp.directive("scroll", function ($window) {
                 }
                 scope.elementVisible.pebbleC = true;
 
-
                 console.log('here 6');
-            } else if (pos > scope.contentHeights[7]) {
+            } else if (pos > scope.contentHeights[7] + 250) {
                 scope.elementVisible.pebbleC = false;
             }
 
