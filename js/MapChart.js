@@ -74,7 +74,7 @@ var MapChart = function() {
 					.attr("height", function(d) {
 						return getEv(d);
 					})
-					.style("fill", "purple")
+					.style("fill", "#ddd")
 					.attr("x", function(d) {
 						return path.centroid(d)[0] - getEv(d) / 2;
 					})
