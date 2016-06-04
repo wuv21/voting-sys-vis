@@ -4,7 +4,7 @@ function PebbleChart() {
     var squareSize = 8,
         squareMargin = 5,
         squareCols = 7,
-        color = d3.scale.category10(),
+        color = d3.scale.category20(),
         transitionDelay = 1500;
 
     var width = 450,
