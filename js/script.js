@@ -109,7 +109,7 @@ votingSysApp.directive('pebbleChart', function() {
         scope: false,
         link: function(scope, elem) {
             var myChart = PebbleChart()
-                .width(600)
+                .width(800)
                 .height(600);
 
             var chart = d3.select(elem[0]);
@@ -120,6 +120,23 @@ votingSysApp.directive('pebbleChart', function() {
                         .call(myChart);
                 }
             }, true);
+        }
+    };
+});
+
+
+votingSysApp.directive('pebbleEnhancedChart', function() {
+    return {
+        restrict: 'E',
+        scope: false,
+        link: function(scope, elem) {
+            var myChart = PebbleEnhancedChart()
+                .width(800)
+                .height(600);
+
+            var chart = d3.select(elem[0]);
+
+            chart.datum([1,2,3,4]).call(myChart);
         }
     };
 });

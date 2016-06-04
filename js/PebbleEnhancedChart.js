@@ -1,56 +1,55 @@
 // inspired by waffle charts (https://gist.github.com/XavierGimenez/8070956)
 
-function PebbleChart() {
+function PebbleEnhancedChart() {
     var squareSize = 8,
         squareMargin = 5,
         squareCols = 7,
         color = d3.scale.category20(),
-        transitionDelay = 1500;
+        transitionDelay = 6000;
 
-    var width = 450,
-        height = 500;
+    var width = 800,
+        height = 800;
 
     var margin = {left:10, top:10, bottom:20, right:10};
 
     function my(selection) {
         selection.each(function(data) {
-            var buckets = _.uniqBy(data[0].values, function(x) {return x.bucket})
-                .map(function(x) {return x.bucket})
-                .sort();
-            
-            var xScale = d3.scale.ordinal().domain(buckets).rangeBands([margin.left, width - margin.right], 0);
-            var rowScale = d3.scale.linear().domain([0, squareCols - 1]).range([0, squareSize*squareCols + ((squareCols - 1) * squareMargin)]);
+            d3.json("js/coord.json", function(resp) {
+                var buckets = _.uniqBy(resp, function(x) {return x.party})
+                    .map(function(x) {return x.party})
+                    .sort();
 
-            var counters = [];
-            for (var i = 0; i < buckets.length; i++) {
-                counters.push({
-                    xCounter: 0,
-                    yCounter: 0,
-                    hCounter: 0
-                });
-            }
+                var xScale = d3.scale.ordinal().domain(buckets).rangeBands([margin.left, width - margin.right], 0);
+                var rowScale = d3.scale.linear().domain([0, squareCols - 1]).range([0, squareSize*squareCols + ((squareCols - 1) * squareMargin)]);
 
-            var svg = d3.select(this)
-                .selectAll('.pebbleCharts')
-                .data(data, function(d) {return d.id});
+                var counters = [];
+                for (var i = 0; i < buckets.length; i++) {
+                    counters.push({
+                        xCounter: 0,
+                        yCounter: 0,
+                        hCounter: 0
+                    });
+                }
 
-            var svgEnter = svg.enter()
-                .append('svg')
-                .attr('class', 'pebbleCharts')
-                .attr('width', width)
-                .attr('height', height);
+                var svg = d3
+                    .selectAll('.pebbleCharts')
+                    .data(resp, function(d) {return d});
 
-            var xAxisLabel = svg.append('g')
-                .attr('class', 'axis')
-                .attr('transform', 'translate(' + margin.left + ',' + (height - margin.top - margin.bottom) + ')');
+                var svgEnter = svg.enter()
+                    .append('svg')
+                    .attr('class', 'pebbleCharts')
+                    .attr('width', width)
+                    .attr('height', height);
 
-            var xAxis = d3.svg.axis().scale(xScale).orient('bottom');
-            xAxisLabel.transition().duration(400).call(xAxis);
+                var xAxisLabel = svg.append('g')
+                    .attr('class', 'axis')
+                    .attr('transform', 'translate(' + margin.left + ',' + (height - margin.top - margin.bottom) + ')');
 
-            svg.exit().remove();
+                var xAxis = d3.svg.axis().scale(xScale).orient('bottom');
+                xAxisLabel.transition().duration(400).call(xAxis);
 
-            d3.json('js/coord.json', function(resp) {
-                console.log(resp);
+                svg.exit().remove();
+
                 var pebbles = svgEnter.selectAll('.pebble').data(resp);
 
                 pebbles.enter()
@@ -58,10 +57,10 @@ function PebbleChart() {
                     .attr("class", "pebble")
                     .attr("width", squareSize)
                     .attr("height", squareSize)
-                    .style("fill", '#ccc')
+                    .style("fill", function(d) {return color(d.state)})
                     .attr("x", function(d) {return d.x})
                     .attr("y", function(d) {return d.y})
-                    .attr("title", function(x, i) {return x.bucket + '-' + i})
+                    .attr("title", function(x, i) {return x.party + '-' + i})
                     .on('mouseover', function(d) {
                         d3.select(this)
                             .style('fill', 'cyan');
@@ -71,23 +70,23 @@ function PebbleChart() {
                             .style('fill', function(d) {return color(d.name)});
                     })
                     .append("rect:title")
-                    .text(function(d, i) {return i});
+                    .text(function(d, i) {return d.state});
 
 
                 pebbles.exit().remove();
 
                 pebbles.transition()
-                    .duration(function(d, i) {return i / data[0].values.length * transitionDelay;})
+                    .duration(function(d, i) {return i / resp.length * transitionDelay;})
                     .attr("x", function(d) {
-                        var index = buckets.indexOf(d.bucket);
+                        var index = buckets.indexOf(d.party);
 
                         counters[index].xCounter++;
                         var adjustment = xScale.rangeBand() / 2 - (squareSize * squareCols + squareMargin * (squareCols - 1)) / 2;
 
-                        return margin.left + xScale(d.bucket) + adjustment + rowScale((counters[index].xCounter - 1) % squareCols);
+                        return margin.left + xScale(d.party) + adjustment + rowScale((counters[index].xCounter - 1) % squareCols);
                     })
                     .attr("y", function(d) {
-                        var index = buckets.indexOf(d.bucket);
+                        var index = buckets.indexOf(d.party);
                         counters[index].yCounter++;
 
                         if ((counters[index].yCounter - 1) % squareCols == 0) {
@@ -97,9 +96,10 @@ function PebbleChart() {
                         return (height - margin.bottom -margin.top) - (counters[index].hCounter * (squareMargin + squareSize));
                     });
 
-                pebbles.exit().transition().duration(function(d, i) {return i/data[0].values.length * transitionDelay}).remove();
+                pebbles.exit().transition().duration(function(d, i) {return i/resp.length * transitionDelay}).remove();
 
-            });
+
+            })
 
 
 

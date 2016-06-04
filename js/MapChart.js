@@ -63,6 +63,7 @@ var MapChart = function() {
 				.attr("stroke", "#EEE"); // draws state boundaries
 			//.attr("class", "states")
 
+			var test = [];
 			if (data[0].redraw) {
 				svgEnter.selectAll("path")
 					.data(topoData, function(d) {return _.uniqueId(d.toString())})
@@ -76,21 +77,39 @@ var MapChart = function() {
 					})
 					.style("fill", "#ddd")
 					.attr("x", function(d) {
+
+						var lim = Math.abs(getEv(d));
+						for (var x = 0; x < lim; x++) {
+							test.push({x: path.centroid(d)[0],
+								y: path.centroid(d)[1],
+								value: Math.abs(getEv(d)),
+								state: names[d.id],
+								party: getEv(d) < 0 ? "Republican" : "Democrat"
+							});
+						}
+
 						return path.centroid(d)[0] - getEv(d) / 2;
 					})
 					.attr("y", function(d) {
 						return path.centroid(d)[1] - getEv(d) / 2;
 					});
 
+				console.log(JSON.stringify(test));
 
-				function getEv(d) {
-					for (var i = 0; i < stateData.length; i++) {
-						if (names[d.id] == stateData[i].state) {
-							if (stateData[i].ev_bush != 0) {
-								return stateData[i].ev_bush;
-							} else {
-								return stateData[i].ev_gore;
-							}
+				svgEnter.selectAll("rect")
+					.transition()
+					.duration(5000)
+					.attr("x", width / 2)
+					.attr("y", height);
+			}
+
+			function getEv(d) {
+				for (var i = 0; i < stateData.length; i++) {
+					if (names[d.id] == stateData[i].state) {
+						if (stateData[i].ev_bush != 0) {
+							return -1 * stateData[i].ev_bush;
+						} else {
+							return stateData[i].ev_gore;
 						}
 					}
 				}
