@@ -136,7 +136,7 @@ votingSysApp.directive('pebbleEnhancedChart', function() {
 
             var chart = d3.select(elem[0]);
 
-            chart.datum([1,2,3,4]).call(myChart);
+            chart.datum().call(myChart);
         }
     };
 });
@@ -273,7 +273,8 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
     });
     $scope.elementVisible = {
         mapC: true,
-        pebbleC: false
+        pebbleC: false,
+        pebbleEnhancedC: true
     };
     $scope.mapColor = ['#ddd', '#ddd'];
 

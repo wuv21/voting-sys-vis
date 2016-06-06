@@ -96,6 +96,7 @@ function PebbleEnhancedChart() {
                         return (height - margin.bottom -margin.top) - (counters[index].hCounter * (squareMargin + squareSize));
                     });
 
+                console.log(counters);
                 pebbles.exit().transition().duration(function(d, i) {return i/resp.length * transitionDelay}).remove();
 
 

@@ -49,60 +49,53 @@ function PebbleChart() {
 
             svg.exit().remove();
 
-            d3.json('js/coord.json', function(resp) {
-                console.log(resp);
-                var pebbles = svgEnter.selectAll('.pebble').data(resp);
+            var pebbles = svgEnter.selectAll('.pebble').data(data[0].values);
 
-                pebbles.enter()
-                    .append("rect")
-                    .attr("class", "pebble")
-                    .attr("width", squareSize)
-                    .attr("height", squareSize)
-                    .style("fill", '#ccc')
-                    .attr("x", function(d) {return d.x})
-                    .attr("y", function(d) {return d.y})
-                    .attr("title", function(x, i) {return x.bucket + '-' + i})
-                    .on('mouseover', function(d) {
-                        d3.select(this)
-                            .style('fill', 'cyan');
-                    })
-                    .on('mouseout', function(d) {
-                        d3.select(this)
-                            .style('fill', function(d) {return color(d.name)});
-                    })
-                    .append("rect:title")
-                    .text(function(d, i) {return i});
+            pebbles.enter()
+                .append("rect")
+                .attr("class", "pebble")
+                .attr("width", squareSize)
+                .attr("height", squareSize)
+                .style("fill", function(d) {return color(d.name)})
+                .attr("x", width / 2)
+                .attr("y", 0)
+                .attr("title", function(x, i) {return x.bucket + '-' + i})
+                .on('mouseover', function(d) {
+                    d3.select(this)
+                        .style('fill', 'cyan');
+                })
+                .on('mouseout', function(d) {
+                    d3.select(this)
+                        .style('fill', function(d) {return color(d.name)});
+                })
+                .append("rect:title")
+                .text(function(d, i) {return i});
 
 
-                pebbles.exit().remove();
+            pebbles.exit().remove();
 
-                pebbles.transition()
-                    .duration(function(d, i) {return i / data[0].values.length * transitionDelay;})
-                    .attr("x", function(d) {
-                        var index = buckets.indexOf(d.bucket);
+            pebbles.transition()
+                .duration(function(d, i) {return i / data[0].values.length * transitionDelay;})
+                .attr("x", function(d) {
+                    var index = buckets.indexOf(d.bucket);
 
-                        counters[index].xCounter++;
-                        var adjustment = xScale.rangeBand() / 2 - (squareSize * squareCols + squareMargin * (squareCols - 1)) / 2;
+                    counters[index].xCounter++;
+                    var adjustment = xScale.rangeBand() / 2 - (squareSize * squareCols + squareMargin * (squareCols - 1)) / 2;
 
-                        return margin.left + xScale(d.bucket) + adjustment + rowScale((counters[index].xCounter - 1) % squareCols);
-                    })
-                    .attr("y", function(d) {
-                        var index = buckets.indexOf(d.bucket);
-                        counters[index].yCounter++;
+                    return margin.left + xScale(d.bucket) + adjustment + rowScale((counters[index].xCounter - 1) % squareCols);
+                })
+                .attr("y", function(d) {
+                    var index = buckets.indexOf(d.bucket);
+                    counters[index].yCounter++;
 
-                        if ((counters[index].yCounter - 1) % squareCols == 0) {
-                            counters[index].hCounter++;
-                        }
+                    if ((counters[index].yCounter - 1) % squareCols == 0) {
+                        counters[index].hCounter++;
+                    }
 
-                        return (height - margin.bottom -margin.top) - (counters[index].hCounter * (squareMargin + squareSize));
-                    });
+                    return (height - margin.bottom -margin.top) - (counters[index].hCounter * (squareMargin + squareSize));
+                });
 
-                pebbles.exit().transition().duration(function(d, i) {return i/data[0].values.length * transitionDelay}).remove();
-
-            });
-
-
-
+            pebbles.exit().transition().duration(function(d, i) {return i/data[0].values.length * transitionDelay}).remove();
         })
     }
 
