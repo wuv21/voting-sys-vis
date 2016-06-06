@@ -1,6 +1,8 @@
 # MapChart Documentation
 
+![MapChart Example](../img/colorless_mapchart.png)
 
-Circular Calendar Charts are good for representing monthly data across multiple years. An example is shown below representing random values for each month from 2000 to 2005.
+## General Notes
+This chart requires the TopoJSON file in order to be used. In our example we created the United States map with [this TopoJSON file](../data/us.json). 
+-- say something about data join stuff and other required info
 
-![MapChart Example](img/completeExample.png)
