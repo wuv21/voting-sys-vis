@@ -1,6 +1,8 @@
 var MapChart = function() {
 
-    var width, height;
+    var width = 800,
+		height = 500,
+        fills = ['#467DA3', '#A34846'];
 
     function my(selection) {
     	selection.each(function(data) {
@@ -11,9 +13,17 @@ var MapChart = function() {
 			var path = d3.geo.path()
 			    .projection(projection);
 
-			var svg = d3.select(this).append("svg")
-			    .attr("width", width)
-			    .attr("height", height);
+			var svg = d3.select(this)
+                .selectAll('.mapChart')
+                .data(data, function(d) {return _.uniqueId(d.toString())});
+
+            var svgEnter = svg.enter()
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height)
+                .attr('class', 'mapChart');
+
+            svg.exit().remove();
 
 			// each path is a state
 			// i loop thru the stateData and see if the bush won the EV or not
@@ -21,62 +31,84 @@ var MapChart = function() {
 			// nebraska and maine were accounted for i think
 
 			// each data source is [topoData, stateData, names]
-			var topoData = data[0][0];
-			var stateData = data[0][1];
-			var names = data[0][2];
+			var topoData = data[0].values[0];
+			var stateData = data[0].values[1];
+			var names = data[0].values[2];
 
-			svg.append("g")
+			var paths = svgEnter.append("g")
 				.attr("class", "states-bundle")
-				.selectAll("path")
-				.data(topoData, function(d) {return _.uniqueId(d.toString())})
-				.enter()
+				.selectAll(".state-path")
+				.data(topoData, function(d) {return _.uniqueId(d.toString())});
+
+            paths.enter()
 				.append("path")
+				.attr('class', 'state-path')
+				.transition()
+				.duration(function(d, i) {return i / topoData.length * 2000})
 				.attr("d", path)
-				.style("fill", function(d) {
+				.style("fill", function(d, i) {
 					for (var i = 0; i < stateData.length; i++) {
 						if (names[d.id] == stateData[i].state) {
 							if (stateData[i].ev_bush != 0) {
-								return "#A34846";
+								return fills[1];
 							} else {
-								return "#467DA3";
+								return fills[0];
 							}
 						}
 					}
+
+                    // return !stateData[i].isNaN && stateData[i].ev_bush != 0 ?  fills[1] : fills[0];
 				})
-				.attr("stroke", "white"); // draws state boundaries
+				.attr("title", function(d) {return names[d.id]})
+				.attr("stroke", "#EEE"); // draws state boundaries
+			//.attr("class", "states")
 
-			svg.selectAll("path")
-				.data(topoData, function(d) {return _.uniqueId(d.toString())})
-				.enter()
-				.append("rect")
-				.attr("width", function(d) {
-					return getEv(d);
-				})	
-				.attr("height", function(d) {
-					return getEv(d);
-				})	
-				.style("fill", "purple")
-				.attr("x", function(d) {
-					return path.centroid(d)[0] - getEv(d) / 2;
-				})
-				.attr("y", function(d) {
-					return path.centroid(d)[1] - getEv(d) / 2;
-				});
+			if (data[0].redraw) {
+				svgEnter.selectAll("path")
+					.data(topoData, function(d) {return _.uniqueId(d.toString())})
+					.enter()
+					.append("rect")
+					.attr("width", function(d) {
+						return getEv(d);
+					})
+					.attr("height", function(d) {
+						return getEv(d);
+					})
+					.style("fill", "#ddd")
+					.attr("x", function(d) {
+						return path.centroid(d)[0] - getEv(d) / 2;
+					})
+					.attr("y", function(d) {
+						return path.centroid(d)[1] - getEv(d) / 2;
+					});
 
 
-			function getEv(d) {
-				for (var i = 0; i < stateData.length; i++) {
-					if (names[d.id] == stateData[i].state) {
-						if (stateData[i].ev_bush != 0) {
-							return stateData[i].ev_bush;
-						} else {
-							return stateData[i].ev_gore;
+				function getEv(d) {
+					for (var i = 0; i < stateData.length; i++) {
+						if (names[d.id] == stateData[i].state) {
+							if (stateData[i].ev_bush != 0) {
+								return stateData[i].ev_bush;
+							} else {
+								return stateData[i].ev_gore;
+							}
 						}
 					}
 				}
 			}
 
-			//.attr("class", "states")
+
+			// console.log(data[0].redraw);
+			// if (data[0].redraw) {
+			// 	console.log("woo");
+			// 	svg.selectAll("rect")
+			// 		.transition()
+			// 		.duration(500)
+			// 		.append("rect")
+			// 		.attr("x", function(d) {return 0;})
+			// 		.attr("y", function(d) {return 0;});
+			// }
+
+            paths.exit().remove();
 
     	})
     }
@@ -95,6 +127,12 @@ var MapChart = function() {
     	return my; // return the object to allow method chaining
     };
 
+    my.fills = function(value) {
+        if(!arguments.length) return fills;
+        fills = value;
+
+        return my;
+    };
 
     return my;
 };
