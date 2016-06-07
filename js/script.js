@@ -5,7 +5,7 @@ var votingSysApp = angular.module("votingSysApp", []);
 votingSysApp.factory('Election_2000', function($http) {
     var Election_2000 = {};
 
-    Election_2000.getData = $http.get('data/map/2000_final.csv').then(function(response) {
+    Election_2000.getData = $http.get('data/2000_election/2000_final.csv').then(function(response) {
         var data = response.data.split('\n');
 
         var states = [];
