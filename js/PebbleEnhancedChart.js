@@ -124,6 +124,37 @@ function PebbleEnhancedChart() {
             pebbles.exit().transition().duration(function(d, i) {return i/resp.length * transitionDelay}).remove();
 
 
+            var g = svgEnter.append('g')
+                .attr('id', 'pebbleECHover')
+                .attr('width', width - margin.left)
+                .attr('height', 5);
+
+            g.append('line')
+                .attr('x1', margin.left)
+                .attr('x2', width - margin.left)
+                .attr('y1', 0)
+                .attr('y2', 0)
+                .style('stroke-width', 2)
+                .style('stroke', '#CCC');
+
+            g.append('text')
+                .attr('id', 'hoverText')
+                .attr('x', margin.left)
+                .attr('y', 0)
+                .attr('font-size', 14)
+                .fill("#CCC");
+
+            // var yScale = d3.scale.linear().domain([height - margin.bottom - 5, 0]).rangeBands([0, resp.length /2]);
+
+            svgEnter.on("mousemove", function() {
+                d3.select('#pebbleECHover')
+                    .attr('transform', 'translate(' + margin.left + ', ' + d3.mouse(this)[1] + ')');
+
+                d3.select('#hoverText')
+                    .text(d3.mouse(this)[1]);
+            });
+
+
 
         })
     }
