@@ -84,11 +84,11 @@ var MapChart = function() {
 					});
 
 
-				svgEnter.selectAll("rect")
-					.transition()
-					.duration(5000)
-					.attr("x", width / 2)
-					.attr("y", height);
+				// svgEnter.selectAll("rect")
+				// 	.transition()
+				// 	.duration(5000)
+				// 	.attr("x", width / 2)
+				// 	.attr("y", height);
 			}
 
 			function getEv(d) {

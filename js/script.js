@@ -110,7 +110,7 @@ votingSysApp.directive('pebbleChart', function() {
         link: function(scope, elem) {
             var myChart = PebbleChart()
                 .width(800)
-                .height(600);
+                .height(300);
 
             var chart = d3.select(elem[0]);
 
@@ -132,17 +132,21 @@ votingSysApp.directive('pebbleEnhancedChart', function() {
         link: function(scope, elem) {
             var myChart = PebbleEnhancedChart()
                 .width(800)
-                .height(600);
+                .height(500);
 
             var chart = d3.select(elem[0]);
 
-            chart.datum().call(myChart);
+            scope.$watch('pebbleECID', function() {
+                if (scope.mapData.length > 0) {
+                    chart.datum([{id: scope.pebbleECID, topodata: scope.mapData[0], values:scope.pebbleECdata}]).call(myChart);
+                }
+            });
         }
     };
 });
 
 // Scroll directive
-votingSysApp.directive("scroll", function ($window) {
+votingSysApp.directive("scroll", function ($window, $timeout) {
     return function(scope, element, attrs) {
         angular.element($window).bind("scroll", function() {
             // get pageYOffset + add buffer so middle (ish) of screen is where the step will happen
@@ -156,7 +160,7 @@ votingSysApp.directive("scroll", function ($window) {
                 // show map at content 3
                 console.log('here 2');
                 scope.mapColor = ['#467DA3', '#A34846'];
-                scope.mapID = 15;
+                scope.mapID = 2;
                 scope.elementVisible.mapC = true;
 
             } else if (scope.checkHeight(pos, 4, 5)) {
@@ -164,31 +168,35 @@ votingSysApp.directive("scroll", function ($window) {
                 console.log('here 4');
                 scope.mapRedraw = false;
                 scope.elementVisible.mapC = false;
+                scope.elementVisible.pebbleEC = false;
+                scope.pebbleECID = 0;
 
             } else if (scope.checkHeight(pos, 5, 6)) {
                 // todo remove css + transition to map squares
                 console.log('here 5');
-                scope.pebbleData = scope.blankPebbleData;
-                scope.pebbleID = 0;
-                scope.elementVisible.pebbleC = false;
+                // scope.pebbleData = scope.blankPebbleData;
+                // scope.pebbleID = 0;
 
-                scope.elementVisible.mapC = true;
-                scope.mapRedraw = true;
-                scope.mapID = 16;
-
+                // scope.elementVisible.mapC = true;
+                // scope.mapRedraw = true;
+                // scope.mapID = 4;
+                scope.elementVisible.pebbleEC = true;
+                scope.pebbleECID = 2;
+                scope.elementVisible.mapC = false;
 
             } else if (scope.checkHeight(pos, 6, 7) && pos < scope.contentHeights[7] - 150) {
                 // todo convert into PC
-                if (scope.pebbleID == 0) {
-                    scope.pebbleData = scope.newPebbleData;
-                    scope.pebbleID = 1;
-                }
+                // if (scope.pebbleID == 0) {
+                //     scope.pebbleData = scope.newPebbleData;
+                //     scope.pebbleID = 1;
+                // }
                 scope.elementVisible.mapC = false;
-                scope.elementVisible.pebbleC = true;
 
                 console.log('here 6');
             } else if (pos > scope.contentHeights[7] - 150) {
-                scope.elementVisible.pebbleC = false;
+                // scope.pebbleECID = 0;
+                scope.pebbleECID = 0;
+                scope.elementVisible.pebbleEC = false;
             }
 
             scope.$apply();
@@ -196,7 +204,7 @@ votingSysApp.directive("scroll", function ($window) {
     }
 });
 
-votingSysApp.controller('mainController', function($scope, Election_2000, us_json, stateNames) {
+votingSysApp.controller('mainController', function($scope, $http, Election_2000, us_json, stateNames) {
     $scope.testData = [];
     var names = ["a" , "b", "c"];
     var buckets = ["Democrats", "Republicans"];
@@ -228,6 +236,7 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
 
     $scope.newPebbleData = $scope.generateRandom(250);
 
+    // map settings
     $scope.mapData = [];
     $scope.mapToPebble = [];
     us_json.getData.then(function(resp1) {
@@ -266,24 +275,28 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
                 $scope.mapData.push(resp3);
             });
         });
+        // initial map settings
         $scope.mapRedraw = false;
         $scope.mapID = 0;
 
-
     });
+    $scope.mapColor = ['#ddd', '#ddd'];
+
+    // element visiblity settings
     $scope.elementVisible = {
         mapC: true,
         pebbleC: false,
-        pebbleEnhancedC: true
+        pebbleEC: false
     };
-    $scope.mapColor = ['#ddd', '#ddd'];
 
-    $scope.settings = [
-        {width: 800, height: 500},
-        {width: 400, height: 250},
-        {width: 600, height: 400}
-    ];
 
+    // pebble EC data and settings
+    $scope.pebbleECdata = [];
+    $http.get('js/coord.json').then(function(resp) {
+        $scope.pebbleECdata = resp.data;
+    });
+
+    // get sections and their heights
     var test = document.getElementsByClassName("content-text");
     $scope.contentHeights = [];
     for (var i = 0; i < test.length; i++) {
@@ -291,10 +304,13 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
         $scope.contentHeights.push(Math.floor(rect.top));
     }
 
+    // height checking function
     $scope.checkHeight = function(pos, indexStart, indexEnd) {
         var startCheck = pos > $scope.contentHeights[indexStart] - 20;
         var endCheck = pos < $scope.contentHeights[indexEnd] + 20;
 
         return startCheck && endCheck;
     };
+
+
 });
