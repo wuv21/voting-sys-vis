@@ -112,8 +112,8 @@ votingSysApp.directive('pebbleChart', function() {
         scope: false,
         link: function(scope, elem) {
             var myChart = PebbleChart()
-                .width(300)
-                .height(300);
+                .width(800)
+                .height(500);
 
             var chart = d3.select(elem[0]);
 
@@ -148,53 +148,57 @@ votingSysApp.directive('pebbleEnhancedChart', function() {
     };
 });
 
-// scroll directive
-votingSysApp.directive("scroll", function ($window) {
+// scroll directive for fptp
+votingSysApp.directive("scrollFptpSection", function ($window) {
     return function(scope, element, attrs) {
         angular.element($window).bind("scroll", function() {
             // get pageYOffset + add buffer so middle (ish) of screen is where the step will happen
             var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
 
-            if (pos < scope.contentHeights[2] + 20) {
+            if (pos < scope.contentHeights[4] + 20) { // FPTP SECTION
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
 
-            } else if (scope.checkHeight(pos, 2, 4)) {
-                scope.mapColor = ['#467DA3', '#A34846'];
-                scope.elementID.mapC = 2;
-                scope.elementVisible.mapC = true;
-
             } else if (scope.checkHeight(pos, 4, 5)) {
-                scope.mapRedraw = false;
                 scope.elementVisible.mapC = false;
-                scope.elementVisible.pebbleEC = false;
-                scope.elementID.pebbleEC = 0;
+                scope.mapColor = ['#D6D6D6', '#D6D6D6'];
 
             } else if (scope.checkHeight(pos, 5, 6)) {
-                // scope.pebbleData = scope.blankPebbleData;
-                // scope.elementID.pebbleC = 0;
+                scope.elementVisible.pebbleEC = false;
+                scope.elementVisible.mapC = true;
+                scope.mapColor = ['#467DA3', '#A34846'];
+                scope.elementID.mapC = 2;
 
-                // scope.elementVisible.mapC = true;
-                // scope.mapRedraw = true;
-                // scope.elementID.mapC = 4;
+            } else if (scope.checkHeight(pos, 6, 7)) {
                 scope.elementVisible.pebbleEC = true;
                 scope.elementID.pebbleEC = 2;
                 scope.elementVisible.mapC = false;
-            } else if (scope.checkHeight(pos, 6, 7) && pos < scope.contentHeights[7] - 150) {
-                // if (scope.elementID.pebbleC == 0) {
-                //     scope.pebbleData = scope.newPebbleData;
-                //     scope.elementID.pebbleC = 1;
-                // }
-                scope.elementVisible.mapC = false;
 
-            } else if (scope.checkHeight(pos, 10, 11)) {
+            } else if (scope.checkHeight(pos, 8, 10)) {
+                scope.elementVisible.pebbleEC = false;
+                scope.elementVisible.mapC = false;
+                scope.elementVisible.pebbleC = false;
+
+            }
+            scope.$apply();
+        })
+    }
+});
+
+// scroll directive for AV section
+votingSysApp.directive("scrollAvSection", function ($window) {
+    return function(scope, element, attrs) {
+        angular.element($window).bind("scroll", function() {
+            // get pageYOffset + add buffer so middle (ish) of screen is where the step will happen
+            var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
+
+            if (scope.checkHeight(pos, 10, 11)) { // AV SECTION
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
                 scope.elementVisible.mapC = true;
 
             } else if (scope.checkHeight(pos, 11, 12)) {
                 scope.changeToAv = true;
-                //console.log(scope.changeToAv);
                 scope.elementVisible.mapC = false;
                 scope.elementVisible.pebbleEC = false;
                 scope.elementID.pebbleEC = 0;
@@ -206,21 +210,74 @@ votingSysApp.directive("scroll", function ($window) {
 
                 scope.pebbleData = scope.blankPebbleData;
                 scope.elementID.pebbleC = 0;
+                scope.elementVisible.pebbleC = false;
+
             } else if (scope.checkHeight(pos, 13, 14)) {
                 if (scope.elementID.pebbleC == 0) {
                     scope.pebbleData = scope.newPebbleData;
                     scope.elementID.pebbleC = 1;
                 }
-
-                console.log("here");
                 scope.elementVisible.pebbleEC = false;
                 scope.elementVisible.pebbleC = true;
-            }
-            else if (pos > scope.contentHeights[7] - 150) {
-                // scope.pebbleECID = 0;
-                scope.elementID.pebbleEC = 0;
+
+            } else if (scope.checkHeight(pos, 14, 15)) {
+                scope.elementVisible.pebbleC = false;
+                scope.elementVisible.pebbleEC = true;
+
+            } else if (scope.checkHeight(pos, 15, 17)) {
                 scope.elementVisible.pebbleEC = false;
-            } 
+                scope.elementVisible.mapC = false;
+            }
+
+            scope.$apply();
+        })
+    }
+});
+
+// scroll directive for SV section
+votingSysApp.directive("scrollSvSection", function ($window) {
+    return function(scope, element, attrs) {
+        angular.element($window).bind("scroll", function() {
+            // get pageYOffset + add buffer so middle (ish) of screen is where the step will happen
+            var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
+
+            if (scope.checkHeight(pos, 17, 18)) { // AV SECTION
+                scope.mapColor = ['#D6D6D6', '#D6D6D6'];
+                scope.elementID.mapC = 0;
+                scope.elementVisible.mapC = true;
+
+            } else if (scope.checkHeight(pos, 18, 19)) {
+                scope.changeToAv = true;
+                scope.elementVisible.mapC = false;
+                scope.elementVisible.pebbleEC = false;
+                scope.elementID.pebbleEC = 0;
+
+            } else if (scope.checkHeight(pos, 19, 20)) {
+                scope.elementVisible.pebbleEC = true;
+                scope.elementID.pebbleEC = 2;
+                scope.elementVisible.mapC = false;
+
+                scope.pebbleData = scope.blankPebbleData;
+                scope.elementID.pebbleC = 0;
+                scope.elementVisible.pebbleC = false;
+
+            } else if (scope.checkHeight(pos, 20, 21)) {
+                if (scope.elementID.pebbleC == 0) {
+                    scope.pebbleData = scope.newPebbleData;
+                    scope.elementID.pebbleC = 1;
+                }
+                scope.elementVisible.pebbleEC = false;
+                scope.elementVisible.pebbleC = true;
+
+            } else if (scope.checkHeight(pos, 21, 22)) {
+                scope.elementVisible.pebbleC = false;
+                scope.elementVisible.pebbleEC = true;
+
+            } else if (pos > scope.contentHeights[22]) {
+                scope.elementVisible.pebbleEC = false;
+                scope.elementVisible.pebbleC = false;
+                scope.elementVisible.mapC = false;
+            }
 
             scope.$apply();
         })
@@ -251,7 +308,6 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
             });
         }
 
-        console.log(data);
         return _.sortBy(data, function(d) {return d.name});
     };
 
@@ -318,7 +374,7 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     });
 
 
-    // element visiblity settings
+    // element visibility settings
     $scope.elementVisible = {
         mapC: true,
         pebbleC: false,
