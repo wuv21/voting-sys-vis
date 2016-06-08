@@ -73,7 +73,7 @@ votingSysApp.factory('stateNames', function($http) {
     return stateNames;
 });
 
-
+// map chart directive
 votingSysApp.directive('mapChart', function() {
     return {
         restrict: 'E',
@@ -93,10 +93,17 @@ votingSysApp.directive('mapChart', function() {
                 .height(500);
 
             var chart = d3.select(elem[0]);
-
-            scope.$watch('mapID', function() {
+            scope.$watch('elementID.mapC', function() {
                 if (scope.mapData.length == 3) {
-                    chart.datum([{id: scope.mapID, values: scope.mapData, redraw: scope.mapRedraw}])
+                    chart.datum([{id: scope.elementID.mapC, values: scope.mapData, redraw: scope.mapRedraw}])
+                        .call(myChart);
+                }
+            }, true);
+
+            scope.$watch('mapColor', function() {
+                if (scope.mapData.length == 3) {
+                    myChart.fills(scope.mapColor);
+                    chart.datum([{id: scope.elementID.mapC, values: scope.mapData, redraw: scope.mapRedraw}])
                         .call(myChart);
                 }
             }, true);
@@ -104,20 +111,21 @@ votingSysApp.directive('mapChart', function() {
     };
 });
 
+// peblle chart directive
 votingSysApp.directive('pebbleChart', function() {
     return {
         restrict: 'E',
         scope: false,
         link: function(scope, elem) {
             var myChart = PebbleChart()
-                .width(500)
-                .height(250);
+                .width(800)
+                .height(300);
 
             var chart = d3.select(elem[0]);
 
-            scope.$watch('pebbleID', function() {
+            scope.$watch('elementID.pebbleC', function() {
                 if(!scope.pebbleData[0].length < 3) {
-                    chart.datum([{id: scope.pebbleID, values: scope.pebbleData}])
+                    chart.datum([{id: scope.elementID.pebbleC, values: scope.pebbleData}])
                         .call(myChart);
                 }
             }, true);
@@ -125,7 +133,28 @@ votingSysApp.directive('pebbleChart', function() {
     };
 });
 
-// Scroll directive
+// pebble enhanced chart directive
+votingSysApp.directive('pebbleEnhancedChart', function() {
+    return {
+        restrict: 'E',
+        scope: false,
+        link: function(scope, elem) {
+            var myChart = PebbleEnhancedChart()
+                .width(800)
+                .height(500);
+
+            var chart = d3.select(elem[0]);
+
+            scope.$watch('elementID.pebbleEC', function() {
+                if (scope.mapData.length > 0) {
+                    chart.datum([{id: scope.elementID.pebbleEC, topodata: scope.mapData[0], values:scope.pebbleECdata}]).call(myChart);
+                }
+            });
+        }
+    };
+});
+
+// scroll directive
 votingSysApp.directive("scroll", function ($window) {
     return function(scope, element, attrs) {
         angular.element($window).bind("scroll", function() {
@@ -134,44 +163,40 @@ votingSysApp.directive("scroll", function ($window) {
 
             if (pos < scope.contentHeights[2] + 20) {
                 scope.mapColor = ['#ddd', '#ddd'];
+                scope.elementID.mapC = 0;
 
             } else if (scope.checkHeight(pos, 2, 4)) {
-                // show map at content 3
-                console.log('here 2');
                 scope.mapColor = ['#467DA3', '#A34846'];
+                scope.elementID.mapC = 2;
                 scope.elementVisible.mapC = true;
 
             } else if (scope.checkHeight(pos, 4, 5)) {
-                // todo remove map + show div stuff
-                console.log('here 4');
+                scope.mapRedraw = false;
                 scope.elementVisible.mapC = false;
+                scope.elementVisible.pebbleEC = false;
+                scope.elementID.pebbleEC = 0;
 
             } else if (scope.checkHeight(pos, 5, 6)) {
-                // todo remove css + transition to map squares
-                console.log('here 5');
-                scope.elementVisible.mapC = true;
-                scope.pebbleData = scope.blankPebbleData;
-                scope.pebbleID = 0;
-                scope.elementVisible.pebbleC = false;
+                // scope.pebbleData = scope.blankPebbleData;
+                // scope.elementID.pebbleC = 0;
 
-            } else if (scope.checkHeight(pos, 6, 7) || pos < scope.contentHeights[7] + 250) {
-                if (scope.mapData.length == 4) {
-                    scope.mapData.pop();
-                    scope.mapRedraw = true;
-                    scope.mapID = 1;
-                }
-                console.log(scope.mapData);
-                // todo convert into PC
-                if (scope.pebbleID == 0) {
-                    scope.pebbleData = scope.newPebbleData;
-                    scope.pebbleID = 1;
-                }
+                // scope.elementVisible.mapC = true;
+                // scope.mapRedraw = true;
+                // scope.elementID.mapC = 4;
+                scope.elementVisible.pebbleEC = true;
+                scope.elementID.pebbleEC = 2;
                 scope.elementVisible.mapC = false;
-                scope.elementVisible.pebbleC = true;
+            } else if (scope.checkHeight(pos, 6, 7) && pos < scope.contentHeights[7] - 150) {
+                // if (scope.elementID.pebbleC == 0) {
+                //     scope.pebbleData = scope.newPebbleData;
+                //     scope.elementID.pebbleC = 1;
+                // }
+                scope.elementVisible.mapC = false;
 
-                console.log('here 6');
-            } else if (pos > scope.contentHeights[7] + 250) {
-                scope.elementVisible.pebbleC = false;
+            } else if (pos > scope.contentHeights[7] - 150) {
+                // scope.pebbleECID = 0;
+                scope.elementID.pebbleEC = 0;
+                scope.elementVisible.pebbleEC = false;
             }
 
             scope.$apply();
@@ -179,7 +204,10 @@ votingSysApp.directive("scroll", function ($window) {
     }
 });
 
-votingSysApp.controller('mainController', function($scope, Election_2000, us_json, stateNames) {
+// main controller
+votingSysApp.controller('mainController', function($scope, $http, Election_2000, us_json, stateNames) {
+
+    // Generates random data for use in pebble charts
     $scope.testData = [];
 
     //state names
@@ -204,18 +232,27 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
         return _.sortBy(data, function(d) {return d.name});
     };
 
+    // unique IDs for keeping track of which chart variants to show
+    $scope.elementID = {
+        mapC: null,
+        pebbleC: null,
+        pebbleEC: null
+    };
 
+    // Maps chart data to data that pebble can use
     $scope.blankPebbleData = [{name: "a", bucket: "sample 1", value: 0},
         {name: "a", bucket: "sample 2", value: 0},
         {name: "a", bucket: "sample 3", value: 0}];
-    $scope.pebbleID = 0;
 
     $scope.pebbleData = $scope.blankPebbleData;
-
     $scope.newPebbleData = $scope.generateRandom(250);
 
+    // map settings
     $scope.mapData = [];
     $scope.mapToPebble = [];
+    $scope.mapColor = ['#ddd', '#ddd'];
+
+    // get and parse map data
     us_json.getData.then(function(resp1) {
         $scope.mapData.push(resp1);
 
@@ -244,43 +281,43 @@ votingSysApp.controller('mainController', function($scope, Election_2000, us_jso
                     }
                 }
             }
-            console.log("e");
-            console.log($scope.mapToPebble);
             $scope.mapToPebble = _.sortBy($scope.mapToPebble, function(d) {return d.name});
-            console.log($scope.mapToPebble);
             $scope.newPebbleData = $scope.mapToPebble;
 
             stateNames.getData.then(function(resp3) {
                 $scope.mapData.push(resp3);
             });
         });
-        //console.log("WOW");
-        console.log($scope.mapData);
+        // initial map settings
         $scope.mapRedraw = false;
-        $scope.mapID = 0;
-        
+        $scope.elementID.mapC = 0;
 
     });
 
+
+    // element visiblity settings
     $scope.elementVisible = {
         mapC: true,
-        pebbleC: false
+        pebbleC: false,
+        pebbleEC: false
     };
-    $scope.mapColor = ['#ddd', '#ddd'];
 
-    $scope.settings = [
-        {width: 800, height: 500},
-        {width: 400, height: 250},
-        {width: 600, height: 400}
-    ];
 
-    var test = document.getElementsByClassName("content-text");
+    // pebble EC data and settings
+    $scope.pebbleECdata = [];
+    $http.get('js/coord.json').then(function(resp) {
+        $scope.pebbleECdata = resp.data;
+    });
+
+    // get sections and their heights
+    var contents = document.getElementsByClassName("content-text");
     $scope.contentHeights = [];
-    for (var i = 0; i < test.length; i++) {
-        var rect = test[i].getBoundingClientRect();
+    for (var i = 0; i < contents.length; i++) {
+        var rect = contents[i].getBoundingClientRect();
         $scope.contentHeights.push(Math.floor(rect.top));
     }
 
+    // height checking function
     $scope.checkHeight = function(pos, indexStart, indexEnd) {
         var startCheck = pos > $scope.contentHeights[indexStart] - 20;
         var endCheck = pos < $scope.contentHeights[indexEnd] + 20;
