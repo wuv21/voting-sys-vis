@@ -237,8 +237,9 @@
           </div>
           <div class="inner-right-50">
             <div id="vis" class="vis">
-              <!--<pebble-chart></pebble-chart>-->
-              <map-chart></map-chart>
+              <pebble-enhanced-chart ng-show="elementVisible.pebbleEC"></pebble-enhanced-chart>
+              <map-chart ng-show="elementVisible.mapC"></map-chart>
+              <pebble-chart ng-show="elementVisible.pebbleC"></pebble-chart>
             </div>
           </div>
         </div>

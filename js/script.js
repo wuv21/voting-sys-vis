@@ -193,11 +193,28 @@ votingSysApp.directive("scroll", function ($window) {
                 // }
                 scope.elementVisible.mapC = false;
 
-            } else if (pos > scope.contentHeights[7] - 150) {
+            } else if (scope.checkHeight(pos, 10, 11)) {
+                scope.mapColor = ['#D6D6D6', '#D6D6D6'];
+                scope.elementID.mapC = 0;
+                scope.elementVisible.mapC = true;
+
+            } else if (scope.checkHeight(pos, 11, 12)) {
+                scope.changeToAv = true;
+                console.log(scope.changeToAv);
+                scope.elementVisible.mapC = false;
+                scope.elementVisible.pebbleEC = false;
+                scope.elementID.pebbleEC = 0;
+
+            } else if (scope.checkHeight(pos, 12, 13)) {
+                scope.elementVisible.pebbleEC = true;
+                scope.elementID.pebbleEC = 2;
+                scope.elementVisible.mapC = false;
+            }
+            else if (pos > scope.contentHeights[7] - 150) {
                 // scope.pebbleECID = 0;
                 scope.elementID.pebbleEC = 0;
                 scope.elementVisible.pebbleEC = false;
-            }
+            } 
 
             scope.$apply();
         })
@@ -305,8 +322,16 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
 
     // pebble EC data and settings
     $scope.pebbleECdata = [];
+    $scope.changeToAv = false;
     $http.get('js/coord.json').then(function(resp) {
         $scope.pebbleECdata = resp.data;
+    });
+    $scope.$watch("changeToAv", function(val) {
+        if (val) {
+            $http.get('js/avwashington.json').then(function(resp) {
+                $scope.pebbleECdata = resp.data;
+            });
+        }
     });
 
     // get sections and their heights
