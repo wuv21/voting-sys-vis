@@ -43,6 +43,8 @@ var MapChart = function() {
             paths.enter()
 				.append("path")
 				.attr('class', 'state-path')
+				.style("fill", '#c6c6c6')
+				.attr('stroke', '#c6c6c6')
 				.transition()
 				.duration(function(d, i) {return i / topoData.length * 2000})
 				.attr("d", path)
@@ -63,6 +65,7 @@ var MapChart = function() {
 				.attr("stroke", "#EEE"); // draws state boundaries
 			//.attr("class", "states")
 
+			var test = [];
 			if (data[0].redraw) {
 				svgEnter.selectAll("path")
 					.data(topoData, function(d) {return _.uniqueId(d.toString())})
@@ -83,14 +86,20 @@ var MapChart = function() {
 					});
 
 
-				function getEv(d) {
-					for (var i = 0; i < stateData.length; i++) {
-						if (names[d.id] == stateData[i].state) {
-							if (stateData[i].ev_bush != 0) {
-								return stateData[i].ev_bush;
-							} else {
-								return stateData[i].ev_gore;
-							}
+				// svgEnter.selectAll("rect")
+				// 	.transition()
+				// 	.duration(5000)
+				// 	.attr("x", width / 2)
+				// 	.attr("y", height);
+			}
+
+			function getEv(d) {
+				for (var i = 0; i < stateData.length; i++) {
+					if (names[d.id] == stateData[i].state) {
+						if (stateData[i].ev_bush != 0) {
+							return stateData[i].ev_bush;
+						} else {
+							return stateData[i].ev_gore;
 						}
 					}
 				}
