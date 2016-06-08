@@ -111,7 +111,7 @@ votingSysApp.directive('pebbleChart', function() {
         scope: false,
         link: function(scope, elem) {
             var myChart = PebbleChart()
-                .width(800)
+                .width(300)
                 .height(300);
 
             var chart = d3.select(elem[0]);
