@@ -79,20 +79,13 @@ votingSysApp.directive('mapChart', function() {
         restrict: 'E',
         scope: false,
         link: function(scope, elem) {
-            /*
-            console.log(scope);
-            var width = scope.settings[800].width;
-            var height = scope.settings[1].height;
-            it should be scope.settings[scope.step]
-            but angular cant scope.step is undefined, why?
-            */
-
-
             var myChart = MapChart()
                 .width(800)
-                .height(500);
+                .height(500)
+                .fills(scope.mapColor);
 
             var chart = d3.select(elem[0]);
+
             scope.$watch('elementID.mapC', function() {
                 if (scope.mapData.length == 3) {
                     chart.datum([{id: scope.elementID.mapC, values: scope.mapData, redraw: scope.mapRedraw}])
@@ -110,6 +103,7 @@ votingSysApp.directive('mapChart', function() {
         }
     };
 });
+
 
 // peblle chart directive
 votingSysApp.directive('pebbleChart', function() {

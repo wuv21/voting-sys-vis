@@ -1,9 +1,10 @@
 var MapChart = function() {
 
-    var width, height;
-    
+	var width = 800,
+		height = 500,
+		fills = ['#467DA3', '#A34846'];
 
-    function my(selection) {
+	function my(selection) {
 		selection.each(function(data) {
 			var projection = d3.geo.albersUsa()
 				.scale(1000)
@@ -38,6 +39,7 @@ var MapChart = function() {
 				.attr("class", "states-bundle")
 				.selectAll(".state-path")
 				.data(topoData, function(d) {return _.uniqueId(d.toString())});
+
 			paths.enter()
 				.append("path")
 				.attr('class', 'state-path')
@@ -50,14 +52,14 @@ var MapChart = function() {
 					for (var i = 0; i < stateData.length; i++) {
 						if (names[d.id] == stateData[i].state) {
 							if (stateData[i].ev_bush != 0) {
-								return "#A34846";
+								return fills[1];
 							} else {
-								return "#467DA3";
+								return fills[0];
 							}
 						}
 					}
 
-                    // return !stateData[i].isNaN && stateData[i].ev_bush != 0 ?  fills[1] : fills[0];
+					// return !stateData[i].isNaN && stateData[i].ev_bush != 0 ?  fills[1] : fills[0];
 				})
 				.attr("title", function(d) {return names[d.id]})
 				.attr("stroke", "#EEE"); // draws state boundaries
@@ -114,30 +116,32 @@ var MapChart = function() {
 			// 		.attr("x", function(d) {return 0;})
 			// 		.attr("y", function(d) {return 0;});
 			// }
-			paths.exit().remove();
-    	})
-    }
 
-    // change the map's width
-    my.width = function(value) {
-    	if(!arguments.length) return width;
+			paths.exit().remove();
+
+		})
+	}
+
+	// change the map's width
+	my.width = function(value) {
+		if(!arguments.length) return width;
 		width = value;
 		return my; // return the object to allow method chaining
-    };
+	};
 
-    // change the map's height
-    my.height = function(value) {
-	    if(!arguments.length) return height;
-    	height = value;
-    	return my; // return the object to allow method chaining
-    };
+	// change the map's height
+	my.height = function(value) {
+		if(!arguments.length) return height;
+		height = value;
+		return my; // return the object to allow method chaining
+	};
 
-    my.redraw = function(value) {
-    	if (!arguments.length) return redraw;
-    	redraw = valuel;
-    	return my;
-    };
+	my.fills = function(value) {
+		if(!arguments.length) return fills;
+		fills = value;
 
+		return my;
+	};
 
-    return my;
+	return my;
 };
