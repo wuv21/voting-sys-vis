@@ -1,4 +1,5 @@
-// inspired by waffle charts (https://gist.github.com/XavierGimenez/8070956)
+// pebble chart inspired by waffle charts (https://gist.github.com/XavierGimenez/8070956)
+// hover bar inspired by https://bl.ocks.org/mbostock/3902569
 
 function PebbleEnhancedChart() {
     var squareSize = 6,
@@ -66,6 +67,8 @@ function PebbleEnhancedChart() {
             paths.enter()
                 .append("path")
                 .attr('class', 'state-path')
+                .style("fill", '#c6c6c6')
+                .attr('stroke', '#c6c6c6')
                 .transition()
                 .duration(function(d, i) {return i / data[0].topodata.length * 2000})
                 .attr("d", path)
@@ -123,7 +126,6 @@ function PebbleEnhancedChart() {
 
             pebbles.exit().transition().duration(function(d, i) {return i/resp.length * transitionDelay}).remove();
 
-
             var g = svgEnter.append('g')
                 .attr('id', 'pebbleECHover')
                 .attr('width', width - margin.left)
@@ -137,25 +139,29 @@ function PebbleEnhancedChart() {
                 .style('stroke-width', 2)
                 .style('stroke', '#CCC');
 
-            g.append('text')
-                .attr('id', 'hoverText')
-                .attr('x', margin.left)
-                .attr('y', 0)
-                .attr('font-size', 14)
-                .fill("#CCC");
+            // g.append('text')
+            //     .attr('id', 'hoverText')
+            //     .attr('x', margin.left)
+            //     .attr('y', 0)
+            //     .attr('font-size', 14)
+            //     .fill("#CCC");
 
             // var yScale = d3.scale.linear().domain([height - margin.bottom - 5, 0]).rangeBands([0, resp.length /2]);
 
             svgEnter.on("mousemove", function() {
-                d3.select('#pebbleECHover')
-                    .attr('transform', 'translate(' + margin.left + ', ' + d3.mouse(this)[1] + ')');
+                var mousePos = d3.mouse(this);
 
-                d3.select('#hoverText')
-                    .text(d3.mouse(this)[1]);
+                if (mousePos[1] < height - margin.bottom) {
+                    d3.select('#pebbleECHover')
+                        .attr('transform', 'translate(' + margin.left + ', ' + d3.mouse(this)[1] + ')');
+                } else {
+                    d3.select('#pebbleECHover')
+                        .attr('transform', 'translate(' + margin.left + ', ' + (height - margin.bottom)+ ')');
+                }
+
+                // d3.select('#hoverText')
+                //     .text(d3.mouse(this)[1]);
             });
-
-
-
         })
     }
 
