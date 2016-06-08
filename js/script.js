@@ -339,6 +339,7 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
         $scope.pebbleECdata = resp.data;
     });
 
+    //watches when the user gets to the AV section, then changes the chart data
     $scope.$watch("changeToAv", function(val) {
         if (val) {
             $http.get('js/avwashington.json').then(function(resp) {
