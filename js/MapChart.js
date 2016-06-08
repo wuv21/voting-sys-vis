@@ -1,29 +1,29 @@
 var MapChart = function() {
 
-    var width = 800,
+	var width = 800,
 		height = 500,
-        fills = ['#467DA3', '#A34846'];
+		fills = ['#467DA3', '#A34846'];
 
-    function my(selection) {
-    	selection.each(function(data) {
+	function my(selection) {
+		selection.each(function(data) {
 			var projection = d3.geo.albersUsa()
-			    .scale(1000)
-			    .translate([width / 2, height / 2]);
+				.scale(1000)
+				.translate([width / 2, height / 2]);
 
 			var path = d3.geo.path()
-			    .projection(projection);
+				.projection(projection);
 
 			var svg = d3.select(this)
-                .selectAll('.mapChart')
-                .data(data, function(d) {return _.uniqueId(d.toString())});
+				.selectAll('.mapChart')
+				.data(data, function(d) {return _.uniqueId(d.toString())});
 
-            var svgEnter = svg.enter()
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height)
-                .attr('class', 'mapChart');
+			var svgEnter = svg.enter()
+				.append('svg')
+				.attr('width', width)
+				.attr('height', height)
+				.attr('class', 'mapChart');
 
-            svg.exit().remove();
+			svg.exit().remove();
 
 			// each path is a state
 			// i loop thru the stateData and see if the bush won the EV or not
@@ -40,7 +40,7 @@ var MapChart = function() {
 				.selectAll(".state-path")
 				.data(topoData, function(d) {return _.uniqueId(d.toString())});
 
-            paths.enter()
+			paths.enter()
 				.append("path")
 				.attr('class', 'state-path')
 				.style("fill", '#c6c6c6')
@@ -59,7 +59,7 @@ var MapChart = function() {
 						}
 					}
 
-                    // return !stateData[i].isNaN && stateData[i].ev_bush != 0 ?  fills[1] : fills[0];
+					// return !stateData[i].isNaN && stateData[i].ev_bush != 0 ?  fills[1] : fills[0];
 				})
 				.attr("title", function(d) {return names[d.id]})
 				.attr("stroke", "#EEE"); // draws state boundaries
@@ -117,31 +117,31 @@ var MapChart = function() {
 			// 		.attr("y", function(d) {return 0;});
 			// }
 
-            paths.exit().remove();
+			paths.exit().remove();
 
-    	})
-    }
+		})
+	}
 
-    // change the map's width
-    my.width = function(value) {
-    	if(!arguments.length) return width;
+	// change the map's width
+	my.width = function(value) {
+		if(!arguments.length) return width;
 		width = value;
 		return my; // return the object to allow method chaining
-    };
+	};
 
-    // change the map's height
-    my.height = function(value) {
-	    if(!arguments.length) return height;
-    	height = value;
-    	return my; // return the object to allow method chaining
-    };
+	// change the map's height
+	my.height = function(value) {
+		if(!arguments.length) return height;
+		height = value;
+		return my; // return the object to allow method chaining
+	};
 
-    my.fills = function(value) {
-        if(!arguments.length) return fills;
-        fills = value;
+	my.fills = function(value) {
+		if(!arguments.length) return fills;
+		fills = value;
 
-        return my;
-    };
+		return my;
+	};
 
-    return my;
+	return my;
 };
