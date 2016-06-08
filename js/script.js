@@ -200,7 +200,7 @@ votingSysApp.directive("scroll", function ($window) {
 
             } else if (scope.checkHeight(pos, 11, 12)) {
                 scope.changeToAv = true;
-                console.log(scope.changeToAv);
+                //console.log(scope.changeToAv);
                 scope.elementVisible.mapC = false;
                 scope.elementVisible.pebbleEC = false;
                 scope.elementID.pebbleEC = 0;
@@ -209,6 +209,18 @@ votingSysApp.directive("scroll", function ($window) {
                 scope.elementVisible.pebbleEC = true;
                 scope.elementID.pebbleEC = 2;
                 scope.elementVisible.mapC = false;
+
+                scope.pebbleData = scope.blankPebbleData;
+                scope.elementID.pebbleC = 0;
+            } else if (scope.checkHeight(pos, 13, 14)) {
+                if (scope.elementID.pebbleC == 0) {
+                    scope.pebbleData = scope.newPebbleData;
+                    scope.elementID.pebbleC = 1;
+                }
+
+                console.log("here");
+                scope.elementVisible.pebbleEC = false;
+                scope.elementVisible.pebbleC = true;
             }
             else if (pos > scope.contentHeights[7] - 150) {
                 // scope.pebbleECID = 0;
@@ -326,11 +338,44 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     $http.get('js/coord.json').then(function(resp) {
         $scope.pebbleECdata = resp.data;
     });
+
     $scope.$watch("changeToAv", function(val) {
         if (val) {
             $http.get('js/avwashington.json').then(function(resp) {
                 $scope.pebbleECdata = resp.data;
             });
+            //kinda hardcoded right now
+            $scope.buckets = ["Democrats", "Republicans", "Green", "Tea"];
+            $scope.mapToPebble = [];
+            for (var i = 0; i < 45; i++) {
+                $scope.mapToPebble.push({
+                    name: "Dem",
+                    bucket: buckets[0],
+                    value: 45
+                });
+            }
+            for (var i = 0; i < 41; i++) {
+                $scope.mapToPebble.push({
+                    name: "Rep",
+                    bucket: buckets[1],
+                    value: 41
+                });
+            }
+            for (var i = 0; i < 7; i++) {
+                $scope.mapToPebble.push({
+                    name: "Green",
+                    bucket: buckets[2],
+                    value: 7
+                });
+            }
+            for (var i = 0; i < 6; i++) {
+                $scope.mapToPebble.push({
+                    name: "Tea",
+                    bucket: buckets[3],
+                    value: 6
+                });
+            }
+            $scope.newPebbleData = $scope.mapToPebble;
         }
     });
 
