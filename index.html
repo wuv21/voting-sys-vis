@@ -13,6 +13,12 @@
     <!--lodash-->
     <script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
 
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-rc1/jquery.min.js"></script>
+
+    <!--font awesome-->
+    <script src="https://use.fontawesome.com/df9e940a93.js"></script>
+
     <!--angular-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.js"></script>
 
@@ -26,10 +32,18 @@
 
     <!--main website-->
     <script src="js/script.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/toTop.js"></script>
   </head>
-  <body ng-app="votingSysApp" ng-controller="mainController">
+  <body id="top" ng-app="votingSysApp" ng-controller="mainController">
+    <div id="toTop" class="transition-all-100">
+      <a id="toTopLink" href="#top" class="transition-all-100">
+        <i class="fa fa-angle-double-up"></i>
+        <p>Back to Top</p>
+      </a>
+    </div>
     <div scroll class="container-80-center">
-      <div id="fptp" class="content-container">
+      <div class="content-container">
         <div class="content-flex">
           <div class="inner-left-35">
             <div id="title-container">
@@ -42,62 +56,73 @@
               </p>
               <p class="content-text">
                 There are numerous different voting systems, each with many variations.
-                Our group wanted to see how each voting system would change the outcome of the
+                Our group wanted to see how different voting system would change the outcome of the
                 <b>2000 Presidential Election</b>. However before we can do that, we need
                 to explain how each voting system works.
               </p>
 
               <p class="content-text">
                 Of the many, this visualization will explain the process of the
-                <b>electoral college and first-past-the-post</b>, <b>supplementary vote</b>, and
-                <b>alternate vote</b>.
+                <a href="#fptp" class="section-link transition-all-100">electoral college and first-past-the-post</a>,
+                <a href="#av" class="section-link transition-all-100">alternate vote</a>, and
+                <a href="#sv" class="section-link transition-all-100">supplimentary vote</a>.
               </p>
             </div>
 
-            <div class="content-section">
-              <h1>The Electoral College and<br>First Past the Post</h1>
+            <!--Leave map not filled (grey)-->
+            <div id="fptp" class="content-section">
+              <h1 class="section-title">The Electoral College and<br>First Past the Post</h1>
               <p class="content-text">
-                To start out, it is important to note that on election day, people aren't
-                voting for who they support as President and Vice President, they are voting
-                for people whom then in turn cast their electoral vote to their respective
-                candidates. That is the essence of the Electoral College; you vote for electors
-                who will vote for are pledged to a parties candidates.
+                To start out, it is important to note that on election day, you aren't
+                voting for who you support as President and Vice President. You are voting
+                for individuals whom then in turn cast their electoral vote to their respective
+                candidates. That is the essence of the Electoral College; <b>you vote for electors
+                who will vote for a party's candidates</b>.<a href="#fn-1" class="fn-toward transition-all-100"><sup>[1]</sup></a>
               </p>
             </div>
 
-            <div class="content-section">
+            <!--Would be sweet to make the number of electoral votes appear on the centroid-->
+            <div id="ss-2" class="content-section">
+              <h1 class="content-title">Electoral Votes Equals Number of Electors</h1>
               <p class="content-text">
-                This is important because the number of electoral votes each state has
-                corresponds to how many electoral voters they have. Washington State has
-                twelve electoral votes, this means that there are twelve electors for the
-                different parties in an election that will cast their electoral votes to
-                their party.
+                <b>The number of electoral votes each state has corresponds to how many
+                electoral voters a party can receive</b>. Washington State has twelve electoral votes
+                meaning that there are twelve electors for the different parties in
+                an election that will cast their electoral votes to their party.<a href="#fn-2" class="fn-toward transition-all-100"><sup>[2]</sup></a>
+                Each state's number of electors is determined by adding the number of senators (2)
+                plus their number of representatives.
               </p>
             </div>
 
+            <!--CSS Ballot, transition out map-->
             <div class="content-section">
+              <h1 class="content-title">Pick One, Only One</h1>
               <p class="content-text">
                 On election day this isn't too important to the average voter however. What
-                is shown to each voter is a ballot that asks them to pick the party that has
-                the candidates they would like to see President and Vice President, and
+                is shown to each voter is a ballot that asks them to <b>pick the party that has
+                the candidates they would like to see President and Vice President</b>, and
                 pick only one party.
               </p>
             </div>
 
+            <!--Bring back map and fill in color-->
             <div class="content-section">
+              <h1 class="content-title">Winner Gets State's Electoral Votes</h1>
               <p class="content-text">
                 After the popular votes from each voter is counted, each state then has the
-                electors from the winning party, the party with more than 50% of the popular vote,
-                cast their votes to the electoral college. In this way is a 'winner take all' system.
+                electors from the winning party, <b>the party with more than 50% of the popular vote,
+                have their electors cast their votes to the electoral college</b>.
+                In this way is a 'winner take all' system.
               </p>
             </div>
 
-            <div id="closing" class="content-section">
+            <!--MapToPebble chart-->
+            <div id="ss-3" class="content-section closing">
+              <h1 class="content-title">Winner at 270</h1>
               <p class="content-text">
-                This process happens in each state across the country, as well as in
-                The District of Columbia. Each slate of electors casts their votes and the winner
-                of the election is determined as soon as a party receives over 50% of the electoral
-                votes, or 270 electoral votes.
+                This process happens in each state across the country. Each slate of electors
+                casts their votes and <b>the winner of the election is determined as soon as
+                a party receives over 50% of the electoral votes</b>, or 270 electoral votes.<a href="#fn-3" class="fn-toward transition-all-100"><sup>[3]</sup></a>
               </p>
             </div>
           </div>
@@ -110,33 +135,35 @@
           </div>
         </div>
 
-        <div class="wide-content">
+        <!--Get rid of MapToPebble, bring in small multiples-->
+        <!--Delay each small multiple until the previous multiple has transitioned fully-->
+        <div id="ss-4" class="wide-content">
           <div class="wide-top">
             <h1>Additional Comments on First Past the Post:</h1>
             <p class="content-text">
               It is important to note that while FPTP has it's benefits as a voting system,
-              mainly being that it is <b>quick, easy, decently proportional, and commonly
-              produces centrist policies</b>. However it also has rather large negative side
+              mainly being that it is quick, easy, decently proportional, and commonly
+              produces centrist policies. It also has rather large negative side
               effects associated with it.
             </p>
             <p class="content-text">
-              First Past the Post has been repeatedly shown to <b>converge to a two party
-              system</b> over multiple election cycles. For example, if there were multiple
+              First Past the Post has been repeatedly shown to converge to a two party
+              system over multiple election cycles.<a href="#fn-4" class="fn-toward transition-all-100"><sup>[4]</sup></a> For example, if there were multiple
               parties in an election, like in the first small multiple below, the lowest
               winning party members might feel that their votes were wasted and a party
-              they didn't want to win won the highest, <b>the next year they voted with
-              the highest party that most resembles their party values</b> in order to at least
-              have a decent say in they way they think the country should head towards.
+              they didn't want to win, won. Because of this the next year they voted with
+              the highest winning party that most resembles their party values in order to at least
+              have a decent say in they way they think the country should head.
             </p>
             <p class="content-text">
               This cycle of the lowest winning party not feeling like their votes were worth
-              anything dropping and adding their votes to the highest winning party that they
-              most align with repeats over and over again until there are a very limited,
-              usually two parties left that represent a wide array of individuals in the country.
-              This is what also <b>forces FPTP to form centrist policies, with only two parties,
-              each party has to cater to a large, non-homogenious group of the population,
-              so each party has to form centrist policies in order to make sure they have a
-              chance at winning again next election cycle</b>.
+              anything dropping out and adding their votes to the highest winning party that they
+              most align with repeats until there are a very limited, usually two parties left
+              that represent the wide range of individuals in the country. This is what also
+              forces FPTP to form centrist policies, with only two parties, each party has
+              to cater to a large, non-homogenious group of the population, so each party has
+              to form centrist policies in order to make sure they have a chance at winning
+              again next election cycle.
             </p>
           </div>
           <div class="wide-bottom">
@@ -152,53 +179,59 @@
         </div>
       </div>
 
-      <div id="supplimentary" class="content-container">
+      <div class="content-container">
         <div class="content-flex">
           <div class="inner-left-35">
-            <div class="content-section">
-              <h1>Supplimentary Vote</h1>
+            <!--blank map again-->
+            <div id="av" class="content-section">
+              <h1 class="section-title">The Alternate Vote</h1>
               <p class="content-text">
-                To start out, it is important to note that on election day, people aren't
-                voting for who they support as President and Vice President, they are voting
-                for people whom then in turn cast their electoral vote to their respective
-                candidates. That is the essence of the Electoral College; you vote for electors
-                who will vote for are pledged to a parties candidates.
+                For simplicities sake, we will continue using the Electoral College with
+                the Alternate Vote. So like before, in our system, you would be voting for
+                a slate of individual electors who would vote for the party you voted for.
               </p>
             </div>
 
+            <!--CSS ballot again-->
             <div class="content-section">
+              <h1 class="content-title">Don't Choose, Rank</h1>
               <p class="content-text">
-                This is important because the number of electoral votes each state has
-                corresponds to how many electoral voters they have. Washington State has
-                twelve electoral votes, this means that there are twelve electors for the
-                different parties in an election that will cast their electoral votes to
-                their party.
+                Unlike before, <b>your ballot would instead ask you to rank the parties</b>.
+                Party A, B, and C ranked third, first, and second respectively on your ballot
+                however someone else may rank them first, third, and second.
               </p>
             </div>
 
-            <div class="content-section">
+            <!--Switch to Pebble of just Washington-->
+            <div id="ss-5" class="content-section">
+              <h1 class="content-title">Win By Recursion</h1>
               <p class="content-text">
-                On election day this isn't too important to the average voter however. What
-                is shown to each voter is a ballot that asks them to pick the party that has
-                the candidates they would like to see President and Vice President, and
-                pick only one party.
+                The Alternate Vote works by using recursion to select a winner. Let's follow
+                Washington under the Alternate Vote. At the start <b>there are four unique parties,
+                and the Democrats have the highest percent of the popular vote but not over 50%</b>.<a href="#fn-5" class="fn-toward transition-all-100"><sup>[5]</sup></a>
               </p>
             </div>
 
+            <!--Pebble with new vote distributions-->
             <div class="content-section">
+              <h1 class="content-title">The Steps of Alternate Vote</h1>
               <p class="content-text">
-                After the popular votes from each voter is counted, each state then has the
-                electors from the winning party, the party with more than 50% of the popular vote,
-                cast their votes to the electoral college. In this way is a 'winner take all' system.
+                However that leaves %PERCENT OF OTHER VOTES% incomplete as a decision.
+                To fix this, we <b>remove the lowest winning party, go back to the individual's
+                ballots that votes for said party and assign their vote to their second party
+                choice</b>. This puts Democrats above the 50% mark and they are decided the
+                winner of the state. <b>If no party were to receive over 50% of the newly counted
+                vote, this step would repeat until a winner was found</b>.
               </p>
             </div>
 
-            <div id="closing" class="content-section">
+            <!--Switch to MapToPebble of final results show the stack bars of different parties on final parties-->
+            <div class="content-section closing">
+              <h1 class="content-title">Winning the Election</h1>
               <p class="content-text">
-                This process happens in each state across the country, as well as in
-                The District of Columbia. Each slate of electors casts their votes and the winner
-                of the election is determined as soon as a party receives over 50% of the electoral
-                votes, or 270 electoral votes.
+                Like before, this would happen in every state and the electors would be
+                determined. Once all states have voted, the electors would cast their
+                votes and the process would end.
               </p>
             </div>
           </div>
@@ -209,55 +242,80 @@
             </div>
           </div>
         </div>
+
+        <!--Get rid of MapToPebble, bring in small multiples-->
+        <div class="wide-content">
+          <div class="wide-top">
+            <h1>Additional Comments on Alternate Vote:</h1>
+            <p class="content-text">
+              Unlike FPTP, Alternate Vote is extremely costly. When no winner is immediately shown
+              checking lowest winning party votes again for each step of the recursion can be
+              time consuming.
+            </p>
+            <p class="content-text">
+              Alternate Vote has a few benefits however many consider the greatest benefit to be that
+              it means that individual votes don't have to worry about who their neighbor is voting for.
+              The problem of votes not mattering doesn't occur in Alternate Vote. If a voters first
+              ranked party doesn't win, it may be there second, or third, or ... favourite party.
+              It additionally means that fringe votes that know they have very different opinions from
+              the rest of the population can still vote without worrying their voice doesn't have a say.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div id="alternate" class="content-container">
+      <div class="content-container">
         <div class="content-flex">
           <div class="inner-left-35">
-            <div class="content-section">
-              <h1>Alternate Vote</h1>
+            <!--blank map again-->
+            <div id="sv" class="content-section">
+              <h1 class="section-title">The Supplimentary Vote</h1>
               <p class="content-text">
-                To start out, it is important to note that on election day, people aren't
-                voting for who they support as President and Vice President, they are voting
-                for people whom then in turn cast their electoral vote to their respective
-                candidates. That is the essence of the Electoral College; you vote for electors
-                who will vote for are pledged to a parties candidates.
+                Much like Alternate Vote, our version of Supplimentary Vote will work with the Electoral
+                College. Many people think of Supplimentary Vote as a shortened version of Alternate Vote.
               </p>
             </div>
 
+            <!--CSS ballot again-->
             <div class="content-section">
+              <h1 class="content-title">Don't Rank, Pick Two</h1>
               <p class="content-text">
-                This is important because the number of electoral votes each state has
-                corresponds to how many electoral voters they have. Washington State has
-                twelve electoral votes, this means that there are twelve electors for the
-                different parties in an election that will cast their electoral votes to
-                their party.
+                Unlike the Alternate Vote, <b>your ballot would instead ask you to pick your first
+                choice party and second choice party</b>. Party A, B, and C chosen not, first,
+                and second respectively on your ballot however someone else may rank them first,
+                not, and second.
               </p>
             </div>
 
+            <!--Switch to Pebble of just Washington-->
             <div class="content-section">
+              <h1 class="content-title">Win By Single Step</h1>
               <p class="content-text">
-                On election day this isn't too important to the average voter however. What
-                is shown to each voter is a ballot that asks them to pick the party that has
-                the candidates they would like to see President and Vice President, and
-                pick only one party.
+                Supplimentary Vote works by using a simple check to select a winner. Washington under
+                Supplimentary Vote again shows that <b>there are four unique parties, and the Democrats
+                have the highest percent of the popular vote but not over 50%</b>.
               </p>
             </div>
 
+            <!--Pebble with new vote distributions-->
             <div class="content-section">
+              <h1 class="content-title">Redistribute Second Choice</h1>
               <p class="content-text">
-                After the popular votes from each voter is counted, each state then has the
-                electors from the winning party, the party with more than 50% of the popular vote,
-                cast their votes to the electoral college. In this way is a 'winner take all' system.
+                The differing point from Alternate Vote to Supplimentary occurs here, instead of
+                recursively removing the lowest winning parties from the ballot and redistributing, <b>we
+                remove all but the two most winning parties and redistribute the removed votes second
+                choices. Even if no party has over 50% of the popular vote, we assign the
+                winner as the party with the highest percent of the popular vote</b>.
               </p>
             </div>
 
-            <div id="closing" class="content-section">
+            <!--Switch to MapToPebble of final results show the stack bars of different parties on final parties-->
+            <div class="content-section closing">
+              <h1 class="content-title">Winning the Election</h1>
               <p class="content-text">
-                This process happens in each state across the country, as well as in
-                The District of Columbia. Each slate of electors casts their votes and the winner
-                of the election is determined as soon as a party receives over 50% of the electoral
-                votes, or 270 electoral votes.
+                Like before, this would happen in every state and the electors would be
+                determined. Once all states have voted, the electors would cast their
+                votes and the process would end.
               </p>
             </div>
           </div>
@@ -268,25 +326,47 @@
             </div>
           </div>
         </div>
-      </div>
 
+        <!--Get rid of MapToPebble, bring in small multiples-->
+        <div class="wide-content">
+          <div class="wide-top">
+            <h1>Additional Comments on Supplimentary Vote:</h1>
+            <p class="content-text">
+              Supplimentary Vote is a sort of middle ground between the two voting systems, quicker,
+              cheaper while also become allowing for voter's feeling valuable. However this system
+              can also lead to two parties becoming incredibly close and creating first and second
+              choice parties for individuals with similar believes that are resistant to change.
+            </p>
+          </div>
+        </div>
+      </div>
 
       <!--  NOTES
-      NEED TO WRITE THE SUPPLIMENTARY AND ALTERNATE VOTING TEXT
       ADD SMALL MULTIPLES
-      PROBABLY ADD A JUMP TO SCROLL
-      ADD THE FINAL COMPARISON SCROLLER VISUALIZATION -->
+      ADD THE FINAL COMPARISON VISUALIZATION AND TEXT
+      -->
 
 
       <div class="footnotes">
         <h3>Footnotes:</h3>
         <div class="footnotes-content">
           <ul>
-            <li id="fn-1">We are currently using test data. <a href="#ss-1" class="fn-back">^</a></li>
-            <li id="fn-2">This is a test of footnotes. <a href="#ss-2" class="fn-back">^</a></li>
-            <li id="fn-3">We believe this model to be accurate however there are some issues with lorem ipsum and how that works. <a href="#ss-3" class="fn-back">^</a></li>
-            <li id="fn-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <a href="#ss-4" class="fn-back">^</a></li>
+            <li id="fn-1">Electors are important to the process because they allow for change.
+              A parties candidate may have extraneous circumstances in which it is important
+              to still allow the electors to vote for another candidate. Additionally this
+              allows for faithless electors, more detail available in the sources.
+              <a href="#fptp" class="fn-back transition-all-100">^</a>
+            </li>
+            <li id="fn-2">Maine and Nebraska split their electoral votes. <a href="#ss-2" class="fn-back transition-all-100">^</a></li>
+            <li id="fn-3">Popular vote for state winning and electoral vote for election winning
+              can lead to candidates having a higher total popular vote but less electoral vote
+              thus losing the election. Our data for example, Gore won the popular vote but lost
+              the electoral vote. <a href="#ss-3" class="fn-back transition-all-100">^</a></li>
+            <li id="fn-4">While this is shown in numerous examples, there are also counter examples
+              that show that FPTP doesn't always necessarily converge to two parties. However in
+              those examples, the parties it does converge is usually less than 4, which is still
+              drastically less than other systems commonly have. <a href="#ss-4" class="fn-back transition-all-100">^</a></li>
+            <li id="fn-5">Party data available through polling and comparision from other voting. <a href="#ss-5" class="fn-back transition-all-100">^</a></li>
           </ul>
         </div>
       </div>
@@ -295,11 +375,17 @@
         <h3>Sources:</h3>
         <div class="sources-content">
           <ul>
-            <li><a href="http://www.electoral-reform.org.uk/voting-systems" class="source-link" target="_blank">UK Electoral Reform</a></li>
-            <li><a href="http://www.telegraph.co.uk/news/politics/5496814/How-the-different-voting-systems-work.html" class="source-link" target="_blank">The Telegraph: How the Different Voting Systems Work</a></li>
-            <li><a href="https://www.youtube.com/watch?v=s7tWHJfhiyo&list=PLNCHVwtpeBY4mybPkHEnRxSOb7FQ2vF9c" class="source-link" target="_blank">CGP Grey Explains: Voting Systems</a></li>
-            <li><a href="http://www.idea.int/esd/world.cfm" class="source-link" target="_blank">List of Countries by Voting System</a></li>
-            <li><a href="http://www.fec.gov/pubrec/fe2000/tcontents.htm" class="source-link" target="_blank">2000 Election Data</a></li>
+            <li><a href="http://www.electoral-reform.org.uk/voting-systems" class="source-link transition-all-100" target="_blank">UK Electoral Reform</a></li>
+            <li><a href="http://www.telegraph.co.uk/news/politics/5496814/How-the-different-voting-systems-work.html" class="source-link transition-all-100" target="_blank">The Telegraph: How the Different Voting Systems Work</a></li>
+            <li><a href="https://www.youtube.com/watch?v=s7tWHJfhiyo&list=PLNCHVwtpeBY4mybPkHEnRxSOb7FQ2vF9c" class="source-link transition-all-100" target="_blank">CGP Grey Explains: Voting Systems</a></li>
+            <li><a href="http://rangevoting.org/Duverger.html" class="source-link transition-all-100" target="_blank">Convergence Towards a Two Party System (Duverger's Law)</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Duverger%27s_law" class="source-link transition-all-100" target="_blank">Duverger's Law</a></li>
+            <li><a href="http://www.fairvote.org/faithless_electors" class="source-link" target="_blank">Faithless Electors</a></li>
+            <li><a href="http://www.idea.int/esd/world.cfm" class="source-link transition-all-100" target="_blank">List of Countries by Voting System</a></li>
+            <li><a href="http://www.fec.gov/pubrec/fe2000/tcontents.htm" class="source-link transition-all-100" target="_blank">2000 Election Data</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/United_States_presidential_election,_2000" class="source-link transition-all-100" target="_blank">2000 Election Record (Wikipedia)</a></li>
+            <li><a href="http://www.gallup.com/poll/110548/gallup-presidential-election-trialheat-trends-19362004.aspx#4" class="source-link transition-all-100" target="_blank">Presidential Election Polling Record</a></li>
+            <li><a href="http://www.nytimes.com/2004/02/24/us/2004-campaign-independent-relax-nader-advises-alarmed-democrats-but-2000-math.html" class="source-link transition-all-100" target="_blank">Polling of Nader Voters Regarding Only Two Candidates</a></li>
           </ul>
         </div>
       </div>
