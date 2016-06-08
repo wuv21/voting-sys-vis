@@ -3,8 +3,7 @@
 ![PebbleChart Example](../img/pebblechart.png)
 
 ## General Notes
-Insert real stuff here
-
+-- say something about data join stuff and how to call the chart? and other required info (PebbleChart.datum([]))
 
 
 ##  PebbleChart Functions
