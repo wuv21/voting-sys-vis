@@ -15,7 +15,8 @@
 .inner-left-35 {
   width: 35%;
   padding: 0px;
-  margin: 0px auto 0px auto; }
+  margin: 0px auto 0px auto;
+  z-index: 1000; }
 
 .inner-right-50 {
   width: 50%;
@@ -24,14 +25,17 @@
   margin: 0px auto 0px auto; }
 
 .vis {
+  color: #D6D6D6;
   width: 800px;
   height: 600px;
-  position: fixed; }
+  position: fixed;
+  z-index: 10; }
 
 .wide-content {
   width: 50%;
   padding: 0px;
-  margin: 0px auto 100px auto; }
+  margin: 0px auto 100px auto;
+  z-index: 1000; }
 
 .wide-bottom {
   margin: 30px 0px 0px 0px; }
@@ -47,6 +51,30 @@
   height: 150px;
   padding: 0px;
   margin: 0px auto 0px auto; }
+
+#toTop {
+  position: fixed;
+  width: 160px;
+  height: 140px;
+  top: 40%;
+  left: 40px;
+  text-align: center;
+  display: none; }
+  #toTop a {
+    color: #222;
+    text-decoration: none; }
+    #toTop a:visited {
+      color: #222; }
+    #toTop a:hover {
+      color: black; }
+  #toTop i {
+    font-size: 44px; }
+  #toTop p {
+    font-size: 24px;
+    line-height: 30px;
+    font-weight: 600;
+    margin: 0px;
+    padding: 0px; }
 
 body {
   color: #222;
@@ -82,11 +110,21 @@ h1 {
     border-bottom: 1px solid #004d4d; }
 
 .content-section {
-  margin: 400px 0px 0px 0px; }
-  .content-section h1 {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  margin: 400px 0px 0px 0px;
+  padding: 20px;
+  z-index: 1000; }
+  .content-section .section-title {
     font-size: 36px;
     font-weight: 600;
     line-height: 42px;
+    padding: 0px;
+    border-bottom: 2px solid #222; }
+  .content-section .content-title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
     padding: 0px;
     border-bottom: 2px solid #222; }
 
@@ -96,7 +134,7 @@ h1 {
   padding: 0px;
   margin: 10px 0px 0px 0px; }
 
-#closing {
+.closing {
   margin-bottom: 120px; }
 
 .wide-top h1 {
@@ -106,11 +144,23 @@ h1 {
   padding: 0px;
   border-bottom: 2px solid #222; }
 
+.fn-toward {
+  color: teal;
+  font-size: 14px;
+  line-height: 14px;
+  text-decoration: none; }
+  .fn-toward:visited {
+    color: teal; }
+  .fn-toward:hover {
+    color: #004d4d; }
+
 .footnotes, .sources {
+  background-color: rgba(255, 255, 255, 0.7);
   width: 50%;
   padding: 16px 0px 0px 0px;
   border-top: 2px solid #222;
-  margin: 40px auto 0px auto; }
+  margin: 40px auto 0px auto;
+  z-index: 1000; }
   .footnotes h3, .sources h3 {
     font-size: 16px;
     line-height: 16px;
@@ -128,13 +178,23 @@ h1 {
       margin: 0px 0px 0px 24px; }
       .footnotes .footnotes-content ul .fn-back, .footnotes .footnotes-content ul .source-link, .footnotes .sources-content ul .fn-back, .footnotes .sources-content ul .source-link, .sources .footnotes-content ul .fn-back, .sources .footnotes-content ul .source-link, .sources .sources-content ul .fn-back, .sources .sources-content ul .source-link {
         color: teal;
-        text-decoration: none; }
+        text-decoration: none;
+        border-bottom: 1px solid transparent; }
         .footnotes .footnotes-content ul .fn-back:visited, .footnotes .footnotes-content ul .source-link:visited, .footnotes .sources-content ul .fn-back:visited, .footnotes .sources-content ul .source-link:visited, .sources .footnotes-content ul .fn-back:visited, .sources .footnotes-content ul .source-link:visited, .sources .sources-content ul .fn-back:visited, .sources .sources-content ul .source-link:visited {
-          color: teal;
-          text-decoration: none; }
+          color: teal; }
         .footnotes .footnotes-content ul .fn-back:hover, .footnotes .footnotes-content ul .source-link:hover, .footnotes .sources-content ul .fn-back:hover, .footnotes .sources-content ul .source-link:hover, .sources .footnotes-content ul .fn-back:hover, .sources .footnotes-content ul .source-link:hover, .sources .sources-content ul .fn-back:hover, .sources .sources-content ul .source-link:hover {
-          color: teal;
-          text-decoration: underline; }
+          color: #004d4d;
+          border-bottom: 1px solid #004d4d; }
+
+.section-link {
+  color: teal;
+  text-decoration: none;
+  border-bottom: 1px solid transparent; }
+  .section-link:visited {
+    color: teal; }
+  .section-link:hover {
+    color: #004d4d;
+    border-bottom: 1px solid #004d4d; }
 
 .red-party {
   color: #A34846; }

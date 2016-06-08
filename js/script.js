@@ -162,7 +162,7 @@ votingSysApp.directive("scroll", function ($window) {
             var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
 
             if (pos < scope.contentHeights[2] + 20) {
-                scope.mapColor = ['#ddd', '#ddd'];
+                scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
 
             } else if (scope.checkHeight(pos, 2, 4)) {
