@@ -33,6 +33,7 @@ $link-teal: teal
   width: 35%
   padding: 0px
   margin: 0px auto 0px auto
+  z-index: 1000
 
 .inner-right-50
   width: 50%
@@ -41,14 +42,17 @@ $link-teal: teal
   margin: 0px auto 0px auto
 
 .vis
+  color: $light-grey
   width: 800px
   height: 600px
   position: fixed
+  z-index: 10
 
 .wide-content
   width: 50%
   padding: 0px
   margin: 0px auto 100px auto
+  z-index: 1000
 
 .wide-bottom
   margin: 30px 0px 0px 0px
@@ -64,6 +68,35 @@ $link-teal: teal
   height: 150px
   padding: 0px
   margin: 0px auto 0px auto
+
+#toTop
+  position: fixed
+  width: 160px
+  height: 140px
+  top: 40%
+  left: 40px
+  text-align: center
+  display: none
+
+  a
+    color: $dark-grey
+    text-decoration: none
+
+    &:visited
+      color: $dark-grey
+
+    &:hover
+      color: darken($dark-grey, 20%)
+
+  i
+    font-size: 44px
+
+  p
+    font-size: 24px
+    line-height: 30px
+    font-weight: 600
+    margin: 0px
+    padding: 0px
 
 // GENERAL STYLING
 body
@@ -104,12 +137,23 @@ h1
 
 // CONTENT
 .content-section
+  background-color: rgba(255, 255, 255, 0.7)
+  border-radius: 20px
   margin: 400px 0px 0px 0px
+  padding: 20px
+  z-index: 1000
 
-  h1
+  .section-title
     font-size: 36px
     font-weight: 600
     line-height: 42px
+    padding: 0px
+    border-bottom: 2px solid $dark-grey
+
+  .content-title
+    font-size: 24px
+    font-weight: 600
+    line-height: 28px
     padding: 0px
     border-bottom: 2px solid $dark-grey
 
@@ -119,7 +163,7 @@ h1
   padding: 0px
   margin: 10px 0px 0px 0px
 
-#closing
+.closing
   margin-bottom: 120px
 
 .wide-top
@@ -131,11 +175,25 @@ h1
     border-bottom: 2px solid $dark-grey
 
 // FOOTNOTES
+.fn-toward
+  color: $link-teal
+  font-size: 14px
+  line-height: 14px
+  text-decoration: none
+
+  &:visited
+    color: $link-teal
+
+  &:hover
+    color: darken($link-teal, 10%)
+
 .footnotes, .sources
+  background-color: rgba(255, 255, 255, 0.7)
   width: 50%
   padding: 16px 0px 0px 0px
   border-top: 2px solid $dark-grey
   margin: 40px auto 0px auto
+  z-index: 1000
 
   h3
     font-size: 16px
@@ -158,16 +216,28 @@ h1
       .fn-back, .source-link
         color: $link-teal
         text-decoration: none
+        border-bottom: 1px solid transparent
 
         &:visited
           color: $link-teal
-          text-decoration: none
 
         &:hover
-          color: $link-teal
-          text-decoration: underline
+          color: darken($link-teal, 10%)
+          border-bottom: 1px solid darken($link-teal, 10%)
 
 // CLASSES
+.section-link
+  color: $link-teal
+  text-decoration: none
+  border-bottom: 1px solid transparent
+
+  &:visited
+    color: $link-teal
+
+  &:hover
+    color: darken($link-teal, 10%)
+    border-bottom: 1px solid darken($link-teal, 10%)
+
 .red-party
   color: $red
 
