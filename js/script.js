@@ -258,18 +258,21 @@ votingSysApp.directive("scrollSvSection", function ($window) {
             // get pageYOffset + add buffer so middle (ish) of screen is where the step will happen
             var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
 
-            if (scope.checkHeight(pos, 17, 18)) { // AV SECTION
+            if (scope.checkHeight(pos, 17, 18)) { // SV SECTION
+                scope.elementVisible.ballotSV = false;
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
                 scope.elementVisible.mapC = true;
 
             } else if (scope.checkHeight(pos, 18, 19)) {
+                scope.elementVisible.ballotSV = true;
                 scope.changeToAv = true;
                 scope.elementVisible.mapC = false;
                 scope.elementVisible.pebbleEC = false;
                 scope.elementID.pebbleEC = 6;
 
             } else if (scope.checkHeight(pos, 19, 20)) {
+                scope.elementVisible.ballotSV = false;
                 scope.elementVisible.pebbleEC = true;
                 scope.elementID.pebbleEC = 8;
                 scope.elementVisible.mapC = false;
