@@ -83,8 +83,7 @@
   width: 600px;
   margin: 0px auto 0px auto;
   text-align: center;
-  color: #222;
-  display: none; }
+  color: #222; }
   .ballot .voting-type-bar {
     border-bottom: 4px solid #222; }
   .ballot .presidential-candidates {
