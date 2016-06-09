@@ -156,6 +156,7 @@ votingSysApp.directive("scrollFptpSection", function ($window) {
             var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
 
             if (pos < scope.contentHeights[4] + 20) { // FPTP SECTION
+                scope.elementVisible.mapC = true;
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
 
@@ -165,6 +166,7 @@ votingSysApp.directive("scrollFptpSection", function ($window) {
 
             } else if (scope.checkHeight(pos, 5, 6)) {
                 scope.elementVisible.pebbleEC = false;
+                scope.elementID.pebbleEC = 0;
                 scope.elementVisible.mapC = true;
                 scope.mapColor = ['#467DA3', '#A34846'];
                 scope.elementID.mapC = 2;
@@ -196,16 +198,17 @@ votingSysApp.directive("scrollAvSection", function ($window) {
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
                 scope.elementVisible.mapC = true;
+                scope.changeToAv = false;
 
             } else if (scope.checkHeight(pos, 11, 12)) {
                 scope.changeToAv = true;
                 scope.elementVisible.mapC = false;
                 scope.elementVisible.pebbleEC = false;
-                scope.elementID.pebbleEC = 0;
+                scope.elementID.pebbleEC = 4;
 
             } else if (scope.checkHeight(pos, 12, 13)) {
                 scope.elementVisible.pebbleEC = true;
-                scope.elementID.pebbleEC = 2;
+                scope.elementID.pebbleEC = 6;
                 scope.elementVisible.mapC = false;
 
                 scope.pebbleData = scope.blankPebbleData;
@@ -250,11 +253,11 @@ votingSysApp.directive("scrollSvSection", function ($window) {
                 scope.changeToAv = true;
                 scope.elementVisible.mapC = false;
                 scope.elementVisible.pebbleEC = false;
-                scope.elementID.pebbleEC = 0;
+                scope.elementID.pebbleEC = 6;
 
             } else if (scope.checkHeight(pos, 19, 20)) {
                 scope.elementVisible.pebbleEC = true;
-                scope.elementID.pebbleEC = 2;
+                scope.elementID.pebbleEC = 8;
                 scope.elementVisible.mapC = false;
 
                 scope.pebbleData = scope.blankPebbleData;
@@ -385,8 +388,10 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     // pebble EC data and settings
     $scope.pebbleECdata = [];
     $scope.changeToAv = false;
+    var pebbleECoriginalData = [];
     $http.get('js/coord.json').then(function(resp) {
         $scope.pebbleECdata = resp.data;
+        pebbleECoriginalData = resp.data;
     });
 
     //watches when the user gets to the AV section, then changes the chart data
@@ -427,6 +432,8 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
                 });
             }
             $scope.newPebbleData = $scope.mapToPebble;
+        } else {
+            $scope.pebbleECdata = pebbleECoriginalData;
         }
     });
 
