@@ -415,6 +415,10 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     });
 
     $scope.avData = [];
+    $scope.countryData = [];
+    var state = {
+
+    }
     $scope.oregonData = {
         Democrats: 0,
         Republicans: 0,
@@ -431,9 +435,9 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
                 var oregon = $scope.avData[i];
                 var total = 0;
                 var independent = 0;
-                $scope.oregonData.Democrats = oregon[6];
-                $scope.oregonData.Republicans = oregon[4];
-                $scope.oregonData.Green = oregon[12];
+                $scope.oregonData.Democrats = parseInt(oregon[6].replace(/,/g,""));
+                $scope.oregonData.Republicans = parseInt(oregon[4].replace(/,/g,""));
+                $scope.oregonData.Green = parseInt(oregon[12].replace(/,/g,""));
                 for (var j = 1; j < oregon.length; j++) {
                     if (oregon[j].length > 0) {
                         var num = parseInt(oregon[j].replace(/,/g,""));
@@ -449,6 +453,8 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
         }
         console.log($scope.oregonData);
     });
+
+
 
     //watches when the user gets to the AV section, then changes the chart data
     $scope.$watch("changeToAv", function(val) {
@@ -509,6 +515,7 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
         return startCheck && endCheck;
     };
 
+    //From this link: http://stackoverflow.com/questions/1293147/javascript-code-to-parse-csv-data
     $scope.CSVToArray = function( strData, strDelimiter ){
         // Check to see if the delimiter is defined. If not,
         // then default to comma.
