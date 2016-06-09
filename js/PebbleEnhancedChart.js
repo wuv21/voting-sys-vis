@@ -6,7 +6,7 @@ function PebbleEnhancedChart() {
         squareMargin = 5,
         squareCols = 7,
         color = d3.scale.category20(),
-        fills = ['#467DA3', '#A34846', 'green'],
+        fills = ['#467DA3', '#5CAE5A', '#D6C171', '#A34846'],
         transitionDelay = 6000;
 
     var width = 800,
@@ -18,9 +18,11 @@ function PebbleEnhancedChart() {
         selection.each(function(data) {
             var resp = data[0].values;
 
-            var buckets = _.uniqBy(resp, function(x) {return x.party})
-                .map(function(x) {return x.party})
-                .sort();
+            // var buckets = _.uniqBy(resp, function(x) {return x.party})
+            //     .map(function(x) {return x.party})
+            //     .sort();
+
+            var buckets = ["Democrat", "Green", "Independent", "Republican"];
 
             var xScale = d3.scale.ordinal().domain(buckets).rangeBands([margin.left, width - margin.right], 0);
             var rowScale = d3.scale.linear().domain([0, squareCols - 1]).range([0, squareSize*squareCols + ((squareCols - 1) * squareMargin)]);
