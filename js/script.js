@@ -416,9 +416,7 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
 
     $scope.avData = [];
     $scope.countryData = [];
-    var state = {
 
-    }
     $scope.oregonData = {
         Democrats: 0,
         Republicans: 0,
@@ -430,27 +428,39 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     $http.get('data/2000_election/all_final_votes_2000.csv').then(function(resp) {
         $scope.avData = $scope.CSVToArray(resp.data);
         console.log($scope.avData);
-        for (var i = 0; i < $scope.avData.length; i++) {
-            if ($scope.avData[i][0] == "OR") {
-                var oregon = $scope.avData[i];
-                var total = 0;
-                var independent = 0;
-                $scope.oregonData.Democrats = parseInt(oregon[6].replace(/,/g,""));
-                $scope.oregonData.Republicans = parseInt(oregon[4].replace(/,/g,""));
-                $scope.oregonData.Green = parseInt(oregon[12].replace(/,/g,""));
-                for (var j = 1; j < oregon.length; j++) {
-                    if (oregon[j].length > 0) {
-                        var num = parseInt(oregon[j].replace(/,/g,""));
-                        total += num;
-                        if (j != 6 && j != 4 && j != 12) {
-                            independent += num;
-                        }
+        for (var i = 1; i < $scope.avData.length; i++) {
+            var current = $scope.avData[i];
+            var total = 0;
+            var independent = 0;
+            for (var j = 1; j < current.length; j++) {
+                if (current[j].length > 0) {
+                    var num = parseInt(current[j].replace(/,/g,""));
+                    total += num;
+                    if (j != 6 && j != 4 && j != 12) {
+                        independent += num;
                     }
                 }
-                $scope.oregonData.Independent = independent;
-                $scope.oregonData.Total = total;
+            }
+            $scope.countryData.push({
+                State: current[0],
+                Democrats: parseInt(current[6].replace(/,/g,"")),
+                Republicans: parseInt(current[4].replace(/,/g,"")),
+                Green: parseInt(current[12].replace(/,/g,"")),
+                Independent: independent,
+                Total: total
+            });
+        }
+        for (var i = 0; i < $scope.countryData.length; i++) {
+            if ($scope.countryData[i].State == "OR") {
+                var stateData = $scope.countryData[i];
+                $scope.oregonData.Democrats = stateData.Democrats;
+                $scope.oregonData.Republicans = stateData.Republicans;
+                $scope.oregonData.Green = stateData.Green;
+                $scope.oregonData.Independent = stateData.Independent;
+                $scope.oregonData.Total = stateData.Total;
             }
         }
+        console.log($scope.countryData);
         console.log($scope.oregonData);
     });
 
