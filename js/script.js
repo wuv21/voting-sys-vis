@@ -156,6 +156,7 @@ votingSysApp.directive("scrollFptpSection", function ($window) {
             var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
 
             if (pos < scope.contentHeights[4] + 20) { // FPTP SECTION
+                scope.elementVisible.pebbleEC = false;
                 scope.elementVisible.mapC = true;
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
