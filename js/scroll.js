@@ -9,11 +9,11 @@ $(document).ready(function() {
 			if (x < 800) {
 				$('html, body').stop().animate( {
 		        'scrollTop': $target.offset().top - 120
-		    }, 1500, 'swing');
+		    }, 2000, 'swing');
 	    } else {
 				$('html, body').stop().animate( {
 		        'scrollTop': $target.offset().top
-		    }, 1500, 'swing');
+		    }, 2000, 'swing');
 			}
 	});
 
@@ -27,11 +27,11 @@ $(document).ready(function() {
 			if (x < 800) {
 				$('html, body').stop().animate( {
 		        'scrollTop': $target.offset().top - 120
-		    }, 1500, 'swing');
+		    }, 2000, 'swing');
 	    } else {
 				$('html, body').stop().animate( {
 		        'scrollTop': $target.offset().top
-		    }, 1500, 'swing');
+		    }, 2000, 'swing');
 			}
 	});
 
@@ -45,11 +45,11 @@ $(document).ready(function() {
 			if (x < 800) {
 				$('html, body').stop().animate( {
 		        'scrollTop': $target.offset().top - 120
-		    }, 1500, 'swing');
+		    }, 2000, 'swing');
 	    } else {
 				$('html, body').stop().animate( {
 		        'scrollTop': $target.offset().top
-		    }, 1500, 'swing');
+		    }, 2000, 'swing');
 			}
 	});
 
@@ -63,11 +63,11 @@ $(document).ready(function() {
 			if (x < 800) {
 				$('html, body').stop().animate( {
 		        'scrollTop': $target.offset().top - 140
-		    }, 1500, 'swing');
+		    }, 2000, 'swing');
 	    } else {
 				$('html, body').stop().animate( {
 		        'scrollTop': $target.offset().top - 140
-		    }, 1500, 'swing');
+		    }, 2000, 'swing');
 			}
 	});
 });
