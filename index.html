@@ -98,7 +98,7 @@
             <div class="content-section">
               <h1 class="content-title">Pick One, Only One</h1>
               <p class="content-text">
-                4On election day, this isn't too important to the average voter. What
+                On election day, this isn't too important to the average voter. What
                 is shown to each voter is a ballot that asks them to <b>pick the party that has
                 the candidates they would like to see President and Vice President</b>, and
                 pick only one party.
@@ -109,7 +109,7 @@
             <div class="content-section">
               <h1 class="content-title">Winner Gets State's Electoral Votes</h1>
               <p class="content-text">
-                5After the popular votes from each voter are counted, each state then has the
+                After the popular votes from each voter are counted, each state then has the
                 electors from the winning party, <b>the party with more than 50% of the popular vote, cast their votes to the electoral college</b>.
                 In this way, we see a 'winner takes all' system.
               </p>
@@ -119,7 +119,7 @@
             <div id="ss-3" class="content-section closing">
               <h1 class="content-title">Winner at 270</h1>
               <p class="content-text">
-                6This process happens in each state across the country. Each slate of electors
+                This process happens in each state across the country. Each slate of electors
                 casts their votes and <b>the winner of the election is determined as soon as
                 a party receives over 50% of the electoral votes</b>, or 270 electoral votes.<a href="#fn-3" class="fn-toward transition-all-100"><sup>[3]</sup></a>
               </p>
@@ -285,6 +285,57 @@
           </div>
           <div class="inner-right-50">
             <div id="vis" class="vis">
+              <div ng-show="elementVisible.ballotAV" class="ballot transition-all-100" ng-cloak>
+                <div class="voting-type-bar">
+                  <h1>Presidential Contest</h1>
+                  <h3>Write in the box for your choices. Rank ALL Parties.</h3>
+                </div>
+                <div class="presidential-candidates">
+                  <div class="presidential-candidate blue-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-square-o"><p>2</p></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>Al Gore, Jr.</h4>
+                      <h4>Joe Lieberman</h4>
+                      <h5>Democrat</h5>
+                    </div>
+                  </div>
+
+                  <div class="presidential-candidate red-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-square-o"><p>3</p></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>George W. Bush</h4>
+                      <h4>Dick Cheney</h4>
+                      <h5>Republican</h5>
+                    </div>
+                  </div>
+
+                  <div class="presidential-candidate green-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-square-o"><p>1</p></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>Ralph Nader</h4>
+                      <h4>Winona LaDuke</h4>
+                      <h5>Green Party</h5>
+                    </div>
+                  </div>
+
+                  <div class="presidential-candidate yellow-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-square-o"></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>President: ________________________</h4>
+                      <h4>Vice President: ____________________</h4>
+                      <h5>Independant</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!--<pebble-enhanced-chart ng-show="elementVisible.pebbleEC"></pebble-enhanced-chart>-->
               <!--<map-chart ng-show="elementVisible.mapC"></map-chart>-->
               <!--<pebble-chart ng-show="elementVisible.pebbleC"></pebble-chart>-->
@@ -443,3 +494,60 @@
     </div>
   </body>
 </html>
+
+
+<!--Ballot Div-->
+<!--
+<div ng-show="elementVisible.ballotFPTP" class="ballot transition-all-100" ng-cloak>
+  <div class="voting-type-bar">
+    <h1>Presidential Contest</h1>
+    <h3>Fill in the circle for your choice. Vote for ONE party.</h3>
+  </div>
+  <div class="presidential-candidates">
+    <div class="presidential-candidate blue-party-bg">
+      <div class="candidate-left">
+        <i class="fa fa-circle-o"></i>
+      </div>
+      <div class="candidate-right">
+        <h4>Al Gore, Jr.</h4>
+        <h4>Joe Lieberman</h4>
+        <h5>Democrat</h5>
+      </div>
+    </div>
+
+    <div class="presidential-candidate red-party-bg">
+      <div class="candidate-left">
+        <i class="fa fa-circle-o"></i>
+      </div>
+      <div class="candidate-right">
+        <h4>George W. Bush</h4>
+        <h4>Dick Cheney</h4>
+        <h5>Republican</h5>
+      </div>
+    </div>
+
+    <div class="presidential-candidate green-party-bg">
+      <div class="candidate-left">
+        <i class="fa fa-circle-o"></i>
+      </div>
+      <div class="candidate-right">
+        <h4>Ralph Nader</h4>
+        <h4>Winona LaDuke</h4>
+        <h5>Green Party</h5>
+      </div>
+    </div>
+
+    <div class="presidential-candidate yellow-party-bg">
+      <div class="candidate-left">
+        <i class="fa fa-circle-o"></i>
+      </div>
+      <div class="candidate-right">
+        <h4>President: ________________________</h4>
+        <h4>Vice President: ____________________</h4>
+        <h5>Independant</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+-->

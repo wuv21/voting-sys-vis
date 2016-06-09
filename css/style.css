@@ -114,7 +114,15 @@
     margin: 3px auto 5px auto; }
   .ballot i {
     font-size: 40px;
-    line-height: 40px; }
+    line-height: 40px;
+    display: inline; }
+    .ballot i p {
+      margin: 0px;
+      font-size: 32px;
+      line-height: 40px;
+      display: inline;
+      position: absolute;
+      left: 192px; }
 
 body {
   color: #222;
