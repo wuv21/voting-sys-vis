@@ -76,6 +76,46 @@
     margin: 0px;
     padding: 0px; }
 
+.ballot {
+  background-color: #f0f0f0;
+  border: 4px solid #222;
+  border-radius: 10px;
+  width: 600px;
+  margin: 0px auto 0px auto;
+  text-align: center;
+  color: #222; }
+  .ballot .voting-type-bar {
+    border-bottom: 4px solid #222; }
+  .ballot .presidential-candidates {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; }
+    .ballot .presidential-candidates .presidential-candidate {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 600px;
+      height: 91px;
+      padding: 10px auto 10px auto; }
+      .ballot .presidential-candidates .presidential-candidate .candidate-left {
+        width: 100px;
+        margin: auto; }
+      .ballot .presidential-candidates .presidential-candidate .candidate-right {
+        width: 300px;
+        text-align: left;
+        margin: 10px auto 10px auto; }
+  .ballot h1 {
+    margin: 3px auto 3px auto; }
+  .ballot h3, .ballot h4 {
+    margin: 5px auto 5px auto; }
+  .ballot h5 {
+    margin: 3px auto 5px auto; }
+  .ballot i {
+    font-size: 40px;
+    line-height: 40px; }
+
 body {
   color: #222;
   font-family: "Helvetica Neue", Helvetica, sans-serif; }
@@ -207,6 +247,22 @@ h1 {
 
 .yellow-party {
   color: #D6C171; }
+
+.red-party-bg {
+  background-color: #A34846;
+  opacity: 0.7; }
+
+.blue-party-bg {
+  background-color: #467DA3;
+  opacity: 0.7; }
+
+.green-party-bg {
+  background-color: #5CAE5A;
+  opacity: 0.7; }
+
+.yellow-party-bg {
+  background-color: #D6C171;
+  opacity: 0.7; }
 
 .remove-margins {
   margin: 0px; }

@@ -42,8 +42,8 @@
         <p>Back to Top</p>
       </a>
     </div>
-    <div scroll class="container-80-center">
-      <div class="content-container">
+    <div class="container-80-center">
+      <div scroll-fptp-section class="content-container">
         <div class="content-flex">
           <div class="inner-left-35">
             <div id="title-container">
@@ -63,9 +63,9 @@
 
               <p class="content-text">
                 Of the many, this visualization will explain the process of the
-                <a href="#fptp" class="section-link transition-all-100">electoral college and first-past-the-post</a>,
-                <a href="#av" class="section-link transition-all-100">alternate vote</a>, and
-                <a href="#sv" class="section-link transition-all-100">supplementary vote</a>.
+                <a id="fptp-link" href="#fptp" class="section-link transition-all-100">electoral college and first-past-the-post</a>,
+                <a id="av-link" href="#av" class="section-link transition-all-100">alternate vote</a>, and
+                <a id="sv-link" href="#sv" class="section-link transition-all-100">supplementary vote</a>.
               </p>
             </div>
 
@@ -98,7 +98,7 @@
             <div class="content-section">
               <h1 class="content-title">Pick One, Only One</h1>
               <p class="content-text">
-                On election day, this isn't too important to the average voter. What
+                4On election day, this isn't too important to the average voter. What
                 is shown to each voter is a ballot that asks them to <b>pick the party that has
                 the candidates they would like to see President and Vice President</b>, and
                 pick only one party.
@@ -109,7 +109,7 @@
             <div class="content-section">
               <h1 class="content-title">Winner Gets State's Electoral Votes</h1>
               <p class="content-text">
-                After the popular votes from each voter are counted, each state then has the
+                5After the popular votes from each voter are counted, each state then has the
                 electors from the winning party, <b>the party with more than 50% of the popular vote, cast their votes to the electoral college</b>.
                 In this way, we see a 'winner takes all' system.
               </p>
@@ -119,7 +119,7 @@
             <div id="ss-3" class="content-section closing">
               <h1 class="content-title">Winner at 270</h1>
               <p class="content-text">
-                This process happens in each state across the country. Each slate of electors
+                6This process happens in each state across the country. Each slate of electors
                 casts their votes and <b>the winner of the election is determined as soon as
                 a party receives over 50% of the electoral votes</b>, or 270 electoral votes.<a href="#fn-3" class="fn-toward transition-all-100"><sup>[3]</sup></a>
               </p>
@@ -127,6 +127,57 @@
           </div>
           <div class="inner-right-50">
             <div id="vis" class="vis">
+              <div ng-show="elementVisible.ballotFPTP" class="ballot transition-all-100" ng-cloak>
+                <div class="voting-type-bar">
+                  <h1>Presidential Contest</h1>
+                  <h3>Fill in the circle for your choice. Vote for ONE party.</h3>
+                </div>
+                <div class="presidential-candidates">
+                  <div class="presidential-candidate blue-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-circle-o"></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>Al Gore, Jr.</h4>
+                      <h4>Joe Lieberman</h4>
+                      <h5>Democrat</h5>
+                    </div>
+                  </div>
+
+                  <div class="presidential-candidate red-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-circle-o"></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>George W. Bush</h4>
+                      <h4>Dick Cheney</h4>
+                      <h5>Republican</h5>
+                    </div>
+                  </div>
+
+                  <div class="presidential-candidate green-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-circle-o"></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>Ralph Nader</h4>
+                      <h4>Winona LaDuke</h4>
+                      <h5>Green Party</h5>
+                    </div>
+                  </div>
+
+                  <div class="presidential-candidate yellow-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-circle-o"></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>President: ________________________</h4>
+                      <h4>Vice President: ____________________</h4>
+                      <h5>Independant</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <pebble-enhanced-chart ng-show="elementVisible.pebbleEC"></pebble-enhanced-chart>
               <map-chart ng-show="elementVisible.mapC"></map-chart>
               <pebble-chart ng-show="elementVisible.pebbleC"></pebble-chart>
@@ -140,13 +191,13 @@
           <div class="wide-top">
             <h1>Additional Comments on First Past the Post:</h1>
             <p class="content-text">
-              It is important to note that while FPTP has its benefits as a voting system,
+              7It is important to note that while FPTP has its benefits as a voting system,
               mainly being that it is quick, easy, decently proportional, and commonly
               produces centrist policies. FPTP also has rather large negative side
               effects associated with it.
             </p>
             <p class="content-text">
-              First Past the Post has been repeatedly shown to converge to a two party
+              8First Past the Post has been repeatedly shown to converge to a two party
               system over multiple election cycles.<a href="#fn-4" class="fn-toward transition-all-100"><sup>[4]</sup></a> For example, if there were multiple
               parties in an election, like in the first small multiple below, the members from the lowest
               winning party might feel that their votes were wasted whereupon a party that
@@ -155,7 +206,7 @@
               have a decent say in the way that they think the country should head.
             </p>
             <p class="content-text">
-              This cycle of the lowest winning party adding their votes to the highest winning party -                 that they most align with - repeats until there are a very limited number of parties (usually two parties) left
+              9This cycle of the lowest winning party adding their votes to the highest winning party -                 that they most align with - repeats until there are a very limited number of parties (usually two parties) left
               that represent the wide range of individuals in the country. This is what also
               forces FPTP to form centrist policies. With only two parties, each party has
               to cater to a large, non-homogeneous group of the population, so that each party has
@@ -180,10 +231,10 @@
         <div class="content-flex">
           <div class="inner-left-35">
             <!--blank map again-->
-            <div id="av" class="content-section">
+            <div scroll-av-section id="av" class="content-section">
               <h1 class="section-title">The Alternate Vote</h1>
               <p class="content-text">
-                For simplicity's sake, we will continue using the Electoral College with
+                10For simplicity's sake, we will continue using the Electoral College with
                 the Alternate Vote. So like before, in our system, you would be voting for
                 a slate of individual electors who would vote for the party you voted for.
               </p>
@@ -193,7 +244,7 @@
             <div class="content-section">
               <h1 class="content-title">Don't Choose, Rank</h1>
               <p class="content-text">
-                Unlike before, <b>your ballot would instead ask you to rank the parties</b>.
+                11Unlike before, <b>your ballot would instead ask you to rank the parties</b>.
                 Party A, B, and C is ranked third, first, and second respectively on your ballot.
                 However, someone else may rank them first, third, and second.
               </p>
@@ -203,7 +254,7 @@
             <div id="ss-5" class="content-section">
               <h1 class="content-title">Win By Recursion</h1>
               <p class="content-text">
-                The Alternate Vote works by using recursion to select a winner. Let's follow
+                12The Alternate Vote works by using recursion to select a winner. Let's follow
                 Washington under the Alternate Vote. At the start <b>there are four unique parties,
                 and the Democrats have the highest percent of the popular vote but not over 50%</b>.<a href="#fn-5" class="fn-toward transition-all-100"><sup>[5]</sup></a>
               </p>
@@ -213,7 +264,7 @@
             <div class="content-section">
               <h1 class="content-title">The Steps of Alternate Vote</h1>
               <p class="content-text">
-                However that leaves %PERCENT OF OTHER VOTES% incomplete as a decision.
+                13However that leaves %PERCENT OF OTHER VOTES% incomplete as a decision.
                 To fix this, we <b>remove the lowest winning party, go back to the individual's
                 ballots that votes for said party and assign their vote to their second party
                 choice</b>. This puts Democrats above the 50% mark and they are decided the
@@ -226,7 +277,7 @@
             <div class="content-section closing">
               <h1 class="content-title">Winning the Election</h1>
               <p class="content-text">
-                Like before, this would happen in every state and the electors would be
+                14Like before, this would happen in every state and the electors would be
                 determined. Once all states have voted, the electors would cast their
                 votes and the process would end.
               </p>
@@ -234,9 +285,9 @@
           </div>
           <div class="inner-right-50">
             <div id="vis" class="vis">
-              <pebble-enhanced-chart ng-show="elementVisible.pebbleEC"></pebble-enhanced-chart>
-              <map-chart ng-show="elementVisible.mapC"></map-chart>
-              <pebble-chart ng-show="elementVisible.pebbleC"></pebble-chart>
+              <!--<pebble-enhanced-chart ng-show="elementVisible.pebbleEC"></pebble-enhanced-chart>-->
+              <!--<map-chart ng-show="elementVisible.mapC"></map-chart>-->
+              <!--<pebble-chart ng-show="elementVisible.pebbleC"></pebble-chart>-->
             </div>
           </div>
         </div>
@@ -266,7 +317,7 @@
         <div class="content-flex">
           <div class="inner-left-35">
             <!--blank map again-->
-            <div id="sv" class="content-section">
+            <div scroll-sv-section id="sv" class="content-section">
               <h1 class="section-title">The Supplementary Vote</h1>
               <p class="content-text">
                 Much like Alternate Vote, our version of Supplementary Vote will work with the Electoral
@@ -320,7 +371,7 @@
           <div class="inner-right-50">
             <div id="vis" class="vis">
               <!--<pebble-chart></pebble-chart>-->
-              <map-chart></map-chart>
+              <!--<map-chart></map-chart>-->
             </div>
           </div>
         </div>
@@ -383,7 +434,9 @@
             <li><a href="http://www.fec.gov/pubrec/fe2000/tcontents.htm" class="source-link transition-all-100" target="_blank">2000 Election Data</a></li>
             <li><a href="https://en.wikipedia.org/wiki/United_States_presidential_election,_2000" class="source-link transition-all-100" target="_blank">2000 Election Record (Wikipedia)</a></li>
             <li><a href="http://www.gallup.com/poll/110548/gallup-presidential-election-trialheat-trends-19362004.aspx#4" class="source-link transition-all-100" target="_blank">Presidential Election Polling Record</a></li>
-            <li><a href="http://www.nytimes.com/2004/02/24/us/2004-campaign-independent-relax-nader-advises-alarmed-democrats-but-2000-math.html" class="source-link transition-all-100" target="_blank">Polling of Nader Voters Regarding Only Two Candidates</a></li>
+            <li><a href="http://www.gallup.com/poll/9898/2000-presidential-election-midyear-gallup-report.aspx" class="source-link" target="_blank">Polling of All Indepedants Regarding Two Candidates</a></li>
+            <li><a href="http://www.huffingtonpost.com/eric-zuesse/ralph-nader-was-indispens_b_4235065.html" class="source-link" target="_blank">Polling of Nader Voters Regarding Only Two Candidates(1)</a></li>
+            <li><a href="http://www.nytimes.com/2004/02/24/us/2004-campaign-independent-relax-nader-advises-alarmed-democrats-but-2000-math.html" class="source-link transition-all-100" target="_blank">Polling of Nader Voters Regarding Only Two Candidates(2)</a></li>
           </ul>
         </div>
       </div>
