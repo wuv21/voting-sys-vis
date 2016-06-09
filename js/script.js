@@ -430,7 +430,6 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     $scope.countryECData_AV = [];
     $http.get('data/2000_election/all_final_votes_2000.csv').then(function(resp) {
         $scope.avData = $scope.CSVToArray(resp.data);
-        console.log($scope.avData);
         for (var i = 1; i < $scope.avData.length; i++) {
             var current = $scope.avData[i];
             var total = 0;
@@ -515,7 +514,6 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
             buckets.forEach(function(name) {
                 var portion = Math.round(stateAV[name] / state.Total * state.EV);
 
-                console.log(portion);
                 for (var i = 0; i < portion; i++) {
                     $scope.countryECData_AV.push({
                         "x": test[_.findIndex(test, function(o) {return o.state == state.State})].x,
