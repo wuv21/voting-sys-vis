@@ -108,7 +108,7 @@ function PebbleEnhancedChart() {
                 .attr("class", "pebbleEnhanced")
                 .attr("width", squareSize)
                 .attr("height", squareSize)
-                .style("fill", function(d) {return color(d.state)})
+                .style("fill", function(d) {return colorScale(d.party)})
                 .attr("x", function(d) {return d.x})
                 .attr("y", function(d) {return d.y})
                 .attr("title", function(x, i) {return x.party + '-' + i})
