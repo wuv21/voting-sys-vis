@@ -183,11 +183,13 @@ votingSysApp.directive("scrollFptpSection", function ($window) {
                 scope.elementID.mapC = 2;
 
             } else if (scope.checkHeight(pos, 6, 7)) {
+                scope.pebbleECdata = scope.ECdata_fptp;
                 scope.elementVisible.pebbleEC = true;
                 scope.elementID.pebbleEC = 2;
                 scope.elementVisible.mapC = false;
 
             } else if (scope.checkHeight(pos, 8, 10)) {
+                scope.pebbleECdata = scope.ECdata_fptp;
                 scope.elementVisible.pebbleEC = false;
                 scope.elementVisible.mapC = false;
                 scope.elementVisible.pebbleC = false;
@@ -222,6 +224,7 @@ votingSysApp.directive("scrollAvSection", function ($window) {
             } else if (scope.checkHeight(pos, 12, 13)) {
                 scope.elementVisible.ballotAV = false;
                 scope.elementVisible.pebbleEC = true;
+                scope.pebbleECdata = scope.oregonECData;
                 scope.elementID.pebbleEC = 6;
                 scope.elementVisible.mapC = false;
 
@@ -408,17 +411,18 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     // pebble EC data and settings
     $scope.pebbleECdata = [];
     $scope.changeToAv = false;
+
+    $scope.ECdata_fptp = [];
     var pebbleECoriginalData = [];
     $http.get('js/coord.json').then(function(resp) {
         $scope.pebbleECdata = resp.data;
-        pebbleECoriginalData = resp.data;
+        $scope.ECdata_fptp = resp.data;
     });
 
     $scope.avData = [];
     $scope.countryData = [];
-    var state = {
+    var state = {}
 
-    }
     $scope.oregonData = {
         Democrats: 0,
         Republicans: 0,
@@ -427,6 +431,7 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
         Total: 0
     };
 
+    $scope.oregonECData = [];
     $http.get('data/2000_election/all_final_votes_2000.csv').then(function(resp) {
         $scope.avData = $scope.CSVToArray(resp.data);
         console.log($scope.avData);
@@ -435,8 +440,8 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
                 var oregon = $scope.avData[i];
                 var total = 0;
                 var independent = 0;
-                $scope.oregonData.Democrats = parseInt(oregon[6].replace(/,/g,""));
-                $scope.oregonData.Republicans = parseInt(oregon[4].replace(/,/g,""));
+                $scope.oregonData.Democrat = parseInt(oregon[6].replace(/,/g,""));
+                $scope.oregonData.Republican = parseInt(oregon[4].replace(/,/g,""));
                 $scope.oregonData.Green = parseInt(oregon[12].replace(/,/g,""));
                 for (var j = 1; j < oregon.length; j++) {
                     if (oregon[j].length > 0) {
@@ -451,53 +456,66 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
                 $scope.oregonData.Total = total;
             }
         }
-        console.log($scope.oregonData);
+
+        var buckets = ["Democrat", "Green", "Independent", "Republican"];
+        buckets.forEach(function(name) {
+            var portion = Math.round($scope.oregonData[name] / $scope.oregonData.Total * 100)
+
+            for (var i = 0; i < portion; i++) {
+                $scope.oregonECData.push({
+                    "x":103.95733194587466,
+                    "y":118.53353715850244,
+                    state: 'OR',
+                    party: name
+                });
+            }
+        });
     });
 
 
 
     //watches when the user gets to the AV section, then changes the chart data
-    $scope.$watch("changeToAv", function(val) {
-        if (val) {
-            $http.get('js/avwashington.json').then(function(resp) {
-                $scope.pebbleECdata = resp.data;
-            });
-            //kinda hardcoded right now
-            $scope.buckets = ["Democrats", "Republicans", "Green", "Tea"];
-            $scope.mapToPebble = [];
-            for (var i = 0; i < 45; i++) {
-                $scope.mapToPebble.push({
-                    name: "Dem",
-                    bucket: buckets[0],
-                    value: 45
-                });
-            }
-            for (var i = 0; i < 41; i++) {
-                $scope.mapToPebble.push({
-                    name: "Rep",
-                    bucket: buckets[1],
-                    value: 41
-                });
-            }
-            for (var i = 0; i < 7; i++) {
-                $scope.mapToPebble.push({
-                    name: "Green",
-                    bucket: buckets[2],
-                    value: 7
-                });
-            }
-            for (var i = 0; i < 6; i++) {
-                $scope.mapToPebble.push({
-                    name: "Tea",
-                    bucket: buckets[3],
-                    value: 6
-                });
-            }
-            $scope.newPebbleData = $scope.mapToPebble;
-        } else {
-            $scope.pebbleECdata = pebbleECoriginalData;
-        }
-    });
+    // $scope.$watch("changeToAv", function(val) {
+    //     if (val) {
+    //         $http.get('js/avwashington.json').then(function(resp) {
+    //             $scope.pebbleECdata = resp.data;
+    //         });
+    //         //kinda hardcoded right now
+    //         $scope.buckets = ["Democrats", "Republicans", "Green", "Tea"];
+    //         $scope.mapToPebble = [];
+    //         for (var i = 0; i < 45; i++) {
+    //             $scope.mapToPebble.push({
+    //                 name: "Dem",
+    //                 bucket: buckets[0],
+    //                 value: 45
+    //             });
+    //         }
+    //         for (var i = 0; i < 41; i++) {
+    //             $scope.mapToPebble.push({
+    //                 name: "Rep",
+    //                 bucket: buckets[1],
+    //                 value: 41
+    //             });
+    //         }
+    //         for (var i = 0; i < 7; i++) {
+    //             $scope.mapToPebble.push({
+    //                 name: "Green",
+    //                 bucket: buckets[2],
+    //                 value: 7
+    //             });
+    //         }
+    //         for (var i = 0; i < 6; i++) {
+    //             $scope.mapToPebble.push({
+    //                 name: "Tea",
+    //                 bucket: buckets[3],
+    //                 value: 6
+    //             });
+    //         }
+    //         $scope.newPebbleData = $scope.mapToPebble;
+    //     } else {
+    //         $scope.pebbleECdata = pebbleECoriginalData;
+    //     }
+    // });
 
     // get sections and their heights
     var contents = document.getElementsByClassName("content-text");
