@@ -127,6 +127,7 @@
           </div>
           <div class="inner-right-50">
             <div id="vis" class="vis">
+              <!--ballot FPTP-->
               <div ng-show="elementVisible.ballotFPTP" class="ballot transition-all-100" ng-cloak>
                 <div class="voting-type-bar">
                   <h1>Presidential Contest</h1>
@@ -169,6 +170,58 @@
                   <div class="presidential-candidate yellow-party-bg">
                     <div class="candidate-left">
                       <i class="fa fa-circle-o"></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>President: ________________________</h4>
+                      <h4>Vice President: ____________________</h4>
+                      <h5>Independant</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--ballotAV-->
+              <div ng-show="elementVisible.ballotAV" class="ballot transition-all-100" ng-cloak>
+                <div class="voting-type-bar">
+                  <h1>Presidential Contest</h1>
+                  <h3>Write in the box for your choices. Rank ALL Parties.</h3>
+                </div>
+                <div class="presidential-candidates">
+                  <div class="presidential-candidate blue-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-square-o"><p>2</p></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>Al Gore, Jr.</h4>
+                      <h4>Joe Lieberman</h4>
+                      <h5>Democrat</h5>
+                    </div>
+                  </div>
+
+                  <div class="presidential-candidate red-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-square-o"><p>3</p></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>George W. Bush</h4>
+                      <h4>Dick Cheney</h4>
+                      <h5>Republican</h5>
+                    </div>
+                  </div>
+
+                  <div class="presidential-candidate green-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-square-o"><p>1</p></i>
+                    </div>
+                    <div class="candidate-right">
+                      <h4>Ralph Nader</h4>
+                      <h4>Winona LaDuke</h4>
+                      <h5>Green Party</h5>
+                    </div>
+                  </div>
+
+                  <div class="presidential-candidate yellow-party-bg">
+                    <div class="candidate-left">
+                      <i class="fa fa-square-o"></i>
                     </div>
                     <div class="candidate-right">
                       <h4>President: ________________________</h4>
@@ -285,57 +338,6 @@
           </div>
           <div class="inner-right-50">
             <div id="vis" class="vis">
-              <div ng-show="elementVisible.ballotAV" class="ballot transition-all-100" ng-cloak>
-                <div class="voting-type-bar">
-                  <h1>Presidential Contest</h1>
-                  <h3>Write in the box for your choices. Rank ALL Parties.</h3>
-                </div>
-                <div class="presidential-candidates">
-                  <div class="presidential-candidate blue-party-bg">
-                    <div class="candidate-left">
-                      <i class="fa fa-square-o"><p>2</p></i>
-                    </div>
-                    <div class="candidate-right">
-                      <h4>Al Gore, Jr.</h4>
-                      <h4>Joe Lieberman</h4>
-                      <h5>Democrat</h5>
-                    </div>
-                  </div>
-
-                  <div class="presidential-candidate red-party-bg">
-                    <div class="candidate-left">
-                      <i class="fa fa-square-o"><p>3</p></i>
-                    </div>
-                    <div class="candidate-right">
-                      <h4>George W. Bush</h4>
-                      <h4>Dick Cheney</h4>
-                      <h5>Republican</h5>
-                    </div>
-                  </div>
-
-                  <div class="presidential-candidate green-party-bg">
-                    <div class="candidate-left">
-                      <i class="fa fa-square-o"><p>1</p></i>
-                    </div>
-                    <div class="candidate-right">
-                      <h4>Ralph Nader</h4>
-                      <h4>Winona LaDuke</h4>
-                      <h5>Green Party</h5>
-                    </div>
-                  </div>
-
-                  <div class="presidential-candidate yellow-party-bg">
-                    <div class="candidate-left">
-                      <i class="fa fa-square-o"></i>
-                    </div>
-                    <div class="candidate-right">
-                      <h4>President: ________________________</h4>
-                      <h4>Vice President: ____________________</h4>
-                      <h5>Independant</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <!--<pebble-enhanced-chart ng-show="elementVisible.pebbleEC"></pebble-enhanced-chart>-->
               <!--<map-chart ng-show="elementVisible.mapC"></map-chart>-->
               <!--<pebble-chart ng-show="elementVisible.pebbleC"></pebble-chart>-->
