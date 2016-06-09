@@ -233,16 +233,12 @@ votingSysApp.directive("scrollAvSection", function ($window) {
                 scope.elementVisible.pebbleC = false;
 
             } else if (scope.checkHeight(pos, 13, 14)) {
-                if (scope.elementID.pebbleC == 0) {
-                    scope.pebbleData = scope.newPebbleData;
-                    scope.elementID.pebbleC = 1;
-                }
-                scope.elementVisible.pebbleEC = false;
-                scope.elementVisible.pebbleC = true;
+                scope.pebbleECdata = scope.oregonECData_AV;
+                scope.elementID.pebbleEC = 8;
 
             } else if (scope.checkHeight(pos, 14, 15)) {
-                scope.elementVisible.pebbleC = false;
-                scope.elementVisible.pebbleEC = true;
+                scope.pebbleECdata = scope.countryECData_AV;
+                scope.elementID.pebbleEC = 10;
 
             } else if (scope.checkHeight(pos, 15, 17)) {
                 scope.elementVisible.pebbleEC = false;
@@ -413,7 +409,6 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     $scope.changeToAv = false;
 
     $scope.ECdata_fptp = [];
-    var pebbleECoriginalData = [];
     $http.get('js/coord.json').then(function(resp) {
         $scope.pebbleECdata = resp.data;
         $scope.ECdata_fptp = resp.data;
@@ -432,34 +427,47 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     };
 
     $scope.oregonECData = [];
+    $scope.oregonECData_AV = [];
+    $scope.countryECData_AV = [];
     $http.get('data/2000_election/all_final_votes_2000.csv').then(function(resp) {
         $scope.avData = $scope.CSVToArray(resp.data);
         console.log($scope.avData);
-        for (var i = 0; i < $scope.avData.length; i++) {
-            if ($scope.avData[i][0] == "OR") {
-                var oregon = $scope.avData[i];
-                var total = 0;
-                var independent = 0;
-                $scope.oregonData.Democrat = parseInt(oregon[6].replace(/,/g,""));
-                $scope.oregonData.Republican = parseInt(oregon[4].replace(/,/g,""));
-                $scope.oregonData.Green = parseInt(oregon[12].replace(/,/g,""));
-                for (var j = 1; j < oregon.length; j++) {
-                    if (oregon[j].length > 0) {
-                        var num = parseInt(oregon[j].replace(/,/g,""));
-                        total += num;
-                        if (j != 6 && j != 4 && j != 12) {
-                            independent += num;
-                        }
+        for (var i = 1; i < $scope.avData.length; i++) {
+            var current = $scope.avData[i];
+            var total = 0;
+            var independent = 0;
+            for (var j = 1; j < current.length; j++) {
+                if (current[j].length > 0) {
+                    var num = parseInt(current[j].replace(/,/g,""));
+                    total += num;
+                    if (j != 6 && j != 4 && j != 12) {
+                        independent += num;
                     }
                 }
-                $scope.oregonData.Independent = independent;
-                $scope.oregonData.Total = total;
+            }
+            $scope.countryData.push({
+                State: current[0],
+                Democrats: parseInt(current[6].replace(/,/g,"")),
+                Republicans: parseInt(current[4].replace(/,/g,"")),
+                Green: parseInt(current[12].replace(/,/g,"")),
+                Independent: independent,
+                Total: total
+            });
+        }
+        for (var i = 0; i < $scope.countryData.length; i++) {
+            if ($scope.countryData[i].State == "OR") {
+                var stateData = $scope.countryData[i];
+                $scope.oregonData.Democrat = stateData.Democrats;
+                $scope.oregonData.Republican = stateData.Republicans;
+                $scope.oregonData.Green = stateData.Green;
+                $scope.oregonData.Independent = stateData.Independent;
+                $scope.oregonData.Total = stateData.Total;
             }
         }
 
         var buckets = ["Democrat", "Green", "Independent", "Republican"];
         buckets.forEach(function(name) {
-            var portion = Math.round($scope.oregonData[name] / $scope.oregonData.Total * 200)
+            var portion = Math.round($scope.oregonData[name] / $scope.oregonData.Total * 200);
 
             for (var i = 0; i < portion; i++) {
                 $scope.oregonECData.push({
@@ -470,8 +478,57 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
                 });
             }
         });
-    });
 
+        var oregonDataAV = {
+            Democrat: $scope.oregonData['Democrat'] + ($scope.oregonData['Independent'] * 0.25) + ($scope.oregonData['Green'] * 0.477),
+            Green: 0,
+            Independent: 0,
+            Republican: $scope.oregonData['Republican'] + ($scope.oregonData['Independent'] * 0.35) + ($scope.oregonData['Green'] * 0.219),
+            Total: $scope.oregonData.Total - $scope.oregonData['Independent'] * 0.4 - $scope.oregonData['Green'] * 0.304
+        };
+
+
+        console.log(oregonDataAV);
+
+        buckets.forEach(function(name) {
+            var portion = Math.round(oregonDataAV[name] / oregonDataAV.Total * 200);
+
+            for (var i = 0; i < portion; i++) {
+                $scope.oregonECData_AV.push({
+                    "x":103.95733194587466,
+                    "y":118.53353715850244,
+                    state: 'OR',
+                    party: name
+                });
+            }
+        });
+
+        var test = _.uniqBy($scope.ECdata_fptp, function(d) {return d.x + d.y + d.state});
+
+        $scope.countryData.forEach(function(state) {
+            var stateAV = {
+                Democrat: state['Democrats'] + (state['Independent'] * 0.25) + (state['Green'] * 0.477),
+                Green: 0,
+                Independent: 0,
+                Republican: state['Republicans'] + (state['Independent'] * 0.35) + (state['Green'] * 0.219),
+                Total: state.Total - state['Independent'] * 0.4 - state['Green'] * 0.304
+            };
+
+            buckets.forEach(function(name) {
+                var portion = Math.round(stateAV[name] / state.Total * 10);
+
+                console.log(portion);
+                for (var i = 0; i < portion; i++) {
+                    $scope.countryECData_AV.push({
+                        "x": test[_.findIndex(test, function(o) {return o.state == state.State})].x,
+                        "y": test[_.findIndex(test, function(o) {return o.state == state.State})].y,
+                        state: state.State,
+                        party: name
+                    });
+                }
+            });
+        });
+    });
 
 
     //watches when the user gets to the AV section, then changes the chart data
