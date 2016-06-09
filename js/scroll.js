@@ -71,5 +71,9 @@ $(document).ready(function() {
 			$('html, body').stop().animate( {
 		      'scrollTop': $target.offset().top - 140
 		  }, 2500, 'swing');
+
+			setTimeout(function() {
+				window.location.reload();
+			}, 2501);
 	});
 });
