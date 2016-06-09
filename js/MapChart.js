@@ -70,19 +70,27 @@ var MapChart = function() {
 				svgEnter.selectAll("path")
 					.data(topoData, function(d) {return _.uniqueId(d.toString())})
 					.enter()
-					.append("rect")
-					.attr("width", function(d) {
-						return getEv(d);
-					})
-					.attr("height", function(d) {
-						return getEv(d);
-					})
-					.style("fill", "#ddd")
+					.append("text")
+					// .attr("width", function(d) {
+					// 	return 5;
+					// })
+					// .attr("height", function(d) {
+					// 	return 5;
+					// })
+					.style("fill", "#222")
+					.attr("font-size", 12)
 					.attr("x", function(d) {
-						return path.centroid(d)[0] - getEv(d) / 2;
+						return path.centroid(d)[0] - 5;
 					})
 					.attr("y", function(d) {
-						return path.centroid(d)[1] - getEv(d) / 2;
+						return path.centroid(d)[1] + 5;
+					})
+					.text(function(d) {
+						for (var i = 0; i < stateData.length; i++) {
+							if (names[d.id] == stateData[i].state) {
+								return stateData[i].ev_bush != 0 ? stateData[i].ev_bush : stateData[i].ev_gore;
+							}
+						}
 					});
 
 
