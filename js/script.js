@@ -411,10 +411,39 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     });
 
     $scope.avData = [];
+    $scope.oregonData = {
+        Democrats: 0,
+        Republicans: 0,
+        Green: 0,
+        Independent: 0,
+        Total: 0
+    };
+
     $http.get('data/2000_election/all_final_votes_2000.csv').then(function(resp) {
         $scope.avData = $scope.CSVToArray(resp.data);
         console.log($scope.avData);
-
+        for (var i = 0; i < $scope.avData.length; i++) {
+            if ($scope.avData[i][0] == "OR") {
+                var oregon = $scope.avData[i];
+                var total = 0;
+                var independent = 0;
+                $scope.oregonData.Democrats = oregon[6];
+                $scope.oregonData.Republicans = oregon[4];
+                $scope.oregonData.Green = oregon[12];
+                for (var j = 1; j < oregon.length; j++) {
+                    if (oregon[j].length > 0) {
+                        var num = parseInt(oregon[j].replace(/,/g,""));
+                        total += num;
+                        if (j != 6 && j != 4 && j != 12) {
+                            independent += num;
+                        }
+                    }
+                }
+                $scope.oregonData.Independent = independent;
+                $scope.oregonData.Total = total;
+            }
+        }
+        console.log($scope.oregonData);
     });
 
     //watches when the user gets to the AV section, then changes the chart data
