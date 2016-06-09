@@ -515,7 +515,7 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
             };
 
             buckets.forEach(function(name) {
-                var portion = Math.round(stateAV[name] / state.Total * 100);
+                var portion = Math.round(stateAV[name] / state.Total * 10);
 
                 console.log(portion);
                 for (var i = 0; i < portion; i++) {
