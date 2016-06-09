@@ -459,7 +459,7 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
 
         var buckets = ["Democrat", "Green", "Independent", "Republican"];
         buckets.forEach(function(name) {
-            var portion = Math.round($scope.oregonData[name] / $scope.oregonData.Total * 100)
+            var portion = Math.round($scope.oregonData[name] / $scope.oregonData.Total * 200)
 
             for (var i = 0; i < portion; i++) {
                 $scope.oregonECData.push({
