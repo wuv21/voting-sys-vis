@@ -6,7 +6,7 @@ function PebbleEnhancedChart() {
         squareMargin = 5,
         squareCols = 7,
         color = d3.scale.category20(),
-        fills = ['#467DA3', '#A34846'],
+        fills = ['#467DA3', '#A34846', 'green'],
         transitionDelay = 6000;
 
     var width = 800,
@@ -47,14 +47,6 @@ function PebbleEnhancedChart() {
                 .attr('width', width)
                 .attr('height', height);
 
-            var xAxisLabel = svg.append('g')
-                .attr('class', 'axis')
-                .attr('transform', 'translate(' + margin.left + ',' + (height - margin.top - margin.bottom) + ')');
-
-            var xAxis = d3.svg.axis().scale(xScale).orient('bottom');
-            xAxisLabel.transition().duration(400).call(xAxis);
-
-            svg.exit().remove();
 
             var projection = d3.geo.albersUsa()
                 .scale(1000)
@@ -79,6 +71,14 @@ function PebbleEnhancedChart() {
                 .style("fill", "#EEE")
                 .attr("stroke", "#EEE");
 
+            var xAxisLabel = svg.append('g')
+                .attr('class', 'axis')
+                .attr('transform', 'translate(' + margin.left + ',' + (height - margin.top - margin.bottom) + ')');
+
+            var xAxis = d3.svg.axis().scale(xScale).orient('bottom');
+            xAxisLabel.transition().duration(400).call(xAxis);
+
+            svg.exit().remove();
 
             var g = svgEnter.append('g')
                 .attr('id', 'pebbleECHover')
