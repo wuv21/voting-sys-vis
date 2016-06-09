@@ -158,14 +158,17 @@ votingSysApp.directive("scrollFptpSection", function ($window) {
             if (pos < scope.contentHeights[4] + 20) { // FPTP SECTION
                 scope.elementVisible.pebbleEC = false;
                 scope.elementVisible.mapC = true;
+                scope.elementVisible.ballotFPTP = false;
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
 
             } else if (scope.checkHeight(pos, 4, 5)) {
                 scope.elementVisible.mapC = false;
+                scope.elementVisible.ballotFPTP = true;
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
 
             } else if (scope.checkHeight(pos, 5, 6)) {
+                scope.elementVisible.ballotFPTP = false;
                 scope.elementVisible.pebbleEC = false;
                 scope.elementID.pebbleEC = 0;
                 scope.elementVisible.mapC = true;
@@ -382,7 +385,8 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
     $scope.elementVisible = {
         mapC: true,
         pebbleC: false,
-        pebbleEC: false
+        pebbleEC: false,
+        ballotFPTP: false
     };
 
 
