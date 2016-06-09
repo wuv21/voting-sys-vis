@@ -6,7 +6,7 @@ function PebbleEnhancedChart() {
         squareMargin = 5,
         squareCols = 7,
         color = d3.scale.category20(),
-        fills = ['#467DA3', 'yellow', 'green', '#A34846'],
+        fills = ['#467DA3', '#5CAE5A', '#D6C171', '#A34846'],
         transitionDelay = 6000;
 
     var width = 800,
