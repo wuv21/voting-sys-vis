@@ -212,7 +212,6 @@ votingSysApp.directive("scrollAvSection", function ($window) {
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
                 scope.elementVisible.mapC = true;
-                scope.changeToAv = false;
 
             } else if (scope.checkHeight(pos, 11, 12)) {
                 scope.elementVisible.ballotAV = true;
@@ -237,6 +236,7 @@ votingSysApp.directive("scrollAvSection", function ($window) {
                 scope.elementID.pebbleEC = 8;
 
             } else if (scope.checkHeight(pos, 14, 15)) {
+                scope.elementVisible.pebbleEC = true;
                 scope.pebbleECdata = scope.countryECData_AV;
                 scope.elementID.pebbleEC = 10;
 
@@ -265,32 +265,31 @@ votingSysApp.directive("scrollSvSection", function ($window) {
 
             } else if (scope.checkHeight(pos, 18, 19)) {
                 scope.elementVisible.ballotSV = true;
-                scope.changeToAv = true;
                 scope.elementVisible.mapC = false;
                 scope.elementVisible.pebbleEC = false;
-                scope.elementID.pebbleEC = 6;
+                scope.elementID.pebbleEC = 4;
 
             } else if (scope.checkHeight(pos, 19, 20)) {
                 scope.elementVisible.ballotSV = false;
                 scope.elementVisible.pebbleEC = true;
-                scope.elementID.pebbleEC = 8;
+                scope.pebbleECdata = scope.oregonECData;
+                scope.elementID.pebbleEC = 6;
                 scope.elementVisible.mapC = false;
+
 
                 scope.pebbleData = scope.blankPebbleData;
                 scope.elementID.pebbleC = 0;
                 scope.elementVisible.pebbleC = false;
 
             } else if (scope.checkHeight(pos, 20, 21)) {
-                if (scope.elementID.pebbleC == 0) {
-                    scope.pebbleData = scope.newPebbleData;
-                    scope.elementID.pebbleC = 1;
-                }
-                scope.elementVisible.pebbleEC = false;
-                scope.elementVisible.pebbleC = true;
+                scope.pebbleECdata = scope.oregonECData_AV;
+                scope.elementID.pebbleEC = 8;
+
 
             } else if (scope.checkHeight(pos, 21, 22)) {
-                scope.elementVisible.pebbleC = false;
                 scope.elementVisible.pebbleEC = true;
+                scope.pebbleECdata = scope.countryECData_AV;
+                scope.elementID.pebbleEC = 10;
 
             } else if (pos > scope.contentHeights[22]) {
                 scope.elementVisible.pebbleEC = false;
