@@ -414,6 +414,42 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
         pebbleECoriginalData = resp.data;
     });
 
+    $scope.avData = [];
+    $scope.oregonData = {
+        Democrats: 0,
+        Republicans: 0,
+        Green: 0,
+        Independent: 0,
+        Total: 0
+    };
+
+    $http.get('data/2000_election/all_final_votes_2000.csv').then(function(resp) {
+        $scope.avData = $scope.CSVToArray(resp.data);
+        console.log($scope.avData);
+        for (var i = 0; i < $scope.avData.length; i++) {
+            if ($scope.avData[i][0] == "OR") {
+                var oregon = $scope.avData[i];
+                var total = 0;
+                var independent = 0;
+                $scope.oregonData.Democrats = oregon[6];
+                $scope.oregonData.Republicans = oregon[4];
+                $scope.oregonData.Green = oregon[12];
+                for (var j = 1; j < oregon.length; j++) {
+                    if (oregon[j].length > 0) {
+                        var num = parseInt(oregon[j].replace(/,/g,""));
+                        total += num;
+                        if (j != 6 && j != 4 && j != 12) {
+                            independent += num;
+                        }
+                    }
+                }
+                $scope.oregonData.Independent = independent;
+                $scope.oregonData.Total = total;
+            }
+        }
+        console.log($scope.oregonData);
+    });
+
     //watches when the user gets to the AV section, then changes the chart data
     $scope.$watch("changeToAv", function(val) {
         if (val) {
@@ -472,4 +508,87 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
 
         return startCheck && endCheck;
     };
+
+    $scope.CSVToArray = function( strData, strDelimiter ){
+        // Check to see if the delimiter is defined. If not,
+        // then default to comma.
+        strDelimiter = (strDelimiter || ",");
+
+        // Create a regular expression to parse the CSV values.
+        var objPattern = new RegExp(
+            (
+                // Delimiters.
+                "(\\" + strDelimiter + "|\\r?\\n|\\r|^)" +
+
+                // Quoted fields.
+                "(?:\"([^\"]*(?:\"\"[^\"]*)*)\"|" +
+
+                // Standard fields.
+                "([^\"\\" + strDelimiter + "\\r\\n]*))"
+            ),
+            "gi"
+            );
+
+
+        // Create an array to hold our data. Give the array
+        // a default empty first row.
+        var arrData = [[]];
+
+        // Create an array to hold our individual pattern
+        // matching groups.
+        var arrMatches = null;
+
+
+        // Keep looping over the regular expression matches
+        // until we can no longer find a match.
+        while (arrMatches = objPattern.exec( strData )){
+
+            // Get the delimiter that was found.
+            var strMatchedDelimiter = arrMatches[ 1 ];
+
+            // Check to see if the given delimiter has a length
+            // (is not the start of string) and if it matches
+            // field delimiter. If id does not, then we know
+            // that this delimiter is a row delimiter.
+            if (
+                strMatchedDelimiter.length &&
+                strMatchedDelimiter !== strDelimiter
+                ){
+
+                // Since we have reached a new row of data,
+                // add an empty row to our data array.
+                arrData.push( [] );
+
+            }
+
+            var strMatchedValue;
+
+            // Now that we have our delimiter out of the way,
+            // let's check to see which kind of value we
+            // captured (quoted or unquoted).
+            if (arrMatches[ 2 ]){
+
+                // We found a quoted value. When we capture
+                // this value, unescape any double quotes.
+                strMatchedValue = arrMatches[ 2 ].replace(
+                    new RegExp( "\"\"", "g" ),
+                    "\""
+                    );
+
+            } else {
+
+                // We found a non-quoted value.
+                strMatchedValue = arrMatches[ 3 ];
+
+            }
+
+
+            // Now that we have our value string, let's add
+            // it to the data array.
+            arrData[ arrData.length - 1 ].push( strMatchedValue );
+        }
+
+        // Return the parsed data.
+        return( arrData );
+    }
 });
