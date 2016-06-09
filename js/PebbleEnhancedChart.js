@@ -26,8 +26,6 @@ function PebbleEnhancedChart() {
             var rowScale = d3.scale.linear().domain([0, squareCols - 1]).range([0, squareSize*squareCols + ((squareCols - 1) * squareMargin)]);
             var colorScale = d3.scale.ordinal().domain(buckets).range(fills);
 
-            console.log(colorScale('Republican'));
-
             var counters = [];
             for (var i = 0; i < buckets.length; i++) {
                 counters.push({

@@ -160,7 +160,7 @@ h1 {
 .content-section {
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 20px;
-  margin: 400px 0px 0px 0px;
+  margin: 600px 0px 0px 0px;
   padding: 20px;
   z-index: 1000; }
   .content-section .section-title {
@@ -183,7 +183,7 @@ h1 {
   margin: 10px 0px 0px 0px; }
 
 .closing {
-  margin-bottom: 120px; }
+  margin-bottom: 200px; }
 
 .wide-top h1 {
   font-size: 32px;
