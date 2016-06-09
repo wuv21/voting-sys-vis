@@ -398,6 +398,7 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
         pebbleEC: false,
         ballotFPTP: false,
         ballotAV: false,
+        ballotSV: false
     };
 
 
