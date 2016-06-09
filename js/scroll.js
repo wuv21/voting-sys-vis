@@ -1,4 +1,6 @@
 $(document).ready(function() {
+	$(this).scrollTop(0);
+
 	$("#fptp-link").on('click',function (event) {
 	    event.preventDefault();
 

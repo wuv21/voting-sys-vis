@@ -6,6 +6,7 @@ function PebbleEnhancedChart() {
         squareMargin = 5,
         squareCols = 7,
         color = d3.scale.category20(),
+        fills = ['#467DA3', '#A34846'],
         transitionDelay = 6000;
 
     var width = 800,
@@ -23,6 +24,9 @@ function PebbleEnhancedChart() {
 
             var xScale = d3.scale.ordinal().domain(buckets).rangeBands([margin.left, width - margin.right], 0);
             var rowScale = d3.scale.linear().domain([0, squareCols - 1]).range([0, squareSize*squareCols + ((squareCols - 1) * squareMargin)]);
+            var colorScale = d3.scale.ordinal().domain(buckets).range(fills);
+
+            console.log(colorScale('Republican'));
 
             var counters = [];
             for (var i = 0; i < buckets.length; i++) {
@@ -76,6 +80,27 @@ function PebbleEnhancedChart() {
                 .attr("stroke", "#EEE");
 
 
+            var g = svgEnter.append('g')
+                .attr('id', 'pebbleECHover')
+                .attr('width', width - margin.left)
+                .attr('height', 5);
+
+            g.append('line')
+                .attr('x1', margin.left)
+                .attr('x2', width - margin.left)
+                .attr('y1', 0)
+                .attr('y2', 0)
+                .style('stroke-width', 2)
+                .style('stroke', '#CCC');
+
+            g.append('text')
+                .attr('id', 'hoverText')
+                .attr('x', (width - margin.left) / 2 - 5)
+                .attr('y', 0)
+                .attr('font-size', 14)
+                .fill("#CCC");
+
+
             var pebbles = svgEnter.selectAll('.pebbleEnhanced').data(resp);
 
             pebbles.enter()
@@ -89,15 +114,17 @@ function PebbleEnhancedChart() {
                 .attr("title", function(x, i) {return x.party + '-' + i})
                 .on('mouseover', function(d) {
                     d3.select(this)
-                        .style('fill', 'cyan');
+                        .style('fill', '#AAA');
+
+                    d3.select('#hoverText')
+                        .text(d.state);
                 })
                 .on('mouseout', function(d) {
                     d3.select(this)
-                        .style('fill', function(d) {return color(d.name)});
-                })
-                .append("rect:title")
-                .text(function(d, i) {return d.state});
-
+                        .style('fill', function(d) {return colorScale(d.party)});
+                    d3.select('#hoverText')
+                        .text('');
+                });
 
             pebbles.exit().remove();
             // paths.transition().delay(6000).remove();
@@ -105,6 +132,7 @@ function PebbleEnhancedChart() {
             pebbles.transition()
                 .delay(1000)
                 .duration(function(d, i) {return i / resp.length * transitionDelay;})
+                .style("fill", function(d) {return colorScale(d.party)})
                 .attr("x", function(d) {
                     var index = buckets.indexOf(d.party);
 
@@ -126,25 +154,7 @@ function PebbleEnhancedChart() {
 
             pebbles.exit().transition().duration(function(d, i) {return i/resp.length * transitionDelay}).remove();
 
-            var g = svgEnter.append('g')
-                .attr('id', 'pebbleECHover')
-                .attr('width', width - margin.left)
-                .attr('height', 5);
 
-            g.append('line')
-                .attr('x1', margin.left)
-                .attr('x2', width - margin.left)
-                .attr('y1', 0)
-                .attr('y2', 0)
-                .style('stroke-width', 2)
-                .style('stroke', '#CCC');
-
-            // g.append('text')
-            //     .attr('id', 'hoverText')
-            //     .attr('x', margin.left)
-            //     .attr('y', 0)
-            //     .attr('font-size', 14)
-            //     .fill("#CCC");
 
             // var yScale = d3.scale.linear().domain([height - margin.bottom - 5, 0]).rangeBands([0, resp.length /2]);
 
@@ -159,8 +169,7 @@ function PebbleEnhancedChart() {
                         .attr('transform', 'translate(' + margin.left + ', ' + (height - margin.bottom)+ ')');
                 }
 
-                // d3.select('#hoverText')
-                //     .text(d3.mouse(this)[1]);
+
             });
         })
     }
