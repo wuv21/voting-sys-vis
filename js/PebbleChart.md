@@ -3,8 +3,7 @@
 ![PebbleChart Example](../img/pebblechart.png)
 
 ## General Notes
--- say something about data join stuff and how to call the chart? and other required info (PebbleChart.datum([]))
-
+PebbleChart is an original chart inspired by waffle chart and bar chart. PebbleChart allows the user to visualize the data, grouped or not, separately and distinctly. It is a way to encode the data discretely in a chart like a bar chart. 
 
 ##  PebbleChart Functions
 

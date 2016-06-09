@@ -3,10 +3,7 @@
 ![MapChart Example](../img/colorless_mapchart.png)
 
 ## General Notes
-This chart requires a TopoJSON file in order to be used. In our example we created the United States map with [this TopoJSON file](../data/map/us.json).
-
--- say something about data join stuff and how to call the chart? and other required info (MapChart.datum([]))
-
+MapChart is good for visualizing types of geographical dependent data with a map in the browser. This chart requires a TopoJSON file in order to be used. In our example we created the United States map with [this TopoJSON file](../data/map/us.json). 
 
 
 ##  MapChart Functions
