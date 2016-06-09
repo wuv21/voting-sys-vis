@@ -26,8 +26,6 @@ function PebbleEnhancedChart() {
             var rowScale = d3.scale.linear().domain([0, squareCols - 1]).range([0, squareSize*squareCols + ((squareCols - 1) * squareMargin)]);
             var colorScale = d3.scale.ordinal().domain(buckets).range(fills);
 
-            console.log(colorScale('Republican'));
-
             var counters = [];
             for (var i = 0; i < buckets.length; i++) {
                 counters.push({
@@ -108,7 +106,7 @@ function PebbleEnhancedChart() {
                 .attr("class", "pebbleEnhanced")
                 .attr("width", squareSize)
                 .attr("height", squareSize)
-                .style("fill", function(d) {return color(d.state)})
+                .style("fill", function(d) {return colorScale(d.party)})
                 .attr("x", function(d) {return d.x})
                 .attr("y", function(d) {return d.y})
                 .attr("title", function(x, i) {return x.party + '-' + i})
