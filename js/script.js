@@ -206,18 +206,21 @@ votingSysApp.directive("scrollAvSection", function ($window) {
             var pos = this.pageYOffset + (this.innerHeight * 2 / 3);
 
             if (scope.checkHeight(pos, 10, 11)) { // AV SECTION
+                scope.elementVisible.ballotAV = false;
                 scope.mapColor = ['#D6D6D6', '#D6D6D6'];
                 scope.elementID.mapC = 0;
                 scope.elementVisible.mapC = true;
                 scope.changeToAv = false;
 
             } else if (scope.checkHeight(pos, 11, 12)) {
+                scope.elementVisible.ballotAV = true;
                 scope.changeToAv = true;
                 scope.elementVisible.mapC = false;
                 scope.elementVisible.pebbleEC = false;
                 scope.elementID.pebbleEC = 4;
 
             } else if (scope.checkHeight(pos, 12, 13)) {
+                scope.elementVisible.ballotAV = false;
                 scope.elementVisible.pebbleEC = true;
                 scope.elementID.pebbleEC = 6;
                 scope.elementVisible.mapC = false;
@@ -393,7 +396,8 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
         mapC: true,
         pebbleC: false,
         pebbleEC: false,
-        ballotFPTP: false
+        ballotFPTP: false,
+        ballotAV: false,
     };
 
 
