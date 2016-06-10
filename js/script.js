@@ -479,11 +479,11 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
         });
 
         var oregonDataAV = {
-            Democrat: $scope.oregonData['Democrat'] + ($scope.oregonData['Independent'] * 0.25) + ($scope.oregonData['Green'] * 0.477),
+            Democrat: $scope.oregonData['Democrat'] + ($scope.oregonData['Independent'] * 0.416667) + ($scope.oregonData['Green'] * 0.62931),
             Green: 0,
             Independent: 0,
-            Republican: $scope.oregonData['Republican'] + ($scope.oregonData['Independent'] * 0.35) + ($scope.oregonData['Green'] * 0.219),
-            Total: $scope.oregonData.Total - $scope.oregonData['Independent'] * 0.4 - $scope.oregonData['Green'] * 0.304
+            Republican: $scope.oregonData['Republican'] + ($scope.oregonData['Independent'] * 0.58338) + ($scope.oregonData['Green'] * 0.314655),
+            Total: $scope.oregonData.Total
         };
 
 
@@ -504,11 +504,11 @@ votingSysApp.controller('mainController', function($scope, $http, Election_2000,
 
         $scope.countryData.forEach(function(state) {
             var stateAV = {
-                Democrat: state['Democrats'] + (state['Independent'] * 0.25) + (state['Green'] * 0.477),
+                Democrat: state['Democrats'] + (state['Independent'] * 0.416667) + (state['Green'] * 0.62931),
                 Green: 0,
                 Independent: 0,
-                Republican: state['Republicans'] + (state['Independent'] * 0.35) + (state['Green'] * 0.219),
-                Total: state.Total - state['Independent'] * 0.4 - state['Green'] * 0.304
+                Republican: state['Republicans'] + (state['Independent'] * 0.58338) + (state['Green'] * 0.314655),
+                Total: state.Total
             };
 
             buckets.forEach(function(name) {
